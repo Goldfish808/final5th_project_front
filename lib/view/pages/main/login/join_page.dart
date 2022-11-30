@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/login/components/custom_form.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/login/components/custom_password_form.dart';
+
 import 'package:riverpod_firestore_steam1/view/pages/main/login/components/default_button.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/login/components/line_app_bar.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/login/components/line_button.dart';
@@ -34,6 +35,7 @@ class JoinPage extends StatelessWidget {
       ),
     );
   }
+
 
   Widget _buildEmailForm() {
     return Column(
@@ -99,6 +101,7 @@ class JoinPage extends StatelessWidget {
             ),
           ],
         )
+
       ],
     );
   }
@@ -106,7 +109,9 @@ class JoinPage extends StatelessWidget {
   Column _buildPasswordForm() {
     return Column(
       children: [
+
         CustomPasswordForm("비밀번호", "비밀번호를 입력해주세요"),
+
         SizedBox(height: 6),
         TextFormField(
           decoration: InputDecoration(
@@ -122,7 +127,9 @@ class JoinPage extends StatelessWidget {
                 color: const Color(0xffe2e2e2),
                 textStyle: textTheme().headline2,
               )),
+
           obscureText: true,
+
         )
       ],
     );

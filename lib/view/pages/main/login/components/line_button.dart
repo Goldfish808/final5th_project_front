@@ -18,6 +18,7 @@ class LineButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           minimumSize: Size(double.infinity, 50),
+
           side: BorderSide(color: theme().primaryColor, width: 1),
         ),
         child: Text("${btnText}", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
