@@ -32,8 +32,11 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
   // @override
   // bool? get centerTitle => false;
   //
-  // @override
-  // List<Widget>? get actions => [];
+  @override
+  List<Widget>? get actions => [
+        IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.bell)),
+        IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.settings)),
+      ];
   //
   // @override
   // Widget? get leading => Text("dd");
