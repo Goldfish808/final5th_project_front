@@ -34,7 +34,7 @@ class JoinPage extends StatelessWidget {
     );
   }
 
-  Column _buildEmailForm() {
+  Widget _buildEmailForm() {
     return Column(
       children: [
         CustomForm("이메일", "이메일을 입력해주세요"),
