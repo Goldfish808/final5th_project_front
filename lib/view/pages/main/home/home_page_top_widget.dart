@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/home/widget/day_date.dart';
 
 class HomePageTopWidget extends StatelessWidget {
   HomePageTopWidget({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class HomePageTopWidget extends StatelessWidget {
       children: [
         _buildTopfirstline(),
         SizedBox(height: 18),
-        _buildDay(),
+        DayDate(),
         SizedBox(height: 16),
         _builSchedule(),
       ],
@@ -47,56 +48,6 @@ class HomePageTopWidget extends StatelessWidget {
               decoration: BoxDecoration(
                 color: klightGreyColor(),
                 borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildDay() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20),
-      child: Container(
-        decoration: BoxDecoration(
-          color: klightGreyColor(),
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10),
-              bottomLeft: Radius.circular(10),
-              bottomRight: Radius.zero,
-              topRight: Radius.zero),
-        ),
-        padding: const EdgeInsets.all(4),
-        child: Container(
-          padding: const EdgeInsets.only(left: 4),
-          //margin: const EdgeInsets.symmetric(vertical: 20.0),
-          height: 54.0,
-          child: ListView.builder(
-            itemCount: week.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) => Container(
-              padding: EdgeInsets.only(right: 12),
-              child: GestureDetector(
-                onTap: () {},
-                child: Container(
-                  //padding: EdgeInsets.only(right: 12),
-                  alignment: Alignment.center,
-                  width: 42,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: 10, bottom: 3),
-                        child: Text(week[index], style: textTheme(color: kchacholGreyColor()).bodyText1),
-                      ),
-                      Text("2" + "$index", style: textTheme().bodyText1),
-                    ],
-                  ),
-                  decoration: BoxDecoration(
-                    color: Color(0xffFFFFFF),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
               ),
             ),
           ),
