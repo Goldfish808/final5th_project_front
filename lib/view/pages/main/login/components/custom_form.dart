@@ -25,7 +25,6 @@ class CustomForm extends StatelessWidget {
           decoration: InputDecoration(
               hintText: "${hintText}",
               contentPadding: EdgeInsets.only(top: 12, bottom: 12, left: 10),
-
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(
