@@ -7,8 +7,6 @@ import 'package:riverpod_firestore_steam1/view/pages/main/components/chat_app_ba
 
 class ChatPage extends StatelessWidget {
   const ChatPage({Key? key}) : super(key: key);
-  //final User user;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
