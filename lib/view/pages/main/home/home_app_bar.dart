@@ -34,8 +34,23 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
   //
   @override
   List<Widget>? get actions => [
-        IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.bell)),
-        IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.settings)),
+        Row(
+          children: [
+            SizedBox(
+              width: 30,
+              child: IconButton(
+                onPressed: () {},
+                icon: Icon(CupertinoIcons.bell),
+                tooltip: "알림, news",
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(CupertinoIcons.gear_big),
+              tooltip: "설정, Setting",
+            ),
+          ],
+        ),
       ];
   //
   // @override
