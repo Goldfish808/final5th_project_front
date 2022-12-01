@@ -7,6 +7,7 @@ import 'package:riverpod_firestore_steam1/view/pages/main/chat/chat_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/my_home_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/login/components/custom_form.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/login/login_page.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/mypage/mypage_main_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class _MainPageState extends State<MainPage> {
           ChatPage(),
           Center(child: Text("WritePage")),
           Center(child: Text("SearchPage")),
-          Center(child: Text("MyPage")),
+          MyPageMainPage(),
         ],
       ),
       bottomNavigationBar: Container(
