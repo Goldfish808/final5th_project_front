@@ -13,7 +13,11 @@ class MyHomePage extends StatelessWidget {
       appBar: HomeAppBar(),
       body: Column(
         children: [
-          Container(height: 320, color: kchacholGreyColor(), child: HomePageTopWidget()),
+          Container(height: 320, child: HomePageTopWidget()),
+          Expanded(
+              child: Container(
+            color: kpointMintColor(),
+          )),
         ],
       ),
     );

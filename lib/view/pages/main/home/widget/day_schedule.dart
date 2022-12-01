@@ -24,15 +24,7 @@ class DaySchedule extends StatelessWidget {
               //padding: EdgeInsets.only(right: 12),
               alignment: Alignment.center,
               width: 130,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 10, bottom: 3),
-                    child: Text(week[index], style: textTheme(color: kchacholGreyColor()).bodyText1),
-                  ),
-                  Text("2" + "$index", style: textTheme().bodyText1),
-                ],
-              ),
+              child: _buildScheduleItem(index),
               decoration: BoxDecoration(
                 color: klightGreyColor(),
                 borderRadius: BorderRadius.circular(10),
@@ -41,6 +33,37 @@ class DaySchedule extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Column _buildScheduleItem(int index) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(14.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(left: 8, right: 8),
+                    height: 22,
+                    alignment: Alignment.center,
+                    color: ksubPrimaryColor(),
+                    child: Text(
+                      "카ffwafawawfawfawf테고리 명",
+                      style: textTheme(color: Colors.white).bodyText2,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

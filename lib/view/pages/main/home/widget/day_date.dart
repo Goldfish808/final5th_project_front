@@ -10,7 +10,7 @@ class DayDate extends StatefulWidget {
 }
 
 class _DayDateState extends State<DayDate> {
-  final List<String> week = ["월", "화", "수", "목", "금", "토", "일"];
+  final List<String> week = ["월", "화", "수", "목", "금", "토", "일", "월", "화", "수", "목", "금", "토", "일"];
   @override
   Widget build(BuildContext context) {
     return Padding(
