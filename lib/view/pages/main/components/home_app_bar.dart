@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/widgets/k_stack_icon.dart';
 
 class HomeAppBar extends AppBar implements PreferredSizeWidget {
   HomeAppBar({super.key});
-
-  @override
-  PreferredSizeWidget? get bottom =>
-      PreferredSize(child: Divider(thickness: 2, color: Colors.grey, height: 3), preferredSize: preferredSize);
 
   @override
   bool get automaticallyImplyLeading => false;
@@ -19,7 +16,7 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
             child: Row(
               children: [
                 Text("안녕, ", style: TextStyle(color: Colors.white)),
-                Text("그린컴퓨터 ", style: TextStyle(color: Color(0xffFFD21D))),
+                Text("Zne.vil ", style: TextStyle(color: Color(0xffFFD21D))),
                 Text("님", style: TextStyle(color: Colors.white)),
                 SizedBox(width: 4),
                 Icon(CupertinoIcons.chevron_down, size: 14)
@@ -36,19 +33,8 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
   List<Widget>? get actions => [
         Row(
           children: [
-            SizedBox(
-              width: 30,
-              child: IconButton(
-                onPressed: () {},
-                icon: Icon(CupertinoIcons.bell),
-                tooltip: "알림, news",
-              ),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(CupertinoIcons.gear_big),
-              tooltip: "설정, Setting",
-            ),
+            KStackIcon(iconData: CupertinoIcons.bell, notificationCount: '9'),
+            KStackIcon(iconData: CupertinoIcons.gear_big, notificationCount: '0'),
           ],
         ),
       ];
@@ -59,5 +45,8 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
   // @override
   // //final Size preferredSize; // This didnot work for me.
   // Size get preferredSize => Size.fromHeight(55); //This should work.
-
+  @override
+  ShapeBorder? get shape => RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10)),
+      );
 }
