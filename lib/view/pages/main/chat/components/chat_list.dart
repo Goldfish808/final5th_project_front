@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/models/users.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/chat/chat_room_page.dart';
 
 class ChatList extends StatelessWidget {
   const ChatList({Key? key, required this.user}) : super(key: key);
@@ -9,7 +10,14 @@ class ChatList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ChatRoomPage(),
+          ),
+        );
+      },
       child: Padding(
         padding: const EdgeInsets.only(bottom: 10, top: 0),
         child: Row(
