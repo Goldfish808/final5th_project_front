@@ -25,10 +25,6 @@ class _MainPageState extends State<MainPage> {
         children: [
           MyHomePage(),
           ChatRoomPage(),
-          Center(
-              child: Text(
-            "WritePage",
-          )),
           ChatPage(),
           Center(child: Text("WritePage")),
           Center(child: Text("SearchPage")),
