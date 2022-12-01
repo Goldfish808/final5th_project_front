@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
+import 'package:riverpod_firestore_steam1/models/todo.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class ProfileTabV2 extends StatefulWidget {
@@ -121,7 +122,15 @@ class _ProfileTabState extends State<ProfileTabV2>
             },
           ),
         ),
-        Container(color: Colors.orange),
+        Container(
+          child: Row(
+            children: [
+              Column(
+                children: [],
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
