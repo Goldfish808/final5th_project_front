@@ -1,28 +1,34 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 
 class BoardAppBarV2 extends AppBar implements PreferredSizeWidget {
-  BoardAppBarV2({super.key, required this.bar_title});
-  final String bar_title;
+  BoardAppBarV2({super.key, required this.titlename});
+  final String? titlename;
 
-  // @override
-  // bool get automaticallyImplyLeading => false;
+  @override
+  bool get automaticallyImplyLeading => false;
 
   @override
   Color? get backgroundColor => Colors.white;
 
   @override
-  Widget? get leading => IconButton(
-        icon: const Icon(Icons.arrow_back_ios_new),
-        onPressed: () {},
-        color: const Color(0xff1C1C1C),
+  Widget? get leading => InkWell(
+        onTap: () {
+          return;
+        },
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20),
+          child: Row(
+            children: [
+              Icon(Icons.arrow_back_ios_new, color: kPrimaryColor()),
+            ],
+          ),
+        ),
       );
 
   @override
   Widget? get title => Text(
-        "${bar_title}",
+        "${titlename}",
         style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold).headline2,
       );
 
@@ -30,14 +36,14 @@ class BoardAppBarV2 extends AppBar implements PreferredSizeWidget {
   List<Widget>? get actions => [
         IconButton(
           onPressed: () {},
-          icon: Image.asset("assets/notice.png", width: 20, height: 20),
+          icon: Image.asset("assets/notice_black.png", width: 20, height: 20),
           padding: EdgeInsets.zero,
           constraints: const BoxConstraints(),
         ),
         const SizedBox(width: 14),
         IconButton(
           onPressed: () {},
-          icon: Image.asset("assets/setting.png", width: 20, height: 20),
+          icon: Image.asset("assets/setting_black.png", width: 20, height: 20),
           padding: EdgeInsets.zero,
           constraints: const BoxConstraints(),
         ),
