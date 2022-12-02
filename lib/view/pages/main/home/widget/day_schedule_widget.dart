@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../../../../../core/theme.dart';
@@ -26,7 +28,7 @@ class DaySchedule extends StatelessWidget {
               width: 130,
               child: _buildScheduleItem(index),
               decoration: BoxDecoration(
-                color: klightGreyColor(),
+                color: primary[50],
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
@@ -36,29 +38,26 @@ class DaySchedule extends StatelessWidget {
     );
   }
 
-  Column _buildScheduleItem(int index) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(14.0),
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.only(left: 8, right: 8),
-                height: 22,
-                alignment: Alignment.center,
-                color: ksubPrimaryColor(),
-                child: Text(
-                  "카테고리 명",
-                  style: textTheme(color: Colors.white, weight: FontWeight.bold).bodyText2,
-                  maxLines: 1,
-                  overflow: TextOverflow.clip,
-                ),
-              )
-            ],
+  Widget _buildScheduleItem(int index) {
+    return Container(
+      width: double.infinity,
+      alignment: Alignment.topLeft,
+      padding: EdgeInsets.only(left: 14, top: 14),
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: ksubPrimaryColor(),
+            ),
+            padding: EdgeInsets.only(left: 11, top: 5, bottom: 5, right: 11),
+            child: Text("카테고리 명",
+                style: textTheme(color: Colors.white, weight: FontWeight.bold).bodyText2,
+                maxLines: 1,
+                overflow: TextOverflow.clip),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
