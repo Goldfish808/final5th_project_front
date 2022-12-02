@@ -8,7 +8,7 @@ class BoardListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BoardAppBarV2(titlename: "TODOFRIENDS"),
+      appBar: BoardAppBarV2(titlename: "TODOFRIENDS", context: context),
     );
   }
 }

@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 
 class BoardAppBarV2 extends AppBar implements PreferredSizeWidget {
-  BoardAppBarV2({super.key, required this.titlename});
+  BoardAppBarV2({required this.context, super.key, required this.titlename});
   final String? titlename;
+  final BuildContext context;
+
+  // @override
+  // bool get automaticallyImplyLeading => false;
+  @override
+  // TODO: implement foregroundColor
+  Color? get foregroundColor => Colors.black;
 
   @override
-  bool get automaticallyImplyLeading => false;
-
-  @override
-  double? get titleSpacing => 0;
+  double? get titleSpacing => -10;
 
   @override
   Color? get backgroundColor => Colors.white;
@@ -17,10 +21,10 @@ class BoardAppBarV2 extends AppBar implements PreferredSizeWidget {
   @override
   Widget? get leading => InkWell(
         onTap: () {
-          return;
+          Navigator.pop(context);
         },
         child: Padding(
-          padding: const EdgeInsets.only(left: 20),
+          padding: const EdgeInsets.only(left: 8),
           child: Row(
             children: [
               Icon(Icons.arrow_back_ios_new, color: kPrimaryColor()),
@@ -63,5 +67,5 @@ class BoardAppBarV2 extends AppBar implements PreferredSizeWidget {
 
   @override
   //final Size preferredSize; // This didnot work for me.
-  Size get preferredSize => const Size.fromHeight(55); //This should work.
+  Size get preferredSize => const Size.fromHeight(55);
 }
