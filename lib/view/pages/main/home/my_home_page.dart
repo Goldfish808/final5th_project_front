@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/components/home_app_bar.dart';
-import 'package:riverpod_firestore_steam1/view/pages/main/home/home_page_top_widget.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/home/home_page_top.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -13,12 +13,11 @@ class MyHomePage extends StatelessWidget {
       appBar: HomeAppBar(),
       body: Column(
         children: [
-          Container(height: 320, child: HomePageTopWidget()),
+          Container(height: 320, child: HomePageTop()),
           Expanded(
               child: Container(
             color: kpointMintColor(),
           )),
-          Container(height: 320, color: kchacholGreyColor(), child: HomePageTopWidget()),
         ],
       ),
     );

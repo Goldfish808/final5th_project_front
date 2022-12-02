@@ -5,7 +5,7 @@ import '../../../../../core/theme.dart';
 class DaySchedule extends StatelessWidget {
   DaySchedule({Key? key}) : super(key: key);
 
-  final List<String> week = ["월", "화", "수", "목", "금", "토", "일"];
+  final List<String> week = ["MON", "TUE", "WED", "THU", "금", "토", "일"];
 
   @override
   Widget build(BuildContext context) {
@@ -43,22 +43,17 @@ class DaySchedule extends StatelessWidget {
           padding: const EdgeInsets.all(14.0),
           child: Column(
             children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(left: 8, right: 8),
-                    height: 22,
-                    alignment: Alignment.center,
-                    color: ksubPrimaryColor(),
-                    child: Text(
-                      "카ffwafawawfawfawf테고리 명",
-                      style: textTheme(color: Colors.white).bodyText2,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
+              Container(
+                padding: EdgeInsets.only(left: 8, right: 8),
+                height: 22,
+                alignment: Alignment.center,
+                color: ksubPrimaryColor(),
+                child: Text(
+                  "카테고리 명",
+                  style: textTheme(color: Colors.white, weight: FontWeight.bold).bodyText2,
+                  maxLines: 1,
+                  overflow: TextOverflow.clip,
+                ),
               )
             ],
           ),
