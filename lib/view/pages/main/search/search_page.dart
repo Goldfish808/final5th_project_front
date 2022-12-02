@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/components/line_app_bar.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/search/board_list_page.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -24,14 +25,23 @@ class SearchPage extends StatelessWidget {
             mainAxisSpacing: 4,
           ),
           itemBuilder: (BuildContext context, int index) {
-            return ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.asset(
-                "assets/dog.png",
-                width: 104,
-                height: 104,
-                fit: BoxFit.cover,
+            return IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BoardListPage()),
+                );
+              },
+              icon: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+                child: Image.asset(
+                  'assets/dog.png',
+                  width: double.infinity,
+                  height: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
+              padding: EdgeInsets.zero,
             );
           },
         ),
