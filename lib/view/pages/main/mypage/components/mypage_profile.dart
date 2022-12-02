@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/models/mypage.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/mypage/mypage_profile_page.dart';
 
 class MypageProfile extends StatelessWidget {
   const MypageProfile({Key? key}) : super(key: key);
@@ -49,7 +50,12 @@ class MypageProfile extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 20),
               child: OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyPageProfilePage()),
+                  );
+                },
                 child: Text("프로필 수정", style: textTheme(color: kchacholGreyColor(), weight: FontWeight.w600).bodyText1),
                 style: OutlinedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 5, horizontal: 16),
