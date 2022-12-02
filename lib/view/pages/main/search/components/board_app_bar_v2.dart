@@ -9,6 +9,9 @@ class BoardAppBarV2 extends AppBar implements PreferredSizeWidget {
   bool get automaticallyImplyLeading => false;
 
   @override
+  double? get titleSpacing => 0;
+
+  @override
   Color? get backgroundColor => Colors.white;
 
   @override
@@ -54,6 +57,9 @@ class BoardAppBarV2 extends AppBar implements PreferredSizeWidget {
   // ShapeBorder? get shape => RoundedRectangleBorder(
   //       borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10)),
   //     );
+
+  @override
+  ShapeBorder? get shape => Border(bottom: BorderSide(width: 1, color: klightGreyColor()));
 
   @override
   //final Size preferredSize; // This didnot work for me.
