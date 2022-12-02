@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/models/follow.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/mypage/components/follow_box.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/mypage/components/following_box.dart';
 import '../components/line_app_bar.dart';
 
@@ -96,7 +97,10 @@ class _MyPageFollowingPageState extends State<MyPageFollowingPage> with SingleTi
         ListView(
           physics: BouncingScrollPhysics(),
           dragStartBehavior: DragStartBehavior.down,
-          children: [],
+          children: List.generate(
+            Follows.length,
+            (index) => FollowBox(follow: Follows[index]),
+          ),
         ),
       ],
     );
