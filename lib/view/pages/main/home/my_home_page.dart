@@ -18,6 +18,7 @@ class MyHomePage extends StatelessWidget {
               child: Container(
             color: kpointMintColor(),
           )),
+          Container(height: 320, color: kchacholGreyColor(), child: HomePageTopWidget()),
         ],
       ),
     );
