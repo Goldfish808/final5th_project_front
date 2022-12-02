@@ -5,6 +5,17 @@ import '../../../../../core/theme.dart';
 import '../../../../../models/todo.dart';
 import '../../../../../models/users.dart';
 
+class UserLength {
+  int userLength = users.length;
+
+  int index() {
+    if (userLength > 3) {
+      return 4;
+    }
+    return userLength;
+  }
+}
+
 class DaySchedule extends StatelessWidget {
   DaySchedule({Key? key}) : super(key: key);
 
@@ -43,7 +54,7 @@ class DaySchedule extends StatelessWidget {
     return Column(children: [
       _category(),
       SizedBox(height: 12),
-      _title(index),
+      _scheduletitle(index),
       SizedBox(height: 12),
       Column(
         children: [
@@ -56,59 +67,41 @@ class DaySchedule extends StatelessWidget {
         padding: EdgeInsets.only(left: 14),
         child: Row(
           children: [
-            Stack(
-              children: [
-                // users[0] != null
-                //     ? Container(
-                //         child: KInkWellIconButton(img: users[0].profileImg),
-                //         padding: EdgeInsets.symmetric(horizontal: 38),
-                //       )
-                //     : Container(
-                //         child: KInkWellIconButton(img: null, icon: CupertinoIcons.person_3),
-                //         padding: EdgeInsets.symmetric(horizontal: 0),
-                //       ),
-                // users[1] != null
-                //     ? Container(
-                //         child: KInkWellIconButton(img: users[1].profileImg),
-                //         padding: EdgeInsets.symmetric(horizontal: 26),
-                //       )
-                //     : Container(
-                //         child: KInkWellIconButton(img: null, icon: CupertinoIcons.person_3),
-                //         padding: EdgeInsets.symmetric(horizontal: 0),
-                //       ),
-                // users[2] != null
-                //     ? Container(
-                //         child: KInkWellIconButton(img: users[2].profileImg),
-                //         padding: EdgeInsets.symmetric(horizontal: 14),
-                //       )
-                //     : Container(
-                //         child: KInkWellIconButton(img: null, icon: CupertinoIcons.person_3),
-                //         padding: EdgeInsets.symmetric(horizontal: 0),
-                //       ),
-                // users[3] != null
-                //     ? Container(
-                //         child: KInkWellIconButton(img: users[3].profileImg),
-                //         padding: EdgeInsets.symmetric(horizontal: 0),
-                //       )
-                //     : Container(
-                //         child: KInkWellIconButton(img: null, icon: CupertinoIcons.person_3),
-                //         padding: EdgeInsets.symmetric(horizontal: 0),
-                //       ),
-                // users[4] != null
-                //     ? Container(
-                //         child: KInkWellIconButton(img: users[4].profileImg),
-                //         padding: EdgeInsets.symmetric(horizontal: 0),
-                //       )
-                //     : Container(
-                //         child: KInkWellIconButton(img: null, icon: CupertinoIcons.person_3),
-                //         padding: EdgeInsets.symmetric(horizontal: 0),
-                //       )
-              ],
+            ClipRRect(
+              child: Stack(
+                children: List.generate(UserLength().index(), (index) => _buildStackProfileImage(index, users.length)),
+              ),
             ),
           ],
         ),
-      )
+      ),
+      SizedBox(height: 6),
     ]);
+  }
+
+  Widget _buildStackProfileImage(int index, int userslength) {
+    double _margin = (index * 17);
+
+    int num = userslength - index;
+
+    return index != 3
+        ? Container(
+            child: KInkWellIconButton(img: users[index].profileImg),
+            padding: EdgeInsets.symmetric(horizontal: _margin),
+          )
+        : Container(
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                color: kmidGreyColor(),
+              ),
+              alignment: Alignment.center,
+              width: 24,
+              height: 24,
+              child: Text("+$num", style: textTheme(weight: FontWeight.bold).bodyText2),
+            ),
+            padding: EdgeInsets.symmetric(horizontal: _margin),
+          );
   }
 
   Container _rowIconAndText(icon, text) {
@@ -126,17 +119,19 @@ class DaySchedule extends StatelessWidget {
     );
   }
 
-  Widget _title(int index) {
-    return Container(
-      height: 46,
-      width: double.infinity,
-      padding: EdgeInsets.only(left: 14, right: 14),
-      child: Text(
-        ToDoList[index].content,
-        style: textTheme(weight: FontWeight.bold).headline3,
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
-        textAlign: TextAlign.left,
+  Widget _scheduletitle(int index) {
+    return Flexible(
+      child: Container(
+        //height: 46,
+        width: double.infinity,
+        padding: EdgeInsets.only(left: 14, right: 14),
+        child: Text(
+          "seiofjsoiejfasoiefjiosejfoisaejf;oasfjsefsefsef;osjf;osajfoasfj;ojsfoiseajfoiasejfsojaf",
+          style: textTheme(weight: FontWeight.bold).headline3,
+          maxLines: 4,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.left,
+        ),
       ),
     );
   }
