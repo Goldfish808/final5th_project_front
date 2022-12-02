@@ -10,7 +10,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: HomeAppBar(),
+      appBar: HomeAppBar("Zne.vil"),
       body: Column(
         children: [
           Container(height: 320, child: HomePageTop()),

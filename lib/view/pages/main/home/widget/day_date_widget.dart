@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:riverpod_firestore_steam1/models/todo.dart';
 
 import '../../../../../core/theme.dart';
 
@@ -10,7 +11,7 @@ class DayDate extends StatefulWidget {
 }
 
 class _DayDateState extends State<DayDate> {
-  final List<String> week = ["월", "화", "수", "목", "금", "토", "일", "월", "화", "수", "목", "금", "토", "일"];
+  final int dayDateLentgh = ToDoList.length;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,7 +31,7 @@ class _DayDateState extends State<DayDate> {
           //margin: const EdgeInsets.symmetric(vertical: 20.0),
           height: 54.0,
           child: ListView.builder(
-            itemCount: week.length,
+            itemCount: dayDateLentgh,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) => _buildDayItem(index),
           ),
@@ -52,7 +53,7 @@ class _DayDateState extends State<DayDate> {
             children: [
               Padding(
                 padding: EdgeInsets.only(top: 10, bottom: 3),
-                child: Text(week[index], style: textTheme(color: kchacholGreyColor()).bodyText1),
+                child: Text(ToDoList[index].day, style: textTheme(color: kchacholGreyColor()).bodyText1),
               ),
               Text("2" + "$index", style: textTheme().bodyText1),
             ],

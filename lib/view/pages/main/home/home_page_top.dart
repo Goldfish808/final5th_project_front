@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/widget/day_date_widget.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/widget/day_schedule_widget.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/home/widget/inkwell_icon_button_widget.dart';
 
 class HomePageTop extends StatelessWidget {
   const HomePageTop({Key? key}) : super(key: key);
@@ -37,25 +38,7 @@ class HomePageTop extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         //아래 버튼은 추후에 DropDown 버튼 추가할지 고민
-        children: [_buildMonthDropdown(), _buildCelendarbutton()],
-      ),
-    );
-  }
-
-  Widget _buildCelendarbutton() {
-    return InkWell(
-      onTap: () {
-        print("클릭 됨 달력 아이콘");
-      },
-      child: Container(
-        alignment: Alignment.center,
-        width: 24,
-        height: 24,
-        child: Icon(Icons.calendar_today_outlined, size: 15),
-        decoration: BoxDecoration(
-          color: klightGreyColor(),
-          borderRadius: BorderRadius.circular(6),
-        ),
+        children: [_buildMonthDropdown(), KInkWellIconButton(icon: Icons.calendar_today_outlined)],
       ),
     );
   }
