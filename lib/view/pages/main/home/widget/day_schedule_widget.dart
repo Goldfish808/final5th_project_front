@@ -1,11 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/widget/inkwell_icon_button_widget.dart';
-
 import '../../../../../core/theme.dart';
 import '../../../../../models/todo.dart';
+import '../../../../../models/users.dart';
 
 class DaySchedule extends StatelessWidget {
   DaySchedule({Key? key}) : super(key: key);
@@ -28,7 +26,7 @@ class DaySchedule extends StatelessWidget {
             child: Container(
               //padding: EdgeInsets.only(right: 12),
               alignment: Alignment.center,
-              width: 130,
+              width: 145,
               child: _buildScheduleItem(index),
               decoration: BoxDecoration(
                 color: primary[50],
@@ -53,7 +51,63 @@ class DaySchedule extends StatelessWidget {
           _rowIconAndText(CupertinoIcons.location_solid, "서면 링딩동"),
         ],
       ),
-      KInkWellIconButton(icon: CupertinoIcons.person)
+      SizedBox(height: 6),
+      Container(
+        padding: EdgeInsets.only(left: 14),
+        child: Row(
+          children: [
+            Stack(
+              children: [
+                // users[0] != null
+                //     ? Container(
+                //         child: KInkWellIconButton(img: users[0].profileImg),
+                //         padding: EdgeInsets.symmetric(horizontal: 38),
+                //       )
+                //     : Container(
+                //         child: KInkWellIconButton(img: null, icon: CupertinoIcons.person_3),
+                //         padding: EdgeInsets.symmetric(horizontal: 0),
+                //       ),
+                // users[1] != null
+                //     ? Container(
+                //         child: KInkWellIconButton(img: users[1].profileImg),
+                //         padding: EdgeInsets.symmetric(horizontal: 26),
+                //       )
+                //     : Container(
+                //         child: KInkWellIconButton(img: null, icon: CupertinoIcons.person_3),
+                //         padding: EdgeInsets.symmetric(horizontal: 0),
+                //       ),
+                // users[2] != null
+                //     ? Container(
+                //         child: KInkWellIconButton(img: users[2].profileImg),
+                //         padding: EdgeInsets.symmetric(horizontal: 14),
+                //       )
+                //     : Container(
+                //         child: KInkWellIconButton(img: null, icon: CupertinoIcons.person_3),
+                //         padding: EdgeInsets.symmetric(horizontal: 0),
+                //       ),
+                // users[3] != null
+                //     ? Container(
+                //         child: KInkWellIconButton(img: users[3].profileImg),
+                //         padding: EdgeInsets.symmetric(horizontal: 0),
+                //       )
+                //     : Container(
+                //         child: KInkWellIconButton(img: null, icon: CupertinoIcons.person_3),
+                //         padding: EdgeInsets.symmetric(horizontal: 0),
+                //       ),
+                // users[4] != null
+                //     ? Container(
+                //         child: KInkWellIconButton(img: users[4].profileImg),
+                //         padding: EdgeInsets.symmetric(horizontal: 0),
+                //       )
+                //     : Container(
+                //         child: KInkWellIconButton(img: null, icon: CupertinoIcons.person_3),
+                //         padding: EdgeInsets.symmetric(horizontal: 0),
+                //       )
+              ],
+            ),
+          ],
+        ),
+      )
     ]);
   }
 
