@@ -75,7 +75,7 @@ class _ProfileTabState extends State<ProfileTabV2> with SingleTickerProviderStat
     return Container(
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(width: 1, color: klightGreyColor()),
+          bottom: BorderSide(width: 1, color: kmidGreyColor()),
         ),
       ),
       child: TabBar(
