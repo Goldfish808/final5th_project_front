@@ -35,6 +35,7 @@ class MyHomePage extends StatelessWidget {
           ),
         ],
       ),
+      endDrawer: drawer(context),
     );
   }
 
@@ -73,7 +74,6 @@ class MyHomePage extends StatelessWidget {
           ),
         ],
       ),
-      endDrawer: drawer(context),
     );
   }
 
