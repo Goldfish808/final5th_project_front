@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
@@ -21,21 +20,14 @@ class MyHomePage extends StatelessWidget {
         children: [
           //Container(height: 320, child: HomePageTop()),
           Expanded(
-<<<<<<< HEAD
             child: CustomScrollView(
               slivers: <Widget>[
                 const SliverAppBar(
                   automaticallyImplyLeading: false,
                   backgroundColor: Colors.white,
                   pinned: true,
-                  expandedHeight: 390.0,
+                  expandedHeight: 380.0,
                   flexibleSpace: FlexibleSpaceBar(
-                    titlePadding: EdgeInsets.only(left: 20, bottom: 18, top: 30),
-                    title: Text(
-                      textAlign: TextAlign.left,
-                      'ToDo',
-                      style: TextStyle(fontSize: 16, color: Color(0xFF1c1c1c)),
-                    ),
                     background: HomePageTop(),
                   ),
                 ),
@@ -51,64 +43,8 @@ class MyHomePage extends StatelessWidget {
               ],
             ),
           ),
-=======
-            child: ListView(
-              physics: BouncingScrollPhysics(),
-              dragStartBehavior: DragStartBehavior.down,
-              children: [
-                _TimelineList(),
-                _TimelineList(),
-                _TimelineList(),
-                _TimelineList(),
-                _TimelineList(),
-                _TimelineList(),
-                _TimelineList(),
-                _TimelineList(),
-                _TimelineList(),
-              ],
-            ),
-          ),
         ],
       ),
-    );
-  }
-
-  Widget _TimelineList() {
-    return Container(
-      padding: EdgeInsets.only(left: 20, right: 20, bottom: 4),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 18, vertical: 15),
-              decoration: BoxDecoration(
-                color: klightGreyColor(),
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    width: 6,
-                    height: 6,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      color: kchacholGreyColor(),
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Text(
-                    "플러터 디자인 하기",
-                    style: textTheme(color: kPrimaryColor(), weight: FontWeight.w500).bodyText1,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-      endDrawer: drawer(context),
     );
   }
 
@@ -210,7 +146,6 @@ class MyHomePage extends StatelessWidget {
             onTap: () {},
             shape: Border(bottom: BorderSide(color: klightGreyColor(), width: 1.5)),
           ),
->>>>>>> a335890cff992e2514ebbd25449b65ff7c4c9543
         ],
       ),
     );
@@ -218,7 +153,7 @@ class MyHomePage extends StatelessWidget {
 
   Widget _TimelineList() {
     return Slidable(
-      key: Key(items[1].content),
+      key: Key(items[0].content),
       endActionPane: ActionPane(
         motion: const ScrollMotion(),
         dismissible: DismissiblePane(onDismissed: () {}),
