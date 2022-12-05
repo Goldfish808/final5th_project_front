@@ -156,19 +156,23 @@ class MyHomePage extends StatelessWidget {
     return Slidable(
       key: Key(items[0].content),
       endActionPane: ActionPane(
+        extentRatio: 0.2,
         motion: const ScrollMotion(),
-        dismissible: DismissiblePane(onDismissed: () {}),
+        dismissible: DismissiblePane(onDismissed: () {
+          Key(items[1].content);
+        }),
         children: const [
           SlidableAction(
             onPressed: printSome,
             //backgroundColor: Color(0xFF7BC043),
             //foregroundColor: kchacholGreyColor(),
-            icon: CupertinoIcons.gear_big,
+            foregroundColor: primary,
+            icon: CupertinoIcons.trash,
           ),
           SlidableAction(
             onPressed: printSome,
             //backgroundColor: Color(0xFF0392CF),
-            foregroundColor: primary,
+            foregroundColor: Colors.white,
             icon: CupertinoIcons.trash,
           ),
         ],
