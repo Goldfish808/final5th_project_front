@@ -4,6 +4,7 @@ import 'package:riverpod_firestore_steam1/models/comment.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/search/components/board_app_bar_v2.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/search/components/comment_body.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/search/components/comment_head.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/search/components/submit_container.dart';
 
 class BoardListCommentPage extends StatelessWidget {
   const BoardListCommentPage({Key? key}) : super(key: key);
@@ -26,6 +27,11 @@ class BoardListCommentPage extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            child: SubmitContainer(),
           ),
         ],
       ),
