@@ -8,8 +8,15 @@ import 'package:riverpod_firestore_steam1/view/pages/main/home/update_password_p
 
 import '../../../../models/todo.dart';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key}) : super(key: key);
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  bool? _isChecked = false;
   final List<ToDo> items = List.of(ToDoList);
 
   @override
@@ -194,17 +201,23 @@ class MyHomePage extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
-                      width: 6,
-                      height: 6,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(6)),
-                        color: kchacholGreyColor(),
+                      width: 10,
+                      child: Checkbox(
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                        value: _isChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            _isChecked = value;
+                          });
+                        },
                       ),
                     ),
-                    SizedBox(width: 10),
+                    SizedBox(width: 15),
                     Text(
                       "플러터 디자인 하기",
-                      style: textTheme(color: kPrimaryColor(), weight: FontWeight.w500).headline3,
+                      style: _isChecked == true
+                          ? TextStyle(decoration: TextDecoration.lineThrough, fontSize: 14, color: kchacholGreyColor())
+                          : textTheme().headline3,
                     ),
                   ],
                 ),
