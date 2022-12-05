@@ -176,7 +176,7 @@ packages:
       name: font_awesome_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "10.2.1"
+    version: "10.3.0"
   google_fonts:
     dependency: "direct main"
     description:
@@ -329,8 +329,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
-<<<<<<< HEAD
-=======
   smooth_page_indicator:
     dependency: "direct main"
     description:
@@ -338,7 +336,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0+2"
->>>>>>> f95fde314bfa4c6c3261348c979d5de9c2708ad9
   source_span:
     dependency: transitive
     description:
