@@ -43,9 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
                     return Container(
                       alignment: Alignment.center,
-                      child: _TimelineList(),
+                      child: _ToDoList(index),
                     );
-                  }, childCount: 10),
+                  }, childCount: items.length),
                 ),
               ],
             ),
@@ -159,14 +159,16 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget _TimelineList() {
+  Widget _ToDoList(int index) {
     return Slidable(
-      key: Key(items[0].content),
+      key: Key(items[index].content),
       endActionPane: ActionPane(
         extentRatio: 0.2,
         motion: const ScrollMotion(),
         dismissible: DismissiblePane(onDismissed: () {
-          Key(items[1].content);
+          setState(() {
+            items.remove(items[index]);
+          });
         }),
         children: const [
           SlidableAction(
@@ -214,7 +216,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     SizedBox(width: 15),
                     Text(
-                      "플러터 디자인 하기",
+                      items[index].content,
                       style: _isChecked == true
                           ? TextStyle(decoration: TextDecoration.lineThrough, fontSize: 14, color: kchacholGreyColor())
                           : textTheme().headline3,
