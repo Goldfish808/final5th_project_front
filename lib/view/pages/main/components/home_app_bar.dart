@@ -58,7 +58,7 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
                 onTap: () {
                   Scaffold.of(context).openEndDrawer();
                 },
-                child: Image.asset("assets/icon_setting_w.png", width: 20),
+                child: Image.asset("assets/icon_setting_w2.png", width: 20),
               );
             }),
             SizedBox(width: 20),
