@@ -22,7 +22,7 @@ class HomePageTop extends StatelessWidget {
           child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
               //아래 버튼은 추후에 DropDown 버튼 추가할지 고민
               children: [
-                Text("ToDo", style: textTheme().headline1),
+                Text("ToDo", style: textTheme(weight: FontWeight.bold).headline1),
               ]),
         )
       ],
