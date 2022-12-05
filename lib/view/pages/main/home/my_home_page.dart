@@ -14,21 +14,34 @@ class MyHomePage extends StatelessWidget {
       appBar: HomeAppBar("Zne.vil"),
       body: Column(
         children: [
-          Container(height: 320, child: HomePageTop()),
+          //Container(height: 320, child: HomePageTop()),
           Expanded(
-            child: ListView(
-              physics: BouncingScrollPhysics(),
-              dragStartBehavior: DragStartBehavior.down,
-              children: [
-                _TimelineList(),
-                _TimelineList(),
-                _TimelineList(),
-                _TimelineList(),
-                _TimelineList(),
-                _TimelineList(),
-                _TimelineList(),
-                _TimelineList(),
-                _TimelineList(),
+            child: CustomScrollView(
+              slivers: <Widget>[
+                const SliverAppBar(
+                  automaticallyImplyLeading: false,
+                  backgroundColor: Colors.white,
+                  pinned: true,
+                  expandedHeight: 360.0,
+                  flexibleSpace: FlexibleSpaceBar(
+                    titlePadding: EdgeInsets.only(left: 20),
+                    title: Text(
+                      textAlign: TextAlign.left,
+                      'ToDo',
+                      style: TextStyle(fontSize: 16, color: Color(0xFF1c1c1c)),
+                    ),
+                    background: HomePageTop(),
+                  ),
+                ),
+                SliverFixedExtentList(
+                  itemExtent: 50.0,
+                  delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+                    return Container(
+                      alignment: Alignment.center,
+                      child: _TimelineList(),
+                    );
+                  }, childCount: 10),
+                ),
               ],
             ),
           ),
