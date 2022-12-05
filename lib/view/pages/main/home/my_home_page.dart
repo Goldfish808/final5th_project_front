@@ -22,9 +22,9 @@ class MyHomePage extends StatelessWidget {
                   automaticallyImplyLeading: false,
                   backgroundColor: Colors.white,
                   pinned: true,
-                  expandedHeight: 360.0,
+                  expandedHeight: 390.0,
                   flexibleSpace: FlexibleSpaceBar(
-                    titlePadding: EdgeInsets.only(left: 20),
+                    titlePadding: EdgeInsets.only(left: 20, bottom: 18, top: 30),
                     title: Text(
                       textAlign: TextAlign.left,
                       'ToDo',
@@ -59,7 +59,8 @@ class MyHomePage extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 18, vertical: 15),
+              height: 48,
+              padding: EdgeInsets.symmetric(horizontal: 18),
               decoration: BoxDecoration(
                 color: klightGreyColor(),
                 borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -77,7 +78,7 @@ class MyHomePage extends StatelessWidget {
                   SizedBox(width: 10),
                   Text(
                     "플러터 디자인 하기",
-                    style: textTheme(color: kPrimaryColor(), weight: FontWeight.w500).bodyText1,
+                    style: textTheme(color: kPrimaryColor(), weight: FontWeight.w500).headline3,
                   ),
                 ],
               ),
