@@ -40,7 +40,12 @@ dependencies:
   #keyboard_visibility: ^0.5.6
   cupertino_icons: ^1.0.2
   syncfusion_flutter_datepicker: ^20.3.59
+<<<<<<< HEAD
   flutter_slidable: ^2.0.0
+=======
+  favorite_button: ^0.0.4
+  carousel_slider: ^4.1.1
+>>>>>>> a335890cff992e2514ebbd25449b65ff7c4c9543
 
 
 dev_dependencies:
