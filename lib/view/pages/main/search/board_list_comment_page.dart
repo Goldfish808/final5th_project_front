@@ -28,10 +28,10 @@ class BoardListCommentPage extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            child: SubmitContainer(),
+          Stack(
+            children: [
+              SubmitContainer(),
+            ],
           ),
         ],
       ),

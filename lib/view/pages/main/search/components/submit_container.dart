@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
+import 'package:riverpod_firestore_steam1/models/comment.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/search/components/comment_body.dart';
 
 class SubmitContainer extends StatefulWidget {
   const SubmitContainer({Key? key}) : super(key: key);
@@ -10,13 +12,12 @@ class SubmitContainer extends StatefulWidget {
 
 class _SubmitContainerState extends State<SubmitContainer> {
   final TextEditingController _textController = TextEditingController();
+  final List<CommentBody> cb = [];
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        _buildSubmitContainer(),
-      ],
+    return Container(
+      child: _buildSubmitContainer(),
     );
   }
 
@@ -89,5 +90,8 @@ class _SubmitContainerState extends State<SubmitContainer> {
 
   void _handleSubmitted(text) {
     _textController.clear();
+    setState(() {
+      cb.add(CommentBody(comments: Comments(userImg: "assets/woman1.png", friendName: "friendName", comment: "comment")));
+    });
   }
 }
