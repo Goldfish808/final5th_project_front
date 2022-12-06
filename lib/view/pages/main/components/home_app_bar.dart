@@ -18,7 +18,23 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
   Widget? get title => Row(
         children: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              showModalBottomSheet(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return SizedBox(
+                      height: 400,
+                      child: Center(
+                        child: ElevatedButton(
+                          child: Text("Opened"),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ),
+                    );
+                  });
+            },
             child: _homePage(username),
           ),
         ],
