@@ -8,6 +8,8 @@ import 'package:riverpod_firestore_steam1/view/pages/main/home/update_password_p
 
 import '../../../../models/todo.dart';
 
+final List<ToDo> items = List.of(ToDoList);
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key}) : super(key: key);
 
@@ -17,8 +19,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool? _isChecked = false;
-  final List<ToDo> items = List.of(ToDoList);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -170,9 +170,13 @@ class _MyHomePageState extends State<MyHomePage> {
             items.remove(items[index]);
           });
         }),
-        children: const [
+        children: [
           SlidableAction(
-            onPressed: printSome,
+            onPressed: (context) {
+              setState(() {
+                printSome(context, index);
+              });
+            },
             foregroundColor: primary,
             icon: CupertinoIcons.trash,
           ),
@@ -230,6 +234,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-void printSome(BuildContext context) {
+void printSome(BuildContext context, int index) {
   print("클릭됨");
+  items.remove(items[index]);
 }
