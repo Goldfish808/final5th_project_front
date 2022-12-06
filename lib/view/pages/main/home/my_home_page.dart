@@ -144,12 +144,6 @@ class _MyHomePageState extends State<MyHomePage> {
             foregroundColor: primary,
             icon: CupertinoIcons.trash,
           ),
-          // SlidableAction(
-          //   onPressed: printSome,
-          //   //backgroundColor: Color(0xFF0392CF),
-          //   foregroundColor: Colors.white,
-          //   icon: CupertinoIcons.trash,
-          // ),
         ],
       ),
       child: Container(
@@ -172,10 +166,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       width: 10,
                       child: Checkbox(
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                        value: _isChecked,
+                        value: items[index].done,
                         onChanged: (value) {
                           setState(() {
-                            _isChecked = value;
+                            items[index].done = value;
                           });
                         },
                       ),
@@ -183,7 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     SizedBox(width: 15),
                     Text(
                       items[index].content,
-                      style: _isChecked == true
+                      style: items[index].done == true
                           ? TextStyle(decoration: TextDecoration.lineThrough, fontSize: 14, color: kchacholGreyColor())
                           : textTheme().headline3,
                     ),
