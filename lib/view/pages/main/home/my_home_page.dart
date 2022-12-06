@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Slidable(
       key: Key(items[index].content),
       endActionPane: ActionPane(
-        extentRatio: 0.2,
+        extentRatio: 0.25,
         motion: const ScrollMotion(),
         dismissible: DismissiblePane(onDismissed: () {
           setState(() {
@@ -173,17 +173,15 @@ class _MyHomePageState extends State<MyHomePage> {
         children: const [
           SlidableAction(
             onPressed: printSome,
-            //backgroundColor: Color(0xFF7BC043),
-            //foregroundColor: kchacholGreyColor(),
             foregroundColor: primary,
             icon: CupertinoIcons.trash,
           ),
-          SlidableAction(
-            onPressed: printSome,
-            //backgroundColor: Color(0xFF0392CF),
-            foregroundColor: Colors.white,
-            icon: CupertinoIcons.trash,
-          ),
+          // SlidableAction(
+          //   onPressed: printSome,
+          //   //backgroundColor: Color(0xFF0392CF),
+          //   foregroundColor: Colors.white,
+          //   icon: CupertinoIcons.trash,
+          // ),
         ],
       ),
       child: Container(
