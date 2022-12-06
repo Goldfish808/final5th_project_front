@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/models/follow.dart';
 import 'package:riverpod_firestore_steam1/models/users.dart';
@@ -13,6 +14,7 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
   final BuildContext context;
 
   final String? username;
+  final List<User> userList = List.of(users);
 
   @override
   bool get automaticallyImplyLeading => false;
@@ -28,7 +30,9 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
                   context: context,
                   builder: (BuildContext context) {
                     return Container(
-                      height: scrolledUnderElevation,
+                      padding: EdgeInsets.only(left: 20, right: 20),
+                      //위 패딩은 모달창의 터치 가능한 영역 내부 패딩
+                      height: elevation,
                       decoration: BoxDecoration(
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(30),
@@ -37,16 +41,23 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
                         color: kpointYellowColor(),
                       ),
                       child: Center(
-                        child: ListView(
-                          padding: EdgeInsets.zero,
-                          children: [
-                            ListTile(
-                              contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                              title: Text("화면", style: textTheme(color: kPrimaryColor()).headline3),
-                              trailing: Image.asset("assets/icon_arrow_next.png", width: 8),
-                              onTap: () {},
-                              shape: Border(bottom: BorderSide(color: klightGreyColor(), width: 1.5)),
-                            ),
+                        child: Column(
+                          children: <Widget>[
+                            SizedBox(height: 30, child: const Text('Modal BottomSheet')),
+                            Container(
+                              width: double.infinity,
+                              color: kpointMintColor(),
+                              child: SizedBox(
+                                height: MediaQuery.of(context).size.height * 0.525,
+                                //어거지로 리스트뷰 높이 맞춤...
+                                child: ListView.builder(
+                                  shrinkWrap: true,
+                                  padding: EdgeInsets.zero,
+                                  itemCount: userList.length,
+                                  itemBuilder: (context, index) => _buildListItemsFREINDS(index),
+                                ),
+                              ),
+                            )
                           ],
                         ),
                       ),
@@ -73,9 +84,6 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
             : Text("마이페이지"));
   }
 
-  // @override
-  // bool? get centerTitle => false;
-  //
   @override
   List<Widget>? get actions => [
         Row(
@@ -110,4 +118,59 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
   ShapeBorder? get shape => RoundedRectangleBorder(
         borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10)),
       );
+
+  Widget _buildListItemsFREINDS(int index) {
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.only(top: 10, bottom: 10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                padding: EdgeInsets.only(top: 5),
+                width: 40,
+                height: 40,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(image: AssetImage("${userList[index].profileImg}"), fit: BoxFit.cover),
+                ),
+              ),
+              SizedBox(width: 10),
+              Expanded(
+                child: Container(
+                  width: 175,
+                  child: Text.rich(
+                    textAlign: TextAlign.left,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    TextSpan(
+                      //text: 'Hello ',
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: '${userList[index].sender}',
+                            style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold).headline3),
+                        TextSpan(
+                          text: '님이 회원님을 팔로우하기 시작했습니다.시작했습니다.시작했습니다.',
+                          style: textTheme(color: kPrimaryColor()).headline3,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              //_buildFollowBtn("follow"),
+            ],
+          ),
+        ),
+        Divider(
+          height: 1,
+          color: klightGreyColor(),
+          thickness: 1.5,
+        ),
+      ],
+    );
+  }
 }
