@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/models/follow.dart';
 import 'package:riverpod_firestore_steam1/models/users.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/notice_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/widgets/k_stack_icon.dart';
+
+import '../home/update_password_page.dart';
 
 class HomeAppBar extends AppBar implements PreferredSizeWidget {
   HomeAppBar(this.username, {super.key, required this.context});
@@ -20,16 +23,31 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
           InkWell(
             onTap: () {
               showModalBottomSheet(
+                  //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+                  backgroundColor: Colors.black,
                   context: context,
                   builder: (BuildContext context) {
-                    return SizedBox(
-                      height: 400,
+                    return Container(
+                      height: scrolledUnderElevation,
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30),
+                        ),
+                        color: kpointYellowColor(),
+                      ),
                       child: Center(
-                        child: ElevatedButton(
-                          child: Text("Opened"),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
+                        child: ListView(
+                          padding: EdgeInsets.zero,
+                          children: [
+                            ListTile(
+                              contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                              title: Text("화면", style: textTheme(color: kPrimaryColor()).headline3),
+                              trailing: Image.asset("assets/icon_arrow_next.png", width: 8),
+                              onTap: () {},
+                              shape: Border(bottom: BorderSide(color: klightGreyColor(), width: 1.5)),
+                            ),
+                          ],
                         ),
                       ),
                     );
