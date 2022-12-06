@@ -38,15 +38,18 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
                           topLeft: Radius.circular(30),
                           topRight: Radius.circular(30),
                         ),
-                        color: kpointYellowColor(),
+                        color: Colors.white,
                       ),
                       child: Center(
                         child: Column(
                           children: <Widget>[
-                            SizedBox(height: 30, child: const Text('Modal BottomSheet')),
+                            SizedBox(
+                              height: 30,
+                              width: 50,
+                              child: Divider(height: 1, color: kchacholGreyColor(), thickness: 4),
+                            ),
                             Container(
                               width: double.infinity,
-                              color: kpointMintColor(),
                               child: SizedBox(
                                 height: MediaQuery.of(context).size.height * 0.525,
                                 //어거지로 리스트뷰 높이 맞춤...
