@@ -24,7 +24,7 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
             onTap: () {
               showModalBottomSheet(
                   //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-                  backgroundColor: Colors.black,
+                  backgroundColor: Colors.transparent,
                   context: context,
                   builder: (BuildContext context) {
                     return Container(
