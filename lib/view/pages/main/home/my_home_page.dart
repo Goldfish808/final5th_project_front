@@ -23,36 +23,40 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: HomeAppBar("Zne.vil", context: context),
-      body: Column(
-        children: [
-          //Container(height: 320, child: HomePageTop()),
-          Expanded(
-            child: CustomScrollView(
-              slivers: <Widget>[
-                const SliverAppBar(
-                  automaticallyImplyLeading: false,
-                  backgroundColor: Colors.white,
-                  pinned: true,
-                  expandedHeight: 380.0,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: HomePageTop(),
-                  ),
-                ),
-                SliverFixedExtentList(
-                  itemExtent: 50.0,
-                  delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
-                    return Container(
-                      alignment: Alignment.center,
-                      child: _ToDoList(index),
-                    );
-                  }, childCount: items.length),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+      body: _homeBody(),
       endDrawer: drawer(context),
+    );
+  }
+
+  Widget _homeBody() {
+    return Column(
+      children: [
+        //Container(height: 320, child: HomePageTop()),
+        Expanded(
+          child: CustomScrollView(
+            slivers: <Widget>[
+              const SliverAppBar(
+                automaticallyImplyLeading: false,
+                backgroundColor: Colors.white,
+                pinned: true,
+                expandedHeight: 380.0,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: HomePageTop(),
+                ),
+              ),
+              SliverFixedExtentList(
+                itemExtent: 50.0,
+                delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+                  return Container(
+                    alignment: Alignment.center,
+                    child: _ToDoList(index),
+                  );
+                }, childCount: items.length),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
@@ -96,66 +100,26 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
-          ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 20),
-            title: Text("화면", style: textTheme(color: kPrimaryColor()).headline3),
-            trailing: Image.asset("assets/icon_arrow_next.png", width: 8),
-            onTap: () {},
-            shape: Border(bottom: BorderSide(color: klightGreyColor(), width: 1.5)),
-          ),
-          ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 20),
-            title: Text("알림", style: textTheme(color: kPrimaryColor()).headline3),
-            trailing: Image.asset("assets/icon_arrow_next.png", width: 8),
-            onTap: () {},
-            shape: Border(bottom: BorderSide(color: klightGreyColor(), width: 1.5)),
-          ),
-          ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 20),
-            title: Text("구독/결제", style: textTheme(color: kPrimaryColor()).headline3),
-            trailing: Image.asset("assets/icon_arrow_next.png", width: 8),
-            onTap: () {},
-            shape: Border(bottom: BorderSide(color: klightGreyColor(), width: 1.5)),
-          ),
-          ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 20),
-            title: Text("친구초대", style: textTheme(color: kPrimaryColor()).headline3),
-            trailing: Image.asset("assets/icon_arrow_next.png", width: 8),
-            onTap: () {},
-            shape: Border(bottom: BorderSide(color: klightGreyColor(), width: 1.5)),
-          ),
-          ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 20),
-            title: Text("비밀번호 변경", style: textTheme(color: kPrimaryColor()).headline3),
-            trailing: Image.asset("assets/icon_arrow_next.png", width: 8),
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => UpdatePasswordPage()));
-            },
-            shape: Border(bottom: BorderSide(color: klightGreyColor(), width: 1.5)),
-          ),
-          ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 20),
-            title: Text("고객센터", style: textTheme(color: kPrimaryColor()).headline3),
-            trailing: Image.asset("assets/icon_arrow_next.png", width: 8),
-            onTap: () {},
-            shape: Border(bottom: BorderSide(color: klightGreyColor(), width: 1.5)),
-          ),
-          ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 20),
-            title: Text("버전", style: textTheme(color: kPrimaryColor()).headline3),
-            trailing: Image.asset("assets/icon_arrow_next.png", width: 8),
-            onTap: () {},
-            shape: Border(bottom: BorderSide(color: klightGreyColor(), width: 1.5)),
-          ),
-          ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 20),
-            title: Text("로그아웃", style: textTheme(color: kchacholGreyColor(), weight: FontWeight.bold).headline3),
-            //trailing: Image.asset("assets/icon_arrow_next.png", width: 8),
-            onTap: () {},
-            shape: Border(bottom: BorderSide(color: klightGreyColor(), width: 1.5)),
-          ),
+          _buildMenuList(text: "화면", fontColor: kPrimaryColor()),
+          _buildMenuList(text: "알림", fontColor: kPrimaryColor()),
+          _buildMenuList(text: "구독/결제", fontColor: kPrimaryColor()),
+          _buildMenuList(text: "친구초대", fontColor: kPrimaryColor()),
+          _buildMenuList(text: "비밀번호 변경", fontColor: kPrimaryColor()),
+          _buildMenuList(text: "고객센터", fontColor: kPrimaryColor()),
+          _buildMenuList(text: "버전", fontColor: kPrimaryColor()),
+          _buildMenuList(text: "로그아웃", fontColor: kchacholGreyColor(), fontWeight: FontWeight.bold),
         ],
       ),
+    );
+  }
+
+  ListTile _buildMenuList({required String text, Color? fontColor, FontWeight? fontWeight}) {
+    return ListTile(
+      contentPadding: EdgeInsets.symmetric(horizontal: 20),
+      title: Text(text, style: textTheme(color: fontColor, weight: fontWeight).headline3),
+      trailing: text != "로그아웃" ? Image.asset("assets/icon_arrow_next.png", width: 8) : null,
+      onTap: () {},
+      shape: Border(bottom: BorderSide(color: klightGreyColor(), width: 1.5)),
     );
   }
 
