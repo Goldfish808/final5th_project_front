@@ -124,57 +124,63 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
       );
 
   Widget _buildListItemsFREINDS(int index) {
-    return Column(
-      children: [
-        Container(
-          padding: EdgeInsets.only(top: 10, bottom: 10),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                padding: EdgeInsets.only(top: 5),
-                width: 40,
-                height: 40,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(image: AssetImage("${userList[index].profileImg}"), fit: BoxFit.cover),
-                ),
-              ),
-              SizedBox(width: 10),
-              Expanded(
-                child: Container(
-                  width: 175,
-                  child: Text.rich(
-                    textAlign: TextAlign.left,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    TextSpan(
-                      //text: 'Hello ',
-                      children: <TextSpan>[
-                        TextSpan(
-                            text: '${userList[index].sender}',
-                            style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold).headline3),
-                        TextSpan(
-                          text: '님이 회원님을 팔로우하기 시작했습니다.시작했습니다.시작했습니다.',
-                          style: textTheme(color: kPrimaryColor()).headline3,
-                        ),
-                      ],
+    return SingleChildScrollView(
+      child: Container(
+        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        //난중에 키보드 자판 생기면 해당 컬럼 짜그라치는 코드
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(top: 5),
+                    width: 40,
+                    height: 40,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(image: AssetImage("${userList[index].profileImg}"), fit: BoxFit.cover),
                     ),
                   ),
-                ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: Container(
+                      width: 175,
+                      child: Text.rich(
+                        textAlign: TextAlign.left,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        TextSpan(
+                          //text: 'Hello ',
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: '${userList[index].sender}',
+                                style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold).headline3),
+                            TextSpan(
+                              text: '님이 회원님을 팔로우하기 시작했습니다.시작했습니다.시작했습니다.',
+                              style: textTheme(color: kPrimaryColor()).headline3,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  //_buildFollowBtn("follow"),
+                ],
               ),
-              //_buildFollowBtn("follow"),
-            ],
-          ),
+            ),
+            Divider(
+              height: 1,
+              color: klightGreyColor(),
+              thickness: 1.5,
+            ),
+          ],
         ),
-        Divider(
-          height: 1,
-          color: klightGreyColor(),
-          thickness: 1.5,
-        ),
-      ],
+      ),
     );
   }
 }
