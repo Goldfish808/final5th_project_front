@@ -123,7 +123,14 @@ class _MyHomePageState extends State<MyHomePage> {
       contentPadding: EdgeInsets.symmetric(horizontal: 20),
       title: Text(text, style: textTheme(color: fontColor, weight: fontWeight).headline3),
       trailing: text != "로그아웃" ? Image.asset("assets/icon_arrow_next.png", width: 8) : null,
-      onTap: () {},
+      onTap: () {
+        text == "비밀번호 변경"
+            ? Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => UpdatePasswordPage()),
+              )
+            : null;
+      },
       shape: Border(bottom: BorderSide(color: klightGreyColor(), width: 1.5)),
     );
   }
