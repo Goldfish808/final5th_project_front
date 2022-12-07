@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/calendar_page.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/home/calendar_test_page.dart';
 
 import '../../../../../core/theme.dart';
 
 class KInkWellIconButton extends StatelessWidget {
-  const KInkWellIconButton({required this.img, this.icon, Key? key}) : super(key: key);
+  const KInkWellIconButton({required this.img, this.icon, Key? key})
+      : super(key: key);
 
   final IconData? icon;
   final String? img;
@@ -16,7 +18,7 @@ class KInkWellIconButton extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => CalendarPage()),
+          MaterialPageRoute(builder: (context) => reservationScreen()),
         );
       },
       child: Padding(
@@ -25,7 +27,8 @@ class KInkWellIconButton extends StatelessWidget {
           alignment: Alignment.center,
           width: 24,
           height: 24,
-          decoration: BoxDecoration(color: klightGreyColor(), borderRadius: BorderRadius.circular(6)),
+          decoration: BoxDecoration(
+              color: klightGreyColor(), borderRadius: BorderRadius.circular(6)),
           child: icon != null
               ? Icon(icon, size: 15)
               : ClipRRect(
