@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
+import '../schedule/write_schedule_page.dart';
 import 'mypage/mypage_main_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/chat/chat_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/my_home_page.dart';
@@ -23,7 +24,7 @@ class _MainPageState extends State<MainPage> {
         children: [
           MyHomePage(),
           ChatPage(),
-          Center(child: Text("WritePage")),
+          Center(child: Text("작성")),
           SearchPage(),
           MyPageMainPage(),
         ],
@@ -52,9 +53,11 @@ class _MainPageState extends State<MainPage> {
         selectedItemColor: theme().primaryColor,
         unselectedItemColor: Color(0xff9999A3),
         onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
+          index == 2
+              ? _writeForm()
+              : setState(() {
+                  _selectedIndex = index;
+                });
         },
         items: [
           BottomNavigationBarItem(
@@ -84,6 +87,38 @@ class _MainPageState extends State<MainPage> {
           ),
         ],
       ),
+    );
+  }
+
+  Future<dynamic> _writeForm() {
+    return showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (context) {
+        return Container(
+          padding: EdgeInsets.only(left: 20, right: 20),
+          //위 패딩은 모달창의 터치 가능한 영역 내부 패딩
+          height: 400,
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
+            color: Colors.white,
+          ),
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 30,
+                  width: 50,
+                  child: Divider(height: 1, color: kchacholGreyColor(), thickness: 4),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
