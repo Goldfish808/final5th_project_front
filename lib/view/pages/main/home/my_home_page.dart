@@ -8,7 +8,7 @@ import 'package:riverpod_firestore_steam1/view/pages/main/home/update_password_p
 
 import '../../../../models/todo.dart';
 
-final List<ToDo> items = List.of(ToDoList);
+List<ToDo> globalToDoItems = List.of(ToDoList);
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key}) : super(key: key);
@@ -26,6 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: _homeBody(),
       endDrawer: drawer(context),
       endDrawerEnableOpenDragGesture: false,
+      drawerEnableOpenDragGesture: false,
     );
   }
 
@@ -52,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     alignment: Alignment.center,
                     child: _ToDoList(index),
                   );
-                }, childCount: items.length),
+                }, childCount: globalToDoItems.length),
               ),
             ],
           ),
@@ -79,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 12,
                       child: IconButton(
                         onPressed: () {
-                          Navigator.pop(context);
+                          Navigator.of(context).pop();
                         },
                         padding: EdgeInsets.zero,
                         icon: Image.asset("assets/icon_close.png", width: 12, height: 12),
@@ -108,7 +109,10 @@ class _MyHomePageState extends State<MyHomePage> {
           _buildMenuList(text: "비밀번호 변경", fontColor: kPrimaryColor()),
           _buildMenuList(text: "고객센터", fontColor: kPrimaryColor()),
           _buildMenuList(text: "버전", fontColor: kPrimaryColor()),
-          _buildMenuList(text: "로그아웃", fontColor: kchacholGreyColor(), fontWeight: FontWeight.bold),
+          _buildMenuList(
+            text: "로그아웃",
+            fontColor: kchacholGreyColor(),
+          ),
         ],
       ),
     );
@@ -119,20 +123,27 @@ class _MyHomePageState extends State<MyHomePage> {
       contentPadding: EdgeInsets.symmetric(horizontal: 20),
       title: Text(text, style: textTheme(color: fontColor, weight: fontWeight).headline3),
       trailing: text != "로그아웃" ? Image.asset("assets/icon_arrow_next.png", width: 8) : null,
-      onTap: () {},
+      onTap: () {
+        text == "비밀번호 변경"
+            ? Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => UpdatePasswordPage()),
+              )
+            : null;
+      },
       shape: Border(bottom: BorderSide(color: klightGreyColor(), width: 1.5)),
     );
   }
 
   Widget _ToDoList(int index) {
     return Slidable(
-      key: Key(items[index].content),
+      key: Key(globalToDoItems[index].content),
       endActionPane: ActionPane(
         extentRatio: 0.25,
         motion: const ScrollMotion(),
         dismissible: DismissiblePane(onDismissed: () {
           setState(() {
-            items.remove(items[index]);
+            globalToDoItems.remove(globalToDoItems[index]);
           });
         }),
         children: [
@@ -167,18 +178,18 @@ class _MyHomePageState extends State<MyHomePage> {
                       width: 10,
                       child: Checkbox(
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                        value: items[index].done,
+                        value: globalToDoItems[index].done,
                         onChanged: (value) {
                           setState(() {
-                            items[index].done = value;
+                            globalToDoItems[index].done = value;
                           });
                         },
                       ),
                     ),
                     SizedBox(width: 15),
                     Text(
-                      items[index].content,
-                      style: items[index].done == true
+                      globalToDoItems[index].content,
+                      style: globalToDoItems[index].done == true
                           ? TextStyle(decoration: TextDecoration.lineThrough, fontSize: 14, color: kchacholGreyColor())
                           : textTheme().headline3,
                     ),
@@ -195,5 +206,5 @@ class _MyHomePageState extends State<MyHomePage> {
 
 void printSome(BuildContext context, int index) {
   print("클릭됨");
-  items.remove(items[index]);
+  globalToDoItems.remove(globalToDoItems[index]);
 }

@@ -12,7 +12,7 @@ class UpdatePasswordPage extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(55),
-        child: LineAppBar("비밀번호 변경"),
+        child: LineAppBar("비밀번호 변경", null),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -21,7 +21,7 @@ class UpdatePasswordPage extends StatelessWidget {
             SizedBox(height: 30),
             _buildPasswordForm(),
             SizedBox(height: 24),
-            DefaultButton("확인", "/home"),
+            DefaultButton(btnText: "확인", routes: "/home"),
           ],
         ),
       ),

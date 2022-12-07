@@ -11,7 +11,7 @@ class FindPasswordPage extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(55),
-        child: LineAppBar("비밀번호 찾기"),
+        child: LineAppBar("비밀번호 찾기", null),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -20,7 +20,7 @@ class FindPasswordPage extends StatelessWidget {
             SizedBox(height: 30),
             CustomForm("이메일", "이메일을 입력해주세요"),
             SizedBox(height: 24),
-            DefaultButton("확인", "/login"),
+            DefaultButton(routes: "/login", btnText: "확인"),
           ],
         ),
       ),
