@@ -119,31 +119,44 @@ class _MainPageState extends State<MainPage> {
                       children: [
                         Expanded(
                           child: Container(
-                            height: 27,
-                            padding: EdgeInsets.only(right: 14),
-                            child: TextField(
-                              controller: _textController,
-                              maxLines: 2,
-                              style: textTheme().bodyText1,
-                              decoration: InputDecoration(
-                                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-                                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-                                  focusColor: Colors.black),
-                              onSubmitted: _handleSubmitted,
+                            padding: EdgeInsets.symmetric(horizontal: 7),
+                            child: ConstrainedBox(
+                              constraints: const BoxConstraints(maxHeight: 300),
+                              child: TextField(
+                                controller: _textController,
+                                style: textTheme().headline3,
+                                maxLines: null,
+                                maxLength: 50,
+                                decoration: const InputDecoration(
+                                    hintText: "할 일 작성",
+                                    focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                                    enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                                    focusColor: Colors.black),
+                                onSubmitted: _handleSubmitted,
+                              ),
                             ),
                           ),
                         ),
                         Container(
-                          color: kpointMintColor(),
-                          width: 48,
-                          child: TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              "입력",
-                              style: textTheme().headline3,
-                            ),
-                          ),
-                        )
+                            //decoration: BoxDecoration(),
+                            width: 48,
+                            height: 27,
+                            alignment: Alignment.center,
+                            child: ElevatedButton(
+                              onPressed: () => _handleSubmitted(_textController.text),
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.black,
+                                padding: EdgeInsets.symmetric(horizontal: 7),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(6)),
+                                ),
+                                elevation: 0.0,
+                              ),
+                              child: Text(
+                                "입력",
+                                style: textTheme().headline3,
+                              ),
+                            ))
                       ],
                     ),
                   ),
@@ -158,6 +171,7 @@ class _MainPageState extends State<MainPage> {
 
   void _handleSubmitted(text) {
     _textController.clear();
+    print(text);
 
     setState(() {
       todoList.add(ToDo(
