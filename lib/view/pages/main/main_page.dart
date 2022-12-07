@@ -121,11 +121,12 @@ class _MainPageState extends State<MainPage> {
                           child: Container(
                             padding: EdgeInsets.symmetric(horizontal: 7),
                             child: ConstrainedBox(
-                              constraints: const BoxConstraints(maxHeight: 300),
+                              //얘로 감싸고
+                              constraints: const BoxConstraints(maxHeight: 300), //얘를 주면 됨
                               child: TextField(
                                 controller: _textController,
                                 style: textTheme().headline3,
-                                maxLines: null,
+                                maxLines: null, //이걸 NULL 로 해주고
                                 maxLength: 50,
                                 decoration: const InputDecoration(
                                     hintText: "할 일 작성",
@@ -174,7 +175,7 @@ class _MainPageState extends State<MainPage> {
     print(text);
 
     setState(() {
-      todoList.add(ToDo(
+      globalToDoItems.add(ToDo(
         content: text,
         time: DateFormat("a K:m").format(new DateTime.now()),
         date: 08,
