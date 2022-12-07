@@ -19,7 +19,6 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
   final TextEditingController _textController = TextEditingController();
-  final List<ToDo> todoList = [];
 
   @override
   Widget build(BuildContext context) {
