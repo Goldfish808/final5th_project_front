@@ -103,41 +103,38 @@ class _MainPageState extends State<MainPage> {
             padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
             //위 패딩은 모달창의 터치 가능한 영역 내부 패딩
             decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
-              ),
+              borderRadius: const BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
               color: Colors.white,
             ),
-            child: Center(
+            child: Container(
               child: Column(
                 children: <Widget>[
-                  SizedBox(
-                    height: 30,
-                    width: 50,
-                    child: Divider(height: 1, color: kchacholGreyColor(), thickness: 4),
-                  ),
+                  SizedBox(height: 30, width: 50, child: Divider(height: 1, color: kchacholGreyColor(), thickness: 4)),
                   Text(" "),
                   Row(),
                   Container(
                     padding: EdgeInsets.all(20),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          //color: kpointMintColor(),
-                          width: 260,
-                          child: TextField(
-                            controller: _textController,
-                            maxLines: 2,
-                            style: textTheme().bodyText1,
-                            decoration: InputDecoration(
-                                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-                                enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-                                focusColor: Colors.black),
-                            onSubmitted: _handleSubmitted,
+                        Expanded(
+                          child: Container(
+                            height: 27,
+                            padding: EdgeInsets.only(right: 14),
+                            child: TextField(
+                              controller: _textController,
+                              maxLines: 2,
+                              style: textTheme().bodyText1,
+                              decoration: InputDecoration(
+                                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                                  focusColor: Colors.black),
+                              onSubmitted: _handleSubmitted,
+                            ),
                           ),
                         ),
                         Container(
+                          color: kpointMintColor(),
                           width: 48,
                           child: TextButton(
                             onPressed: () {},
