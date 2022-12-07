@@ -115,14 +115,15 @@ class _MainPageState extends State<MainPage> {
                   Row(),
                   _buildMinToDoWrite(),
                   SizedBox(
-                      width: 320,
-                      height: 40,
-                      child: DefaultButton(
-                        btnText: "스케줄 작성 하러가기",
-                        routes: "/home",
-                        fontColor: kchacholGreyColor(),
-                        buttonColor: kmidGreyColor(),
-                      )),
+                    width: 320,
+                    height: 40,
+                    child: DefaultButton(
+                      btnText: "스케줄 작성 하러가기",
+                      routes: "/write_form",
+                      fontColor: kchacholGreyColor(),
+                      buttonColor: kmidGreyColor(),
+                    ),
+                  ),
                   SizedBox(
                     height: 25,
                   )
