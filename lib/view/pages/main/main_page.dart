@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import '../../../models/todo.dart';
+import 'components/default_button.dart';
 import 'mypage/mypage_main_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/chat/chat_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/my_home_page.dart';
@@ -112,61 +113,77 @@ class _MainPageState extends State<MainPage> {
                   SizedBox(height: 30, width: 50, child: Divider(height: 1, color: kchacholGreyColor(), thickness: 4)),
                   Text(" "),
                   Row(),
-                  Container(
-                    padding: EdgeInsets.all(20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 7),
-                            child: ConstrainedBox(
-                              //얘로 감싸고
-                              constraints: const BoxConstraints(maxHeight: 300), //얘를 주면 됨
-                              child: TextField(
-                                controller: _textController,
-                                style: textTheme().headline3,
-                                maxLines: null, //이걸 NULL 로 해주고
-                                maxLength: 50,
-                                decoration: const InputDecoration(
-                                    hintText: "할 일 작성",
-                                    focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-                                    enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-                                    focusColor: Colors.black),
-                                onSubmitted: _handleSubmitted,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                            //decoration: BoxDecoration(),
-                            width: 48,
-                            height: 27,
-                            alignment: Alignment.center,
-                            child: ElevatedButton(
-                              onPressed: () => _handleSubmitted(_textController.text),
-                              style: ElevatedButton.styleFrom(
-                                primary: Colors.black,
-                                padding: EdgeInsets.symmetric(horizontal: 7),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(6)),
-                                ),
-                                elevation: 0.0,
-                              ),
-                              child: Text(
-                                "입력",
-                                style: textTheme().headline3,
-                              ),
-                            ))
-                      ],
-                    ),
-                  ),
+                  _buildMinToDoWrite(),
+                  SizedBox(
+                      width: 320,
+                      height: 40,
+                      child: DefaultButton(
+                        btnText: "스케줄 작성 하러가기",
+                        routes: "/home",
+                        fontColor: kchacholGreyColor(),
+                        buttonColor: kmidGreyColor(),
+                      )),
+                  SizedBox(
+                    height: 25,
+                  )
                 ],
               ),
             ),
           ),
         );
       },
+    );
+  }
+
+  Widget _buildMinToDoWrite() {
+    return Container(
+      padding: EdgeInsets.all(20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 7),
+              child: ConstrainedBox(
+                //얘로 감싸고
+                constraints: const BoxConstraints(maxHeight: 300), //얘를 주면 됨
+                child: TextField(
+                  controller: _textController,
+                  style: textTheme().headline3,
+                  maxLines: null, //이걸 NULL 로 해주고
+                  maxLength: 50,
+                  decoration: const InputDecoration(
+                      hintText: "할 일 작성",
+                      focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                      enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                      focusColor: Colors.black),
+                  onSubmitted: _handleSubmitted,
+                ),
+              ),
+            ),
+          ),
+          Container(
+              //decoration: BoxDecoration(),
+              width: 48,
+              height: 27,
+              alignment: Alignment.center,
+              child: ElevatedButton(
+                onPressed: () => _handleSubmitted(_textController.text),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.black,
+                  padding: EdgeInsets.symmetric(horizontal: 7),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                  ),
+                  elevation: 0.0,
+                ),
+                child: Text(
+                  "입력",
+                  style: textTheme().headline3,
+                ),
+              ))
+        ],
+      ),
     );
   }
 
