@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import '../../../models/todo.dart';
 import 'components/default_button.dart';
+import 'login/components/line_button.dart';
 import 'mypage/mypage_main_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/chat/chat_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/my_home_page.dart';
@@ -117,12 +118,7 @@ class _MainPageState extends State<MainPage> {
                   SizedBox(
                     width: 320,
                     height: 40,
-                    child: DefaultButton(
-                      btnText: "스케줄 작성 하러가기",
-                      routes: "/write_form",
-                      fontColor: kchacholGreyColor(),
-                      buttonColor: kmidGreyColor(),
-                    ),
+                    child: LineButton("스케줄 만들기", "/write_form"),
                   ),
                   SizedBox(
                     height: 25,
