@@ -11,6 +11,10 @@ class CalendarPage extends StatelessWidget {
         preferredSize: Size.fromHeight(55),
         child: LineAppBar("", ""),
       ),
+      body: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [],
+      ),
     );
   }
 }

@@ -13,12 +13,15 @@ class LineAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: IconButton(
-        icon: Icon(Icons.arrow_back_ios_new),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        color: Color(0xff1C1C1C),
+      leading: Padding(
+        padding: const EdgeInsets.only(bottom: 2),
+        child: IconButton(
+          icon: Image.asset("assets/icon_arrow_back.png", width: 10),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          color: Color(0xff1C1C1C),
+        ),
       ),
       titleSpacing: 0,
       title: Text(
