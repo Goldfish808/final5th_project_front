@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
+import '../../../models/todo.dart';
 import 'mypage/mypage_main_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/chat/chat_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/my_home_page.dart';
@@ -14,6 +16,8 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
+  final TextEditingController _textController = TextEditingController();
+  final List<ToDo> todoList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -94,30 +98,78 @@ class _MainPageState extends State<MainPage> {
       backgroundColor: Colors.transparent,
       context: context,
       builder: (context) {
-        return Container(
-          padding: EdgeInsets.only(left: 20, right: 20),
-          //위 패딩은 모달창의 터치 가능한 영역 내부 패딩
-          height: 400,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(30),
-              topRight: Radius.circular(30),
+        return SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+            //위 패딩은 모달창의 터치 가능한 영역 내부 패딩
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+              ),
+              color: Colors.white,
             ),
-            color: Colors.white,
-          ),
-          child: Center(
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 30,
-                  width: 50,
-                  child: Divider(height: 1, color: kchacholGreyColor(), thickness: 4),
-                ),
-              ],
+            child: Center(
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 30,
+                    width: 50,
+                    child: Divider(height: 1, color: kchacholGreyColor(), thickness: 4),
+                  ),
+                  Text(" "),
+                  Row(),
+                  Container(
+                    padding: EdgeInsets.all(20),
+                    child: Row(
+                      children: [
+                        Container(
+                          //color: kpointMintColor(),
+                          width: 260,
+                          child: TextField(
+                            controller: _textController,
+                            maxLines: 2,
+                            style: textTheme().bodyText1,
+                            decoration: InputDecoration(
+                                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                                enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                                focusColor: Colors.black),
+                            onSubmitted: _handleSubmitted,
+                          ),
+                        ),
+                        Container(
+                          width: 48,
+                          child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              "입력",
+                              style: textTheme().headline3,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         );
       },
     );
+  }
+
+  void _handleSubmitted(text) {
+    _textController.clear();
+
+    setState(() {
+      todoList.add(ToDo(
+        content: text,
+        time: DateFormat("a K:m").format(new DateTime.now()),
+        date: 08,
+        day: "Mon",
+        done: false,
+      ));
+    });
   }
 }
