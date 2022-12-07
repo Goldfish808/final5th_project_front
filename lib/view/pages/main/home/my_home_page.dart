@@ -25,6 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: HomeAppBar("Zne.vil", context: context),
       body: _homeBody(),
       endDrawer: drawer(context),
+      endDrawerEnableOpenDragGesture: false,
     );
   }
 
