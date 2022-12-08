@@ -79,7 +79,7 @@ class _DatePickerExampleState extends State<DatePickerExample> {
                     ),
                     // In this example, the time value is formatted manually. You can use intl package to
                     // format the value based on the user's locale settings.
-                    child: Text('${startTime.hour}:${startTime.minute}', style: textTheme().headline2),
+                    child: Text(DateFormat.Hm().format(startTime), style: textTheme().headline2),
                   ),
                   Text("~", style: textTheme(color: kchacholGreyColor()).headline1),
                   CupertinoButton(
@@ -97,7 +97,7 @@ class _DatePickerExampleState extends State<DatePickerExample> {
                     ),
                     // In this example, the time value is formatted manually. You can use intl package to
                     // format the value based on the user's locale settings.
-                    child: Text('${untilTime.hour}:${untilTime.minute}', style: textTheme().headline2),
+                    child: Text(DateFormat.Hm().format(untilTime), style: textTheme().headline2),
                   ),
                 ],
               ),
@@ -138,7 +138,7 @@ class _DatePickerExampleState extends State<DatePickerExample> {
                     ),
                     // In this example, the date value is formatted manually. You can use intl package
                     // to format the value based on user's locale settings.
-                    child: Text('${startDate.year}-${startDate.month}-${startDate.day}', style: textTheme().headline2),
+                    child: Text(DateFormat.yMMMd().format(startDate), style: textTheme().headline2),
                   ),
                   Text("~", style: textTheme(color: kchacholGreyColor()).headline1),
                   CupertinoButton(
@@ -156,7 +156,7 @@ class _DatePickerExampleState extends State<DatePickerExample> {
                     ),
                     // In this example, the date value is formatted manually. You can use intl package
                     // to format the value based on user's locale settings.
-                    child: Text('${untilDate.year}-${untilDate.month}-${untilDate.day}', style: textTheme().headline2),
+                    child: Text(DateFormat.yMMMd().format(untilDate), style: textTheme().headline2),
                   ),
                 ],
               ),
