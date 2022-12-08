@@ -7,14 +7,14 @@ DateTime endDate = DateTime.now();
 DateTime startTime = DateTime.now();
 DateTime endTime = DateTime.now();
 
-class DatePickerExample extends StatefulWidget {
-  const DatePickerExample({super.key});
+class DateAndDayPickerInRow extends StatefulWidget {
+  const DateAndDayPickerInRow({super.key});
 
   @override
-  State<DatePickerExample> createState() => _DatePickerExampleState();
+  State<DateAndDayPickerInRow> createState() => _DateAndDayPickerInRow();
 }
 
-class _DatePickerExampleState extends State<DatePickerExample> {
+class _DateAndDayPickerInRow extends State<DateAndDayPickerInRow> {
   // This shows a CupertinoModalPopup with a reasonable fixed height which hosts CupertinoDatePicker.
   void _showDialog(Widget child) {
     showCupertinoModalPopup<void>(

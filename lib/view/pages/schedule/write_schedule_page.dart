@@ -42,7 +42,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
               onSubmitted: _handleSubmitted,
             ),
             SizedBox(height: 20),
-            DatePickerExample()
+            DateAndDayPickerInRow(),
           ],
         ),
       ),
