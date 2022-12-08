@@ -35,7 +35,6 @@ class Calendar extends StatelessWidget {
       fontSize: 14,
     );
     return Container(
-      decoration: BoxDecoration(color: Color(0xffF9F9F9)),
       padding: EdgeInsets.only(bottom: 14),
       child: TableCalendar(
         locale: 'ko-KR',
@@ -50,28 +49,36 @@ class Calendar extends StatelessWidget {
             fontWeight: FontWeight.w800,
             fontSize: 18.0,
           ),
-          leftChevronIcon:
-              Image.asset("assets/icon_calendar_prev.png", width: 28),
-          rightChevronIcon:
-              Image.asset("assets/icon_calendar_next.png", width: 28),
-          headerMargin:
-              EdgeInsets.only(top: 16, bottom: 24, left: 100, right: 100),
+          leftChevronIcon: Image.asset("assets/icon_calendar_prev.png", width: 28),
+          rightChevronIcon: Image.asset("assets/icon_calendar_next.png", width: 28),
+          headerMargin: EdgeInsets.only(top: 16, bottom: 20, left: 80, right: 80),
         ),
         daysOfWeekStyle: DaysOfWeekStyle(
-            weekdayStyle: GoogleFonts.notoSans(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: kPrimaryColor(),
+          weekdayStyle: GoogleFonts.notoSans(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: kPrimaryColor(),
+          ),
+          weekendStyle: GoogleFonts.notoSans(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Color(0xffF36B7F),
+          ),
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(color: kmidGreyColor(), width: 1.0),
             ),
-            weekendStyle: GoogleFonts.notoSans(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Color(0xffF36B7F),
-            )),
+          ),
+        ),
         calendarStyle: CalendarStyle(
           isTodayHighlighted: true,
+          todayTextStyle: GoogleFonts.notoSans(
+            color: kPrimaryColor(),
+            fontWeight: FontWeight.bold,
+            fontSize: 14,
+          ),
           todayDecoration: BoxDecoration(
-            color: kpointYellowColor(),
+            color: kmidGreyColor(),
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(8),
           ),
@@ -82,15 +89,16 @@ class Calendar extends StatelessWidget {
           weekendDecoration: defaultBoxDeco,
           selectedDecoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0),
-            border: Border.all(
-              color: createMaterialColor(Color(0xff6E34DA)),
-              width: 1.0,
-            ),
+            // border: Border.all(
+            //   color: createMaterialColor(Color(0xff6E34DA)),
+            //   width: 1.0,
+            // ),
+            color: primary,
           ),
           defaultTextStyle: defaultTextStyle,
           weekendTextStyle: defaultTextStyle,
           selectedTextStyle: GoogleFonts.notoSans(
-            color: createMaterialColor(Color(0xff6E34DA)),
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 14,
           ),
@@ -100,6 +108,7 @@ class Calendar extends StatelessWidget {
           markerMargin: EdgeInsets.all(2),
           markersMaxCount: 3,
           markersOffset: PositionedOffset(),
+          markersAlignment: Alignment.bottomCenter,
           markerDecoration: BoxDecoration(
             color: kpointMintColor(),
             shape: BoxShape.circle,
@@ -120,22 +129,16 @@ class Calendar extends StatelessWidget {
           if (selectedDay == null) {
             return false;
           }
-          return date.year == selectedDay!.year &&
-              date.month == selectedDay!.month &&
-              date.day == selectedDay!.day;
+          return date.year == selectedDay!.year && date.month == selectedDay!.month && date.day == selectedDay!.day;
         },
         availableCalendarFormats: {
           CalendarFormat.month: '한달',
           CalendarFormat.week: '1주',
         },
         onFormatChanged: (format) {
-          setState(() {
-            _calendarFormat = format;
-          });
+          _calendarFormat = format;
         },
       ),
     );
   }
-
-  void setState(Null Function() param0) {}
 }

@@ -23,14 +23,13 @@ class LineAppBar extends StatelessWidget {
       titleSpacing: 0,
       title: Text(
         "${title}",
-        style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold)
-            .headline2,
+        style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold).headline2,
       ),
       backgroundColor: Colors.white,
-      shape: Border(
-        bottom: BorderSide(
-            width: 1, style: BorderStyle.solid, color: Color(0xfff2f2f2)),
-      ),
+      // shape: Border(
+      //   bottom: BorderSide(
+      //       width: 1, style: BorderStyle.solid, color: Color(0xfff2f2f2)),
+      // ),
       actions: [
         actionImg != null
             ? Row(
