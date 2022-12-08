@@ -5,14 +5,14 @@ import 'package:remedi_kopo/remedi_kopo.dart';
 
 //remedi_kopo: ^0.0.1 << yaml에 넣기
 
-class AddressComponent extends StatefulWidget {
-  const AddressComponent({Key? key}) : super(key: key);
+class AddressComponentTest extends StatefulWidget {
+  const AddressComponentTest({Key? key}) : super(key: key);
 
   @override
-  State<AddressComponent> createState() => _AddressComponentState();
+  State<AddressComponentTest> createState() => _AddressComponentState();
 }
 
-class _AddressComponentState extends State<AddressComponent> {
+class _AddressComponentState extends State<AddressComponentTest> {
   TextEditingController _AddressController = TextEditingController();
   @override
   Widget build(BuildContext context) {

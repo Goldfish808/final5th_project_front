@@ -6,7 +6,7 @@ import 'package:remedi_kopo/remedi_kopo.dart';
 import '../../../core/theme.dart';
 import '../../../models/todo.dart';
 import '../../../models/users.dart';
-import '../main/components/address_component.dart';
+import '../main/components/address_component_test.dart';
 import 'components/calendar_date_picker_test.dart';
 
 class WriteSchedule extends StatefulWidget {
@@ -35,7 +35,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
             SizedBox(height: 20),
             DateAndDayPickerInRow(),
             _buildLocationSearch(context),
-            //AddressComponent(),
+            //AddressComponentTest(),
             Padding(
               padding: const EdgeInsets.only(bottom: 12),
               child: Container(
