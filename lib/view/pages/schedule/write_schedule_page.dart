@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:remedi_kopo/remedi_kopo.dart';
 import '../../../core/theme.dart';
 import '../../../models/todo.dart';
 import '../../../models/users.dart';
@@ -17,7 +19,7 @@ class WriteSchedule extends StatefulWidget {
 
 class _WriteScheduleState extends State<WriteSchedule> {
   final TextEditingController _textController = TextEditingController();
-
+  TextEditingController _AddressController = TextEditingController();
   final List<User> userList = List.of(users);
 
   @override
@@ -33,7 +35,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
             SizedBox(height: 20),
             DateAndDayPickerInRow(),
             _buildLocationSearch(context),
-            AddressComponent(),
+            //AddressComponent(),
             Padding(
               padding: const EdgeInsets.only(bottom: 12),
               child: Container(
@@ -107,39 +109,89 @@ class _WriteScheduleState extends State<WriteSchedule> {
             Container(
               width: MediaQuery.of(context).size.width - 80,
               //반응형을 위한 가로 폭
-              height: 55,
+              height: 50,
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    child: Text(
-                      "장소 ( 구현 하나도 안됐지롱 ) ",
-                      style: textTheme(color: kchacholGreyColor()).headline3,
-                    ),
-                  ),
-                  Container(
-                      width: 88,
-                      height: 27,
-                      alignment: Alignment.center,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          _handleSubmitted(_textController.text);
-                          Navigator.pop(context);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: kGreyColor(),
-                          padding: EdgeInsets.symmetric(horizontal: 11),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                  GestureDetector(
+                    onTap: () {
+                      HapticFeedback.mediumImpact();
+                      _addressAPI(); // 카카오 주소 API
+                    },
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Center(
+                          child: SizedBox(
+                            width: 220,
+                            child: TextField(
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                isDense: false,
+                              ),
+                              readOnly: true,
+                              controller: _AddressController,
+                              style: textTheme(color: _AddressController == null ? kchacholGreyColor() : primary)
+                                  .headline3,
+                            ),
                           ),
-                          elevation: 0.0,
                         ),
-                        child: Text(
-                          "주소 검색",
-                          style: textTheme().headline2,
+                        Row(
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                _handleSubmitted(_textController.text);
+                                HapticFeedback.mediumImpact();
+                                _addressAPI();
+                              },
+                              style: ElevatedButton.styleFrom(
+                                primary: kGreyColor(),
+                                padding: EdgeInsets.symmetric(horizontal: 11),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(6)),
+                                ),
+                                elevation: 0.0,
+                              ),
+                              child: Text(
+                                "주소 검색",
+                                style: textTheme().headline2,
+                              ),
+                            ),
+                          ],
                         ),
-                      ))
+                      ],
+                    ),
+                  )
+
+                  // Container(
+                  //   child: Text(
+                  //     "장소 ( 구현 하나도 안됐지롱 ) ",
+                  //     style: textTheme(color: kchacholGreyColor()).headline3,
+                  //   ),
+                  // ),
+                  // Container(
+                  //     width: 88,
+                  //     height: 27,
+                  //     alignment: Alignment.center,
+                  //     child: ElevatedButton(
+                  //       onPressed: () {
+                  //         _handleSubmitted(_textController.text);
+                  //         Navigator.pop(context);
+                  //       },
+                  //       style: ElevatedButton.styleFrom(
+                  //         primary: kGreyColor(),
+                  //         padding: EdgeInsets.symmetric(horizontal: 11),
+                  //         shape: RoundedRectangleBorder(
+                  //           borderRadius: BorderRadius.all(Radius.circular(6)),
+                  //         ),
+                  //         elevation: 0.0,
+                  //       ),
+                  //       child: Text(
+                  //         "주소 검색",
+                  //         style: textTheme().headline2,
+                  //       ),
+                  //     ))
                 ],
               ),
             ),
@@ -147,6 +199,17 @@ class _WriteScheduleState extends State<WriteSchedule> {
         ),
       ),
     );
+  }
+
+  //카카오 API 사용을 위한 메서드
+  _addressAPI() async {
+    KopoModel model = await Navigator.push(
+      context,
+      CupertinoPageRoute(
+        builder: (context) => RemediKopo(),
+      ),
+    );
+    _AddressController.text = '${model.address!} ${model.buildingName!}';
   }
 
   TextField _buildScheduleTitle(text) {
