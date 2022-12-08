@@ -141,12 +141,12 @@ class _MainPageState extends State<MainPage> {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 7),
               child: ConstrainedBox(
-                //얘로 감싸고
-                constraints: const BoxConstraints(maxHeight: 300), //얘를 주면 됨
+                //입력 만큼 height 늘어나려면 얘로 감싸고 1
+                constraints: const BoxConstraints(maxHeight: 300), //얘를 주면 됨 2
                 child: TextField(
                   controller: _textController,
                   style: textTheme().headline3,
-                  maxLines: null, //이걸 NULL 로 해주고
+                  maxLines: null, //이걸 NULL 로 해주고 3
                   maxLength: 50,
                   decoration: const InputDecoration(
                       hintText: "할 일 작성",
@@ -164,7 +164,10 @@ class _MainPageState extends State<MainPage> {
               height: 27,
               alignment: Alignment.center,
               child: ElevatedButton(
-                onPressed: () => _handleSubmitted(_textController.text),
+                onPressed: () {
+                  _handleSubmitted(_textController.text);
+                  Navigator.pop(context);
+                },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.black,
                   padding: EdgeInsets.symmetric(horizontal: 7),

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import '../../../core/theme.dart';
 import '../../../models/todo.dart';
 import '../../../models/users.dart';
@@ -29,23 +28,84 @@ class _WriteScheduleState extends State<WriteSchedule> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            TextField(
-              controller: _textController,
-              style: textTheme().headline1,
-              maxLines: null, //이걸 NULL 로 해주고
-              maxLength: 50,
-              decoration: const InputDecoration(
-                  hintText: "할 일 작성",
-                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-                  focusColor: Colors.black),
-              onSubmitted: _handleSubmitted,
-            ),
+            _buildScheduleTitle("할 일 작성"),
             SizedBox(height: 20),
             DateAndDayPickerInRow(),
+            _buildLocationSearch(context),
           ],
         ),
       ),
+    );
+  }
+
+  Padding _buildLocationSearch(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(border: Border(bottom: BorderSide(color: kchacholGreyColor(), width: 1))),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            const Icon(Icons.location_on_outlined, color: Color(0xff9999A3)),
+            SizedBox(width: 14),
+            Container(
+              width: MediaQuery.of(context).size.width - 80,
+              //반응형을 위한 가로 폭
+              height: 55,
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    child: Text(
+                      "장소 ( 구현 하나도 안됐지롱 ) ",
+                      style: textTheme(color: kchacholGreyColor()).headline3,
+                    ),
+                  ),
+                  Container(
+                      width: 88,
+                      height: 27,
+                      alignment: Alignment.center,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          _handleSubmitted(_textController.text);
+                          Navigator.pop(context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: kGreyColor(),
+                          padding: EdgeInsets.symmetric(horizontal: 11),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                          ),
+                          elevation: 0.0,
+                        ),
+                        child: Text(
+                          "주소 검색",
+                          style: textTheme().headline2,
+                        ),
+                      ))
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  TextField _buildScheduleTitle(text) {
+    return TextField(
+      controller: _textController,
+      style: textTheme().headline1,
+      maxLines: null, //이걸 NULL 로 해주고
+      maxLength: 100,
+      decoration: const InputDecoration(
+          hintText: "할 일 작성",
+          focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+          enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+          focusColor: Colors.black),
+      onSubmitted: _handleSubmitted,
     );
   }
 
