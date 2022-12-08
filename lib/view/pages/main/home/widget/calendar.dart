@@ -12,17 +12,19 @@ class Calendar extends StatelessWidget {
   final DateTime? selectedDay;
   //final DateTime focusedDay;
   final OnDaySelected? onDaySelected;
+  //final Event event;
 
   const Calendar(
       {required this.onDaySelected,
       required this.selectedDay,
+      //required this.event,
       //required this.focusedDay,
       Key? key})
       : super(key: key);
 
-  List<Event> getEventsForDay(DateTime day) {
-    return events[day] ?? [];
-  }
+  // List<Event> getEventsForDay(DateTime day) {
+  //   return events[day] ?? [];
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +36,10 @@ class Calendar extends StatelessWidget {
       fontWeight: FontWeight.w500,
       fontSize: 14,
     );
+
+    final Event event;
     return Container(
-      padding: EdgeInsets.only(bottom: 14),
+      padding: EdgeInsets.only(bottom: 28, left: 20, right: 20),
       child: TableCalendar(
         locale: 'ko-KR',
         daysOfWeekHeight: 30,
@@ -43,15 +47,20 @@ class Calendar extends StatelessWidget {
         firstDay: DateTime.utc(2022, 01, 01),
         lastDay: DateTime.utc(2023, 12, 31),
         headerStyle: HeaderStyle(
-          formatButtonVisible: false,
+          formatButtonVisible: true,
+          formatButtonDecoration: BoxDecoration(
+            border: Border.all(color: kchacholGreyColor()),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          formatButtonTextStyle: TextStyle(color: kchacholGreyColor(), fontSize: 12),
           titleCentered: true,
           titleTextStyle: GoogleFonts.notoSans(
             fontWeight: FontWeight.w800,
-            fontSize: 18.0,
+            fontSize: 20.0,
           ),
           leftChevronIcon: Image.asset("assets/icon_calendar_prev.png", width: 28),
           rightChevronIcon: Image.asset("assets/icon_calendar_next.png", width: 28),
-          headerMargin: EdgeInsets.only(top: 16, bottom: 20, left: 80, right: 80),
+          headerMargin: EdgeInsets.only(top: 8, bottom: 12, left: 20, right: 20),
         ),
         daysOfWeekStyle: DaysOfWeekStyle(
           weekdayStyle: GoogleFonts.notoSans(
@@ -102,27 +111,24 @@ class Calendar extends StatelessWidget {
             fontWeight: FontWeight.bold,
             fontSize: 14,
           ),
-          canMarkersOverflow: false,
+          canMarkersOverflow: true,
           markersAutoAligned: true,
           markerSize: 4,
-          markerMargin: EdgeInsets.all(2),
+          markerMargin: EdgeInsets.only(left: 2, right: 2, top: 8),
           markersMaxCount: 3,
           markersOffset: PositionedOffset(),
           markersAlignment: Alignment.bottomCenter,
-          markerDecoration: BoxDecoration(
-            color: kpointMintColor(),
-            shape: BoxShape.circle,
-          ),
+          markerDecoration: _buildMarker(eventList[1]),
           outsideTextStyle: GoogleFonts.notoSans(
             fontSize: 14,
             fontWeight: FontWeight.bold,
             color: kmidGreyColor(),
           ),
-          cellMargin: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+          cellMargin: EdgeInsets.symmetric(vertical: 9, horizontal: 9),
           cellAlignment: Alignment.center,
         ),
         eventLoader: (day) {
-          return getEventsForDay(day);
+          return eventList;
         },
         onDaySelected: onDaySelected,
         selectedDayPredicate: (DateTime date) {
@@ -131,14 +137,26 @@ class Calendar extends StatelessWidget {
           }
           return date.year == selectedDay!.year && date.month == selectedDay!.month && date.day == selectedDay!.day;
         },
+        formatAnimationCurve: Curves.bounceIn,
         availableCalendarFormats: {
           CalendarFormat.month: '한달',
           CalendarFormat.week: '1주',
         },
         onFormatChanged: (format) {
-          _calendarFormat = format;
+          _calendarFormat = _calendarFormat;
         },
       ),
+    );
+  }
+
+  BoxDecoration _buildMarker(Event eventList) {
+    return BoxDecoration(
+      color: eventList.category == "일반"
+          ? primary
+          : eventList.category == "업무"
+              ? kpointMintColor()
+              : kpointYellowColor(),
+      shape: BoxShape.circle,
     );
   }
 }

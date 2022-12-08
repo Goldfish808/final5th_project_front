@@ -25,7 +25,7 @@ class LineAppBar extends StatelessWidget {
         "${title}",
         style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold).headline2,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.transparent,
       // shape: Border(
       //   bottom: BorderSide(
       //       width: 1, style: BorderStyle.solid, color: Color(0xfff2f2f2)),
