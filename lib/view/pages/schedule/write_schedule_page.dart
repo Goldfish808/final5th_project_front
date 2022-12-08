@@ -7,9 +7,15 @@ import '../../../models/todo.dart';
 import '../../../models/users.dart';
 import 'components/calendar_date_picker_test.dart';
 
-class WriteSchedule extends StatelessWidget {
+class WriteSchedule extends StatefulWidget {
   WriteSchedule({Key? key, required this.context}) : super(key: key);
   final BuildContext context;
+
+  @override
+  State<WriteSchedule> createState() => _WriteScheduleState();
+}
+
+class _WriteScheduleState extends State<WriteSchedule> {
   final TextEditingController _textController = TextEditingController();
 
   final List<User> userList = List.of(users);
