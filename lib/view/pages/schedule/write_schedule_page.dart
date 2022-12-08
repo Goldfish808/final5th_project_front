@@ -109,90 +109,55 @@ class _WriteScheduleState extends State<WriteSchedule> {
             Container(
               width: MediaQuery.of(context).size.width - 80,
               //반응형을 위한 가로 폭
-              height: 50,
+              height: 55,
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      HapticFeedback.mediumImpact();
-                      _addressAPI(); // 카카오 주소 API
-                    },
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Center(
-                          child: SizedBox(
-                            width: 220,
-                            child: TextField(
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                isDense: false,
-                              ),
-                              readOnly: true,
-                              controller: _AddressController,
-                              style: textTheme(color: _AddressController == null ? kchacholGreyColor() : primary)
-                                  .headline3,
-                            ),
-                          ),
+              child: GestureDetector(
+                onTap: () {
+                  HapticFeedback.mediumImpact();
+                  _addressAPI(); // 카카오 주소 API
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      child: SizedBox(
+                        width: 220,
+                        child: TextField(
+                          decoration: InputDecoration(
+                              hintText: "장소",
+                              border: InputBorder.none,
+                              isDense: false,
+                              hintStyle: textTheme(color: kchacholGreyColor()).headline3),
+                          readOnly: true,
+                          controller: _AddressController,
+                          style: textTheme(color: primary).headline3,
                         ),
-                        Row(
-                          children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                _handleSubmitted(_textController.text);
-                                HapticFeedback.mediumImpact();
-                                _addressAPI();
-                              },
-                              style: ElevatedButton.styleFrom(
-                                primary: kGreyColor(),
-                                padding: EdgeInsets.symmetric(horizontal: 11),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(6)),
-                                ),
-                                elevation: 0.0,
-                              ),
-                              child: Text(
-                                "주소 검색",
-                                style: textTheme().headline2,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                      ),
                     ),
-                  )
-
-                  // Container(
-                  //   child: Text(
-                  //     "장소 ( 구현 하나도 안됐지롱 ) ",
-                  //     style: textTheme(color: kchacholGreyColor()).headline3,
-                  //   ),
-                  // ),
-                  // Container(
-                  //     width: 88,
-                  //     height: 27,
-                  //     alignment: Alignment.center,
-                  //     child: ElevatedButton(
-                  //       onPressed: () {
-                  //         _handleSubmitted(_textController.text);
-                  //         Navigator.pop(context);
-                  //       },
-                  //       style: ElevatedButton.styleFrom(
-                  //         primary: kGreyColor(),
-                  //         padding: EdgeInsets.symmetric(horizontal: 11),
-                  //         shape: RoundedRectangleBorder(
-                  //           borderRadius: BorderRadius.all(Radius.circular(6)),
-                  //         ),
-                  //         elevation: 0.0,
-                  //       ),
-                  //       child: Text(
-                  //         "주소 검색",
-                  //         style: textTheme().headline2,
-                  //       ),
-                  //     ))
-                ],
+                    Container(
+                      height: 27,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          _handleSubmitted(_textController.text);
+                          HapticFeedback.mediumImpact();
+                          _addressAPI();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: kGreyColor(),
+                          padding: EdgeInsets.symmetric(horizontal: 11),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                          ),
+                          elevation: 0.0,
+                        ),
+                        child: Text(
+                          "주소 검색",
+                          style: textTheme().headline2,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
