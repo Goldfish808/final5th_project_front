@@ -10,10 +10,10 @@ class DatePickerExample extends StatefulWidget {
 }
 
 class _DatePickerExampleState extends State<DatePickerExample> {
-  final initDate = DateFormat('yyyy-MM-dd');
-  DateTime date = DateTime.now();
-  DateTime time = DateTime(2016, 5, 10, 22, 35);
-  DateTime dateFor = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1);
+  DateTime startDate = DateTime.now();
+  DateTime untilDate = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1);
+  DateTime startTime = DateTime.now();
+  DateTime untilTime = DateTime.now();
 
   // This shows a CupertinoModalPopup with a reasonable fixed height which hosts CupertinoDatePicker.
   void _showDialog(Widget child) {
@@ -38,100 +38,128 @@ class _DatePickerExampleState extends State<DatePickerExample> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTextStyle(
-      style: TextStyle(
-        color: CupertinoColors.label.resolveFrom(context),
-        fontSize: 14.0,
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          _buildSetDay(),
+          _buildSetTime(),
+        ],
       ),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Flexible(flex: 1, child: const Icon(CupertinoIcons.calendar, color: Color(0xff9999A3))),
-                Flexible(
-                  flex: 3,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CupertinoButton(
-                        // Display a CupertinoDatePicker in date picker mode.
-                        onPressed: () => _showDialog(
-                          CupertinoDatePicker(
-                            initialDateTime: date,
-                            mode: CupertinoDatePickerMode.date,
-                            use24hFormat: true,
-                            // This is called when the user changes the date.
-                            onDateTimeChanged: (DateTime newDate) {
-                              setState(() => date = newDate);
-                            },
-                          ),
-                        ),
-                        // In this example, the date value is formatted manually. You can use intl package
-                        // to format the value based on user's locale settings.
-                        child: Text(
-                          '${date.year}-${date.month}-${date.day}',
-                          style: const TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
+    );
+  }
+
+  Widget _buildSetTime() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(border: Border(bottom: BorderSide(color: kchacholGreyColor()))),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Flexible(flex: 1, child: const Icon(CupertinoIcons.time, color: Color(0xff9999A3))),
+            Flexible(
+              flex: 3,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CupertinoButton(
+                    // Display a CupertinoDatePicker in time picker mode.
+                    onPressed: () => _showDialog(
+                      CupertinoDatePicker(
+                        initialDateTime: startTime,
+                        mode: CupertinoDatePickerMode.time,
+                        use24hFormat: false,
+                        // This is called when the user changes the time.
+                        onDateTimeChanged: (DateTime newTime) {
+                          setState(() => startTime = newTime);
+                        },
                       ),
-                      Text("~"),
-                      CupertinoButton(
-                        // Display a CupertinoDatePicker in date picker mode.
-                        onPressed: () => _showDialog(
-                          CupertinoDatePicker(
-                            initialDateTime: dateFor,
-                            mode: CupertinoDatePickerMode.date,
-                            use24hFormat: true,
-                            // This is called when the user changes the date.
-                            onDateTimeChanged: (DateTime newDate) {
-                              setState(() => dateFor = newDate);
-                            },
-                          ),
-                        ),
-                        // In this example, the date value is formatted manually. You can use intl package
-                        // to format the value based on user's locale settings.
-                        child: Text(
-                          '${dateFor.year}-${dateFor.month}-${dateFor.day}',
-                          style: const TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
+                    // In this example, the time value is formatted manually. You can use intl package to
+                    // format the value based on the user's locale settings.
+                    child: Text('${startTime.hour}:${startTime.minute}', style: textTheme().headline2),
                   ),
-                ),
-              ],
+                  Text("~", style: textTheme(color: kchacholGreyColor()).headline1),
+                  CupertinoButton(
+                    // Display a CupertinoDatePicker in time picker mode.
+                    onPressed: () => _showDialog(
+                      CupertinoDatePicker(
+                        initialDateTime: untilTime,
+                        mode: CupertinoDatePickerMode.time,
+                        use24hFormat: false,
+                        // This is called when the user changes the time.
+                        onDateTimeChanged: (DateTime newTime) {
+                          setState(() => untilTime = newTime);
+                        },
+                      ),
+                    ),
+                    // In this example, the time value is formatted manually. You can use intl package to
+                    // format the value based on the user's locale settings.
+                    child: Text('${untilTime.hour}:${untilTime.minute}', style: textTheme().headline2),
+                  ),
+                ],
+              ),
             ),
-            _DatePickerItem(
-              children: <Widget>[
-                const Text('Time'),
-                CupertinoButton(
-                  // Display a CupertinoDatePicker in time picker mode.
-                  onPressed: () => _showDialog(
-                    CupertinoDatePicker(
-                      initialDateTime: time,
-                      mode: CupertinoDatePickerMode.time,
-                      use24hFormat: true,
-                      // This is called when the user changes the time.
-                      onDateTimeChanged: (DateTime newTime) {
-                        setState(() => time = newTime);
-                      },
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSetDay() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(border: Border(bottom: BorderSide(color: kchacholGreyColor()))),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Flexible(flex: 1, child: const Icon(CupertinoIcons.calendar, color: Color(0xff9999A3))),
+            Flexible(
+              flex: 3,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CupertinoButton(
+                    // Display a CupertinoDatePicker in date picker mode.
+                    onPressed: () => _showDialog(
+                      CupertinoDatePicker(
+                        initialDateTime: startDate,
+                        mode: CupertinoDatePickerMode.date,
+                        use24hFormat: true,
+                        // This is called when the user changes the date.
+                        onDateTimeChanged: (DateTime newDate) {
+                          setState(() => startDate = newDate);
+                        },
+                      ),
                     ),
+                    // In this example, the date value is formatted manually. You can use intl package
+                    // to format the value based on user's locale settings.
+                    child: Text('${startDate.year}-${startDate.month}-${startDate.day}', style: textTheme().headline2),
                   ),
-                  // In this example, the time value is formatted manually. You can use intl package to
-                  // format the value based on the user's locale settings.
-                  child: Text(
-                    '${time.hour}:${time.minute}',
-                    style: const TextStyle(
-                      fontSize: 14.0,
+                  Text("~", style: textTheme(color: kchacholGreyColor()).headline1),
+                  CupertinoButton(
+                    // Display a CupertinoDatePicker in date picker mode.
+                    onPressed: () => _showDialog(
+                      CupertinoDatePicker(
+                        initialDateTime: untilDate,
+                        mode: CupertinoDatePickerMode.date,
+                        use24hFormat: true,
+                        // This is called when the user changes the date.
+                        onDateTimeChanged: (DateTime newDate) {
+                          setState(() => untilDate = newDate);
+                        },
+                      ),
                     ),
+                    // In this example, the date value is formatted manually. You can use intl package
+                    // to format the value based on user's locale settings.
+                    child: Text('${untilDate.year}-${untilDate.month}-${untilDate.day}', style: textTheme().headline2),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),

@@ -35,6 +35,7 @@ class WriteSchedule extends StatelessWidget {
                   focusColor: Colors.black),
               onSubmitted: _handleSubmitted,
             ),
+            SizedBox(height: 20),
             DatePickerExample()
           ],
         ),
