@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
-import '../../../models/todo.dart';
+import '../../../models/test/todo.dart';
 import 'components/default_button.dart';
 import 'login/components/line_button.dart';
 import 'mypage/mypage_main_page.dart';

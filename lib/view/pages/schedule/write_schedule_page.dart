@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
 import '../../../core/theme.dart';
-import '../../../models/todo.dart';
-import '../../../models/users.dart';
+import '../../../models/test/todo.dart';
+import '../../../models/test/users.dart';
 import '../main/components/address_component_test.dart';
 import 'components/calendar_date_picker_test.dart';
 
