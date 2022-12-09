@@ -46,7 +46,10 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
                             SizedBox(
                               height: 30,
                               width: 50,
-                              child: Divider(height: 1, color: kchacholGreyColor(), thickness: 4),
+                              child: Divider(
+                                  height: 1,
+                                  color: kchacholGreyColor(),
+                                  thickness: 4),
                             ),
                             Container(
                               width: double.infinity,
@@ -57,7 +60,8 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
                                   shrinkWrap: true,
                                   padding: EdgeInsets.zero,
                                   itemCount: userList.length,
-                                  itemBuilder: (context, index) => _buildListItemsFREINDS(index),
+                                  itemBuilder: (context, index) =>
+                                      _buildListItemsFREINDS(index),
                                 ),
                               ),
                             )
@@ -114,7 +118,7 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
                   SizedBox(width: 4),
                   Padding(
                     padding: const EdgeInsets.only(left: 6),
-                    child: Icon(CupertinoIcons.chevron_down, size: 14),
+                    child: Image.asset("icon_arrow_bottom_w.png", width: 8),
                   )
                 ],
               )
@@ -130,7 +134,8 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
                 onTap: () {
                   Navigator.pushNamed(context, "/notice");
                 },
-                child: KStackIcon(iconData: CupertinoIcons.bell, notificationCount: '9'),
+                child: KStackIcon(
+                    iconData: CupertinoIcons.bell, notificationCount: '9'),
               ),
               SizedBox(width: 10),
               Builder(builder: (context) {
@@ -167,7 +172,8 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
   Widget _buildListItemsFREINDS(int index) {
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        padding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         //난중에 키보드 자판 생기면 해당 컬럼 짜그라치는 코드
         child: Column(
           children: [
@@ -184,7 +190,9 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(image: AssetImage("${userList[index].profileImg}"), fit: BoxFit.cover),
+                      image: DecorationImage(
+                          image: AssetImage("${userList[index].profileImg}"),
+                          fit: BoxFit.cover),
                     ),
                   ),
                   SizedBox(width: 10),
@@ -200,10 +208,14 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
                           children: <TextSpan>[
                             TextSpan(
                                 text: '${userList[index].sender}',
-                                style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold).headline3),
+                                style: textTheme(
+                                        color: kPrimaryColor(),
+                                        weight: FontWeight.bold)
+                                    .headline3),
                             TextSpan(
                               text: '님이 회원님을 팔로우하기 시작했습니다.시작했습니다.시작했습니다.',
-                              style: textTheme(color: kPrimaryColor()).headline3,
+                              style:
+                                  textTheme(color: kPrimaryColor()).headline3,
                             ),
                           ],
                         ),
