@@ -1,30 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/models/event.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
-CalendarFormat _calendarFormat = CalendarFormat.month;
+class CalendarV2 extends StatefulWidget {
+  const CalendarV2({Key? key}) : super(key: key);
 
-class Calendar extends StatelessWidget {
-  final DateTime? selectedDay;
-  final DateTime focusedDay;
-  final OnDaySelected? onDaySelected;
-  //final Event event;
+  @override
+  State<CalendarV2> createState() => _CalendarV2State();
+}
 
-  const Calendar(
-      {required this.onDaySelected,
-      required this.selectedDay,
-      //required this.event,
-      required this.focusedDay,
-      Key? key})
-      : super(key: key);
-
-  // List<Event> getEventsForDay(DateTime day) {
-  //   return events[day] ?? [];
-  // }
+class _CalendarV2State extends State<CalendarV2> {
+  //final ValueNotifier<List<Event>> _selectedEvents;
+  CalendarFormat _calendarFormat = CalendarFormat.month;
+  DateTime _focusedDay = DateTime.now();
+  DateTime? _selectedDay;
 
   @override
   Widget build(BuildContext context) {
@@ -37,22 +28,20 @@ class Calendar extends StatelessWidget {
       fontSize: 14,
     );
 
-    final Event event;
     return Container(
-      padding: EdgeInsets.only(bottom: 28, left: 20, right: 20),
-      child: TableCalendar(
+      padding: EdgeInsets.only(bottom: 20, left: 20, right: 20),
+      child: TableCalendar<Event>(
         locale: 'ko-KR',
-        daysOfWeekHeight: 30,
-        focusedDay: DateTime.now(),
         firstDay: DateTime.utc(2022, 01, 01),
         lastDay: DateTime.utc(2023, 12, 31),
+        focusedDay: DateTime.now(),
         headerStyle: HeaderStyle(
           formatButtonVisible: true,
           formatButtonDecoration: BoxDecoration(
             border: Border.all(color: kchacholGreyColor()),
             borderRadius: BorderRadius.circular(8),
           ),
-          formatButtonTextStyle: TextStyle(color: kchacholGreyColor(), fontSize: 12),
+          formatButtonTextStyle: TextStyle(color: kchacholGreyColor(), fontSize: 14),
           titleCentered: true,
           titleTextStyle: GoogleFonts.notoSans(
             fontWeight: FontWeight.w800,
@@ -60,7 +49,7 @@ class Calendar extends StatelessWidget {
           ),
           leftChevronIcon: Image.asset("assets/icon_calendar_prev.png", width: 28),
           rightChevronIcon: Image.asset("assets/icon_calendar_next.png", width: 28),
-          headerMargin: EdgeInsets.only(top: 8, bottom: 12, left: 20, right: 20),
+          headerMargin: EdgeInsets.only(top: 8, bottom: 14, left: 20, right: 20),
         ),
         daysOfWeekStyle: DaysOfWeekStyle(
           weekdayStyle: GoogleFonts.notoSans(
@@ -75,7 +64,7 @@ class Calendar extends StatelessWidget {
           ),
           decoration: BoxDecoration(
             border: Border(
-              bottom: BorderSide(color: kmidGreyColor(), width: 1.0),
+              bottom: BorderSide(color: klightGreyColor(), width: 1.0),
             ),
           ),
         ),
@@ -118,24 +107,30 @@ class Calendar extends StatelessWidget {
           markersMaxCount: 3,
           markersOffset: PositionedOffset(),
           markersAlignment: Alignment.bottomCenter,
-          markerDecoration: _buildMarker(eventList[1]),
+          markerDecoration: _buildMarker(eventList[0]),
           outsideTextStyle: GoogleFonts.notoSans(
             fontSize: 14,
             fontWeight: FontWeight.bold,
             color: kmidGreyColor(),
           ),
-          cellMargin: EdgeInsets.symmetric(vertical: 9, horizontal: 9),
+          cellMargin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
           cellAlignment: Alignment.center,
         ),
+        calendarFormat: _calendarFormat,
         eventLoader: (day) {
           return eventList;
         },
-        onDaySelected: onDaySelected,
-        selectedDayPredicate: (DateTime date) {
-          if (selectedDay == null) {
-            return false;
+        selectedDayPredicate: (day) {
+          return isSameDay(_selectedDay, day);
+        },
+        onDaySelected: (selectedDay, focusedDay) {
+          if (!isSameDay(_selectedDay, selectedDay)) {
+            // Call `setState()` when updating the selected day
+            setState(() {
+              _selectedDay = selectedDay;
+              _focusedDay = focusedDay;
+            });
           }
-          return date.year == selectedDay!.year && date.month == selectedDay!.month && date.day == selectedDay!.day;
         },
         formatAnimationCurve: Curves.bounceIn,
         availableCalendarFormats: {
@@ -143,7 +138,16 @@ class Calendar extends StatelessWidget {
           CalendarFormat.week: '1주',
         },
         onFormatChanged: (format) {
-          _calendarFormat = _calendarFormat;
+          if (_calendarFormat != format) {
+            // Call `setState()` when updating calendar format
+            setState(() {
+              _calendarFormat = format;
+            });
+          }
+        },
+        onPageChanged: (focusedDay) {
+          // No need to call `setState()` here
+          _focusedDay = focusedDay;
         },
       ),
     );

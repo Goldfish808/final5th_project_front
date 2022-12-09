@@ -6,6 +6,7 @@ import 'package:riverpod_firestore_steam1/models/event.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/components/line_app_bar.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/widget/calendar.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/widget/calendar_list_box.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/home/widget/calendar_v2.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/widget/day_schedule_widget.dart';
 
 class reservationScreen extends StatefulWidget {
@@ -35,10 +36,13 @@ class _reservationScreenState extends State<reservationScreen> {
       body: Container(
         child: Column(
           children: [
-            Calendar(
-              selectedDay: selectedDay,
-              onDaySelected: onDaySelected,
-            ),
+            // Calendar(
+            //   selectedDay: selectedDay,
+            //   onDaySelected: onDaySelected,
+            //   focusedDay: focusedDay,
+            // ),
+            CalendarV2(),
+
             Expanded(
               child: CustomScrollView(
                 physics: AlwaysScrollableScrollPhysics(),
