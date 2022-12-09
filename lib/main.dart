@@ -7,7 +7,9 @@ import 'package:riverpod_firestore_steam1/view/pages/main/login/join_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/login/login_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/main_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/mypage/mypage_main_page.dart';
+
 import 'package:intl/date_symbol_data_local.dart';
+
 import 'core/theme.dart';
 import 'view/pages/main/login/find_password_page.dart';
 
@@ -42,6 +44,7 @@ class MyApp extends StatelessWidget {
           "/home": (context) => MainPage(),
           "/mypage": (context) => MyPageMainPage(),
           "/notice": (context) => NoticePage(),
+          "/write_form": (context) => WriteSchedule(context: context),
         },
         title: "TODOFRIENDS",
       ),
