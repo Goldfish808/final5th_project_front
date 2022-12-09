@@ -19,7 +19,7 @@ class FindPasswordPage extends StatelessWidget {
           children: [
             SizedBox(height: 30),
             CustomForm("이메일", "이메일을 입력해주세요"),
-            SizedBox(height: 24),
+            SizedBox(height: 30),
             DefaultButton(routes: "/login", btnText: "확인"),
           ],
         ),

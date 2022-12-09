@@ -3,7 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 
 class CustomPasswordForm extends StatelessWidget {
-  const CustomPasswordForm(this.text, this.hintText, {Key? key}) : super(key: key);
+  const CustomPasswordForm(this.text, this.hintText, {Key? key})
+      : super(key: key);
   final String text;
   final String hintText;
 
@@ -14,18 +15,24 @@ class CustomPasswordForm extends StatelessWidget {
       children: [
         Text(
           "${text}",
-          style: textTheme(color: kchacholGreyColor(), weight: FontWeight.w700).bodyText1,
+          style: textTheme(color: kchacholGreyColor(), weight: FontWeight.w700)
+              .bodyText1,
         ),
-        SizedBox(height: 2),
+        SizedBox(height: 4),
         TextFormField(
           decoration: InputDecoration(
               hintText: "${hintText}",
-              contentPadding: const EdgeInsets.fromLTRB(10, 14, double.minPositive, 14),
-              border: OutlineInputBorder(
+              contentPadding:
+                  const EdgeInsets.fromLTRB(14, 14, double.minPositive, 14),
+              enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: kmidGreyColor(), width: 1.0),
+                borderSide: BorderSide(
+                  color: kmidGreyColor(),
+                ),
               ),
-              hintStyle: textTheme(color: kmidGreyColor(), weight: FontWeight.bold).headline2),
+              hintStyle:
+                  textTheme(color: kmidGreyColor(), weight: FontWeight.bold)
+                      .headline3),
           obscureText: true,
         ),
       ],

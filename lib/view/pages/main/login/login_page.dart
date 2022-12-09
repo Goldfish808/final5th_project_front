@@ -33,13 +33,13 @@ class LoginPage extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 70),
+          SizedBox(height: 80),
           CustomForm("이메일", "이메일을 입력해주세요"),
           SizedBox(height: 18),
           CustomPasswordForm("비밀번호", "비밀번호를 입력해주세요"),
-          SizedBox(height: 40),
+          SizedBox(height: 30),
           DefaultButton(routes: "/home", btnText: "로그인"),
-          SizedBox(height: 14),
+          SizedBox(height: 10),
           LineButton("회원가입", "/join"),
           TextButton(
             onPressed: () {

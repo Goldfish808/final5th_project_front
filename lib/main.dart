@@ -9,6 +9,7 @@ import 'package:riverpod_firestore_steam1/view/pages/main/main_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/mypage/mypage_main_page.dart';
 
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:riverpod_firestore_steam1/view/pages/schedule/write_schedule_page.dart';
 
 import 'core/theme.dart';
 import 'view/pages/main/login/find_password_page.dart';
