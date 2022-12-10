@@ -6,6 +6,7 @@ import 'package:riverpod_firestore_steam1/view/pages/main/login/join_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/login/login_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/main_page.dart';
 
+import 'core/routes.dart';
 import 'core/theme.dart';
 import 'view/pages/main/login/find_password_page.dart';
 
@@ -29,12 +30,12 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: theme(),
-        initialRoute: "/login",
+        initialRoute: Routers.login,
         routes: {
-          "/login": (context) => LoginPage(),
-          "/join": (context) => JoinPage(),
-          "/findPassword": (context) => FindPasswordPage(),
-          "/home": (context) => MainPage(),
+          Routers.login: (context) => LoginPage(),
+          Routers.join: (context) => JoinPage(),
+          Routers.findPassword: (context) => FindPasswordPage(),
+          Routers.home: (context) => MainPage(),
         },
         title: "TODOFRIENDS",
       ),

@@ -6,6 +6,10 @@ Color ksubPrimaryColor() {
   return Color(0xffB699EC);
 }
 
+Color kGreyColor() {
+  return Color(0xff5f5f63);
+}
+
 Color kchacholGreyColor() {
   return Color(0xff9999A3);
 }
