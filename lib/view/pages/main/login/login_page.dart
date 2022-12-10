@@ -3,9 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/login/components/custom_form.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/login/components/custom_password_form.dart';
-
-import 'package:riverpod_firestore_steam1/view/pages/main/login/components/default_button.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/login/components/line_button.dart';
+
+import '../components/default_button.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -38,19 +38,18 @@ class LoginPage extends StatelessWidget {
           SizedBox(height: 18),
           CustomPasswordForm("비밀번호", "비밀번호를 입력해주세요"),
           SizedBox(height: 40),
-          DefaultButton("로그인", "/home"),
+          DefaultButton(routes: "/home", btnText: "로그인"),
           SizedBox(height: 14),
           LineButton("회원가입", "/join"),
           TextButton(
             onPressed: () {
               Navigator.pushNamed(context, "/findPassword");
             },
-            child: Text("비밀번호 찾기",
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Color(0xff9999A3),
-                ),
-                textAlign: TextAlign.center),
+            child: Text(
+              "비밀번호 찾기",
+              style: textTheme(color: kchacholGreyColor()).bodyText1,
+              textAlign: TextAlign.center,
+            ),
             style: TextButton.styleFrom(
               padding: EdgeInsets.zero,
             ),

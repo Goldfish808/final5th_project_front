@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
-import 'package:riverpod_firestore_steam1/models/users.dart';
+import 'package:riverpod_firestore_steam1/models/test/users.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/chat/components/chat_line_app_bar.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/chat/components/chat_list.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/chat/components/my_chat.dart';
@@ -105,18 +105,17 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    _handleSubmitted;
+                  });
+                },
                 style: ElevatedButton.styleFrom(
                   elevation: 0.0,
                 ),
                 child: Text(
                   "전송",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.white,
-                    height: 1.6,
-                  ),
+                  style: textTheme(color: Colors.white, weight: FontWeight.w600).headline3,
                 ),
               ),
             ),

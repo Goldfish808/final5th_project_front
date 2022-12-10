@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
-Color ksubPrimaryColor() {
-  return Color(0xffB699EC);
+
+Color kPrimaryColor() {
+  return Color(0xff1c1c1c);
 }
 
-Color kGreyColor() {
-  return Color(0xff5f5f63);
+Color ksubPrimaryColor() {
+  return Color(0xffB699EC);
 }
 
 Color kchacholGreyColor() {
@@ -33,9 +34,9 @@ Color kpointMintColor() {
 TextTheme textTheme({Color? color, FontWeight? weight}) {
   return TextTheme(
     headline1: GoogleFonts.notoSans(fontSize: 18.0, color: color, fontWeight: weight),
-    headline2: GoogleFonts.notoSans(fontSize: 16.0, color: color, fontWeight: weight, letterSpacing: -0.05),
+    headline2: GoogleFonts.notoSans(fontSize: 16.0, color: color, fontWeight: weight, letterSpacing: -0.05, height: 1.2),
     headline3: GoogleFonts.notoSans(fontSize: 14.0, color: color, fontWeight: weight, height: 1.6),
-    bodyText1: GoogleFonts.notoSans(fontSize: 12.0, color: color, fontWeight: weight, height: 1.6),
+    bodyText1: GoogleFonts.notoSans(fontSize: 12.0, color: color, fontWeight: weight, height: 1.4),
     bodyText2: GoogleFonts.notoSans(fontSize: 10.0, color: color, fontWeight: weight),
     subtitle1: GoogleFonts.notoSans(fontSize: 15.0, color: color, fontWeight: weight),
   );
@@ -75,7 +76,7 @@ const MaterialColor primary = MaterialColor(0xff6E34DA, <int, Color>{
   200: Color(0xffa082d9),
   150: Color(0xffa78dd9),
   100: Color(0xffae98d9),
-  50: Color(0xffb6a3d9),
+  50: Color(0x8cb6a3d9),
 });
 
 MaterialColor createMaterialColor(Color color) {
@@ -96,4 +97,7 @@ MaterialColor createMaterialColor(Color color) {
     );
   });
   return MaterialColor(color.value, swatch);
+}
+Color kGreyColor() {
+  return Color(0xff9999A3);
 }
