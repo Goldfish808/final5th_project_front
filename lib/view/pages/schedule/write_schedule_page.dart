@@ -7,7 +7,7 @@ import '../../../core/theme.dart';
 import '../../../models/test/todo.dart';
 import '../../../models/test/users.dart';
 import '../main/components/address_component_test.dart';
-import 'components/calendar_date_picker_test.dart';
+import 'components/calendar_date_picker.dart';
 
 class WriteSchedule extends StatefulWidget {
   WriteSchedule({Key? key, required this.context}) : super(key: key);
