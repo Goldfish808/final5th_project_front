@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 
 class LineAppBar extends StatelessWidget {
@@ -44,7 +45,11 @@ class LineAppBar extends StatelessWidget {
                   SizedBox(width: 14),
                   IconButton(
                     onPressed: () {},
-                    icon: Image.asset("assets/icon_menu.svg", width: 20),
+                    icon: SvgPicture.asset(
+                      "assets/icon_arrow_back.svg",
+                      width: 20,
+                      color: kPrimaryColor(),
+                    ),
                     padding: EdgeInsets.zero,
                     constraints: BoxConstraints(),
                   ),

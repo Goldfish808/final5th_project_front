@@ -49,7 +49,7 @@ dependencies:
   flutter_neat_and_clean_calendar: ^0.3.0+12
   remedi_kopo: ^0.0.1
   image_picker: ^0.8.6
-  flutter_svg: ^1.0.1
+  flutter_svg: 0.21.0-nullsafety.0
 
 
 
