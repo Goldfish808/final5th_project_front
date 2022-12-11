@@ -1,7 +1,7 @@
 class ResponseDto {
   final int? code;
   final String? msg;
-  final dynamic data;
+  dynamic data;
 
   ResponseDto({
     this.code,
