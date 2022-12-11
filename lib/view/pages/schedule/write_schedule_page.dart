@@ -40,11 +40,15 @@ class _WriteScheduleState extends State<WriteSchedule> {
               padding: const EdgeInsets.only(bottom: 12),
               child: Container(
                 width: double.infinity,
-                decoration: BoxDecoration(border: Border(bottom: BorderSide(color: kchacholGreyColor(), width: 1))),
+                decoration: BoxDecoration(
+                    border: Border(
+                        bottom:
+                            BorderSide(color: kchacholGreyColor(), width: 1))),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    const Icon(Icons.event_repeat_outlined, color: Color(0xff9999A3)),
+                    const Icon(Icons.event_repeat_outlined,
+                        color: Color(0xff9999A3)),
                     SizedBox(width: 14),
                     Container(
                       width: MediaQuery.of(context).size.width - 80,
@@ -57,7 +61,8 @@ class _WriteScheduleState extends State<WriteSchedule> {
                           Container(
                             child: Text(
                               "반복 ( 구현 하나도 안됐지롱 ) ",
-                              style: textTheme(color: kchacholGreyColor()).headline3,
+                              style: textTheme(color: kchacholGreyColor())
+                                  .headline3,
                             ),
                           ),
                           Container(
@@ -73,7 +78,8 @@ class _WriteScheduleState extends State<WriteSchedule> {
                                   primary: kGreyColor(),
                                   padding: EdgeInsets.symmetric(horizontal: 11),
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(6)),
                                   ),
                                   elevation: 0.0,
                                 ),
@@ -100,7 +106,9 @@ class _WriteScheduleState extends State<WriteSchedule> {
       padding: const EdgeInsets.only(bottom: 12),
       child: Container(
         width: double.infinity,
-        decoration: BoxDecoration(border: Border(bottom: BorderSide(color: kchacholGreyColor(), width: 1))),
+        decoration: BoxDecoration(
+            border: Border(
+                bottom: BorderSide(color: kchacholGreyColor(), width: 1))),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -127,7 +135,8 @@ class _WriteScheduleState extends State<WriteSchedule> {
                               hintText: "장소",
                               border: InputBorder.none,
                               isDense: false,
-                              hintStyle: textTheme(color: kchacholGreyColor()).headline3),
+                              hintStyle: textTheme(color: kchacholGreyColor())
+                                  .headline3),
                           readOnly: true,
                           controller: _AddressController,
                           style: textTheme(color: primary).headline3,
@@ -180,14 +189,16 @@ class _WriteScheduleState extends State<WriteSchedule> {
   TextField _buildScheduleTitle(text) {
     return TextField(
       controller: _textController,
-      style: textTheme().headline1,
+      style: textTheme(color: kchacholGreyColor()).headline1,
       maxLines: null, //이걸 NULL 로 해주고
       maxLength: 100,
       decoration: const InputDecoration(
           hintText: "할 일 작성",
-          focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-          enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-          focusColor: Colors.black),
+          focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Color(0xff9999A3))),
+          enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Color(0xff9999A3))),
+          focusColor: Color(0xff9999A3)),
       onSubmitted: _handleSubmitted,
     );
   }
@@ -224,7 +235,9 @@ class _WriteScheduleState extends State<WriteSchedule> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("스케줄 작성", style: textTheme(color: Colors.black).headline1, textAlign: TextAlign.center),
+                Text("스케줄 작성",
+                    style: textTheme(color: Colors.black).headline1,
+                    textAlign: TextAlign.center),
               ],
             ),
           ),

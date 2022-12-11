@@ -41,13 +41,15 @@ TextTheme textTheme({Color? color, FontWeight? weight}) {
         letterSpacing: -0.05,
         height: 1.2),
     headline3: GoogleFonts.notoSans(
-        fontSize: 16.0, color: color, fontWeight: weight, height: 1.6),
+        fontSize: 16.0, color: color, fontWeight: weight, height: 1.2),
     bodyText1: GoogleFonts.notoSans(
-        fontSize: 14.0, color: color, fontWeight: weight, height: 1.4),
-    bodyText2:
-        GoogleFonts.notoSans(fontSize: 12.0, color: color, fontWeight: weight),
+        fontSize: 14.0, color: color, fontWeight: weight, height: 1.2),
+    bodyText2: GoogleFonts.notoSans(
+        fontSize: 12.0, color: color, fontWeight: weight, height: 1.4),
     subtitle1:
         GoogleFonts.notoSans(fontSize: 15.0, color: color, fontWeight: weight),
+    caption: GoogleFonts.notoSans(
+        fontSize: 10.0, color: color, fontWeight: weight, height: 1.4),
   );
 }
 

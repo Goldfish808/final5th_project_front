@@ -17,6 +17,7 @@ class _DayDateState extends State<DayDate> {
     return Padding(
       padding: const EdgeInsets.only(left: 20),
       child: Container(
+        height: 74,
         decoration: BoxDecoration(
           color: klightGreyColor(),
           borderRadius: BorderRadius.only(
@@ -25,11 +26,11 @@ class _DayDateState extends State<DayDate> {
               bottomRight: Radius.zero,
               topRight: Radius.zero),
         ),
-        padding: const EdgeInsets.all(4),
+        padding: const EdgeInsets.all(6),
         child: Container(
-          padding: const EdgeInsets.only(left: 4),
+          //padding: const EdgeInsets.only(left: 6),
           //margin: const EdgeInsets.symmetric(vertical: 20.0),
-          height: 54.0,
+          //height: 54.0,
           child: ListView.builder(
             itemCount: dayDateLentgh,
             scrollDirection: Axis.horizontal,
@@ -42,26 +43,31 @@ class _DayDateState extends State<DayDate> {
 
   Container _buildDayItem(int index) {
     return Container(
-      padding: EdgeInsets.only(right: 12),
+      padding: EdgeInsets.only(right: 10),
       child: GestureDetector(
         onTap: () {},
-        child: index != 1 ? _buildDay(index, Color(0xffFFFFFF), null) : _buildDay(index, primary, Colors.white),
+        child: index != 1
+            ? _buildDay(index, Color(0xffFFFFFF), null)
+            : _buildDay(index, primary, Colors.white),
       ),
     );
   }
 
   Container _buildDay(int index, Color? color, Color? textColor) {
     return Container(
-      //padding: EdgeInsets.only(right: 12),
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 8),
       alignment: Alignment.center,
-      width: 42,
+      //width: 42,
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 10, bottom: 3),
-            child: Text(ToDoList[index].day, style: textTheme(color: textColor).bodyText1),
+            padding: EdgeInsets.only(bottom: 8),
+            child: Text(ToDoList[index].day,
+                style: textTheme(color: textColor).bodyText1),
           ),
-          Text("$index", style: textTheme(color: textColor, weight: FontWeight.bold).bodyText1),
+          Text("$index",
+              style: textTheme(color: textColor, weight: FontWeight.bold)
+                  .bodyText1),
         ],
       ),
       decoration: BoxDecoration(

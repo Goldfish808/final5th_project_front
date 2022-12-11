@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import '../../../models/test/todo.dart';
@@ -50,8 +51,8 @@ class _MainPageState extends State<MainPage> {
         iconSize: 20.0,
         //unselectedFontSize: 10.0,
         //selectedFontSize: 10.0,
-        selectedLabelStyle: textTheme().bodyText2,
-        unselectedLabelStyle: textTheme().bodyText2,
+        selectedLabelStyle: textTheme().caption,
+        unselectedLabelStyle: textTheme().caption,
         currentIndex: _selectedIndex,
         backgroundColor: Colors.white,
         selectedItemColor: theme().primaryColor,
@@ -65,28 +66,33 @@ class _MainPageState extends State<MainPage> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Image.asset("assets/home.png", width: 20, height: 20),
-            activeIcon: Image.asset("assets/home_selected.png"),
+            icon: SvgPicture.asset("assets/icon_bottom_home.svg", width: 20),
+            activeIcon:
+                SvgPicture.asset("assets/icon_bottom_home_on.svg", width: 20),
             label: "홈",
           ),
           BottomNavigationBarItem(
-            icon: Image.asset("assets/chat.png", width: 20, height: 20),
-            activeIcon: Image.asset("assets/chat_selected.png"),
+            icon: SvgPicture.asset("assets/icon_bottom_chat.svg", width: 20),
+            activeIcon:
+                SvgPicture.asset("assets/icon_bottom_chat_on.svg", width: 20),
             label: "채팅",
           ),
           BottomNavigationBarItem(
-            icon: Image.asset("assets/write.png", width: 20, height: 20),
-            activeIcon: Image.asset("assets/write_selected.png"),
+            icon: SvgPicture.asset("assets/icon_bottom_plus.svg", width: 22),
+            activeIcon:
+                SvgPicture.asset("assets/icon_bottom_plus_on.svg", width: 22),
             label: "글쓰기",
           ),
           BottomNavigationBarItem(
-            icon: Image.asset("assets/search.png", width: 20, height: 20),
-            activeIcon: Image.asset("assets/search_selected.png"),
+            icon: SvgPicture.asset("assets/icon_bottom_search.svg", width: 20),
+            activeIcon:
+                SvgPicture.asset("assets/icon_bottom_search_on.svg", width: 20),
             label: "검색",
           ),
           BottomNavigationBarItem(
-            icon: Image.asset("assets/my.png", width: 20, height: 20),
-            activeIcon: Image.asset("assets/my_selected.png"),
+            icon: SvgPicture.asset("assets/icon_bottom_my.svg", width: 20),
+            activeIcon:
+                SvgPicture.asset("assets/icon_bottom_my_on.svg", width: 20),
             label: "MY",
           ),
         ],
@@ -101,16 +107,22 @@ class _MainPageState extends State<MainPage> {
       builder: (context) {
         return SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
             //위 패딩은 모달창의 터치 가능한 영역 내부 패딩
             decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(30), topRight: Radius.circular(30)),
               color: Colors.white,
             ),
             child: Container(
               child: Column(
                 children: <Widget>[
-                  SizedBox(height: 30, width: 50, child: Divider(height: 1, color: kchacholGreyColor(), thickness: 4)),
+                  SizedBox(
+                      height: 30,
+                      width: 50,
+                      child: Divider(
+                          height: 1, color: kchacholGreyColor(), thickness: 4)),
                   Text(" "),
                   Row(),
                   _buildMinToDoWrite(),
@@ -150,8 +162,10 @@ class _MainPageState extends State<MainPage> {
                   maxLength: 50,
                   decoration: const InputDecoration(
                       hintText: "할 일 작성",
-                      focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-                      enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)),
+                      enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)),
                       focusColor: Colors.black),
                   onSubmitted: _handleSubmitted,
                 ),

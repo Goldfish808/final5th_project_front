@@ -16,29 +16,26 @@ class HomePageTop extends StatelessWidget {
         DayDate(),
         SizedBox(height: 16),
         DaySchedule(),
-        SizedBox(height: 16),
-        Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
-          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //아래 버튼은 추후에 DropDown 버튼 추가할지 고민
-              children: [
-                Text("ToDo", style: textTheme(weight: FontWeight.bold).headline1),
-              ]),
-        )
+        Container(
+          padding: EdgeInsets.only(top: 40, left: 20),
+          alignment: Alignment.centerLeft,
+          child: Text("오늘 할 일",
+              style: textTheme(weight: FontWeight.bold).headline1),
+        ),
       ],
     );
   }
 
   Widget _buildTopfirstline() {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 24),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         //아래 버튼은 추후에 DropDown 버튼 추가할지 고민
         children: [
           _buildMonthDropdown(),
-          SizedBox(width: 4),
+          SizedBox(width: 6),
           KInkWellIconButton(icon: Icons.calendar_today_outlined, img: null),
         ],
       ),
@@ -50,7 +47,8 @@ class HomePageTop extends StatelessWidget {
         onTap: () {
           print("클릭 됨 11월 버튼");
         },
-        child: Text("11월", style: textTheme().headline1));
+        child:
+            Text("11월", style: textTheme(weight: FontWeight.bold).headline1));
   }
 }
 

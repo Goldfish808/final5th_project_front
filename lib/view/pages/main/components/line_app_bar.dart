@@ -15,7 +15,7 @@ class LineAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       leading: IconButton(
-        icon: Image.asset("assets/icon_arrow_back.svg", width: 10),
+        icon: SvgPicture.asset("assets/icon_arrow_back.svg", width: 10),
         onPressed: () {
           Navigator.pop(context);
         },
@@ -38,7 +38,7 @@ class LineAppBar extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {},
-                    icon: Image.asset("assets/icon_search.svg", width: 18),
+                    icon: SvgPicture.asset("assets/icon_search.svg", width: 18),
                     padding: EdgeInsets.zero,
                     constraints: BoxConstraints(),
                   ),
@@ -46,7 +46,7 @@ class LineAppBar extends StatelessWidget {
                   IconButton(
                     onPressed: () {},
                     icon: SvgPicture.asset(
-                      "assets/icon_arrow_back.svg",
+                      "assets/icon_menu.svg",
                       width: 20,
                       color: kPrimaryColor(),
                     ),
