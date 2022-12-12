@@ -64,7 +64,7 @@ class JoinPage extends ConsumerWidget {
           SizedBox(height: 40),
           CustomElevatedButton(
               text: "회원가입 완료",
-              funPageRoute: () {
+              funPageRoute: () async {
                 if (_formKey.currentState!.validate()) {
                   // 추가
                   uContrl.join(

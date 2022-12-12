@@ -18,12 +18,6 @@ Function validateUsername() {
   };
 }
 
-Function validatePasswordSame() {
-  return (String? value) {
-    return "두 패스워드가 일치하지 않습니다";
-  };
-}
-
 Function validatePassword() {
   return (String? value) {
     if (value!.isEmpty) {
