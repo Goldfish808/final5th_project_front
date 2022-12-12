@@ -16,7 +16,7 @@ class JoinPage extends ConsumerWidget {
   JoinPage({Key? key}) : super(key: key);
   //컴포넌트화에 조금더 심혈을 기울어야 했음 완전 뒤죽박죽
   final pwVali = validatePassword();
-  final emailVali = validatePassword();
+  final emailVali = validateEmail();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -54,7 +54,7 @@ class JoinPage extends ConsumerWidget {
           SizedBox(height: 24),
           CustomForm(
             "닉네임",
-            "닉네임을 입력해주세요",
+            "로그인 시 사용할 아이디",
             funValidator: validateNickname(),
             controllerInput: _nickname,
           ),
@@ -70,7 +70,7 @@ class JoinPage extends ConsumerWidget {
                 if (_formKey.currentState!.validate()) {
                   // 추가
                   uContrl.join(
-                    username: _username.text.trim(),
+                    username: _nickname.text.trim(),
                     password: _password.text.trim(),
                     email: _email.text.trim(),
                   );
