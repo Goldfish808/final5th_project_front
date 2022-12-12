@@ -173,7 +173,7 @@ class JoinPage extends ConsumerWidget {
           validator: (value) {
             if (value!.isEmpty) {
               return "비밀번호를 재 입력해 주세요";
-            } else if (_controllerInput1 == _controllerInput2) {
+            } else if (_password1.text != _password2.text) {
               return "두 비밀번호가 일치하지 않습니다";
             }
             return null;
