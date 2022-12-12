@@ -10,6 +10,11 @@ import '../components/default_button.dart';
 
 class LoginPage extends StatelessWidget {
   final _formkey = GlobalKey<FormState>();
+  final _username = TextEditingController(); // 추가
+  final _password = TextEditingController(); // 추가
+  final _email = TextEditingController(); // 추가
+  final _nickname = TextEditingController(); // 추가
+
   LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -38,34 +43,58 @@ class LoginPage extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 70),
-          CustomForm("이메일", "이메일을 입력해주세요", funValidator: validateEmail()),
-          SizedBox(height: 18),
-          CustomPasswordForm("비밀번호", "비밀번호를 입력해주세요", funValidator: validatePassword()),
-          SizedBox(height: 40),
-          DefaultButton(
-              routes: "/home",
-              btnText: "로그인",
-              funPageRoute: () {
-                if (_formkey.currentState!.validate()) {}
-              }),
-          SizedBox(height: 14),
-          LineButton("회원가입", "/join"),
-          TextButton(
-            onPressed: () {
-              Navigator.pushNamed(context, "/findPassword");
-            },
-            child: Text(
-              "비밀번호 찾기",
-              style: textTheme(color: kchacholGreyColor()).bodyText1,
-              textAlign: TextAlign.center,
-            ),
-            style: TextButton.styleFrom(
-              padding: EdgeInsets.zero,
-            ),
-          ),
+          _joinForm(context),
         ],
       ),
+    );
+  }
+
+  Widget _joinForm(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(height: 70),
+        CustomForm(
+          "이메일",
+          "이메일을 입력해주세요",
+          funValidator: validateEmail(),
+          controllerInput: _email,
+        ),
+        SizedBox(height: 18),
+        CustomPasswordForm(
+          "비밀번호",
+          "비밀번호를 입력해주세요",
+          funValidator: validatePassword(),
+          controllerInput: _password,
+        ),
+        SizedBox(height: 40),
+        DefaultButton(
+            routes: "/home",
+            btnText: "로그인",
+            funPageRoute: () async {
+              if (_formkey.currentState!.validate()) {}
+            }),
+        SizedBox(height: 14),
+        LineButton(
+          "회원가입",
+          "/join",
+          funPageRoute: () async {
+            if (_formkey.currentState!.validate()) {}
+          },
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.pushNamed(context, "/findPassword");
+          },
+          child: Text(
+            "비밀번호 찾기",
+            style: textTheme(color: kchacholGreyColor()).bodyText1,
+            textAlign: TextAlign.center,
+          ),
+          style: TextButton.styleFrom(
+            padding: EdgeInsets.zero,
+          ),
+        ),
+      ],
     );
   }
 }

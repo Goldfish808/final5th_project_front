@@ -6,7 +6,9 @@ import 'package:riverpod_firestore_steam1/view/pages/main/components/line_app_ba
 import 'package:riverpod_firestore_steam1/view/pages/main/login/components/custom_password_form.dart';
 
 class UpdatePasswordPage extends StatelessWidget {
-  const UpdatePasswordPage({Key? key}) : super(key: key);
+  UpdatePasswordPage({Key? key}) : super(key: key);
+
+  final _password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,12 @@ class UpdatePasswordPage extends StatelessWidget {
   Column _buildPasswordForm() {
     return Column(
       children: [
-        CustomPasswordForm("비밀번호", "비밀번호를 입력해주세요", funValidator: validatePassword()),
+        CustomPasswordForm(
+          "비밀번호",
+          "비밀번호를 입력해주세요",
+          funValidator: validatePassword(),
+          controllerInput: _password,
+        ),
         SizedBox(height: 6),
         TextFormField(
           decoration: InputDecoration(

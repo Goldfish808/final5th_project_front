@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 
 class LineButton extends StatelessWidget {
@@ -12,6 +13,8 @@ class LineButton extends StatelessWidget {
     return Center(
       child: OutlinedButton(
         onPressed: () {
+          funPageRoute;
+          Logger().d("회원가입 버튼이 눌러짐 $funPageRoute");
           Navigator.pushNamed(context, "${routes}");
         },
         style: OutlinedButton.styleFrom(
