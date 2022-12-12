@@ -9,6 +9,7 @@ import 'package:riverpod_firestore_steam1/view/pages/main/login/components/custo
 import 'package:riverpod_firestore_steam1/view/pages/main/login/components/custom_password_form.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/login/components/line_button.dart';
 
+import '../../../../core/util/constant/move.dart';
 import '../components/line_app_bar.dart';
 import 'components/custom_text_form.dart';
 
@@ -21,8 +22,8 @@ class JoinPage extends ConsumerWidget {
   final _formKey = GlobalKey<FormState>();
 
   //입력된 값 정리 해주기 위해서
-  final _username = TextEditingController(); // 추가
-  final _password = TextEditingController(); // 추가
+  final _password1 = TextEditingController(); // 추가
+  final _password2 = TextEditingController(); // 추가
   final _email = TextEditingController(); // 추가
   final _nickname = TextEditingController(); // 추가
 
@@ -59,10 +60,7 @@ class JoinPage extends ConsumerWidget {
             controllerInput: _nickname,
           ),
           SizedBox(height: 18),
-          _buildPasswordForm(
-            pwVali,
-            _password,
-          ),
+          _buildPasswordForm(pwVali, _password1, _password2),
           SizedBox(height: 40),
           CustomElevatedButton(
               text: "회원가입 완료",
@@ -71,15 +69,13 @@ class JoinPage extends ConsumerWidget {
                   // 추가
                   uContrl.join(
                     username: _nickname.text.trim(),
-                    password: _password.text.trim(),
+                    password: _password1.text.trim(),
                     email: _email.text.trim(),
                   );
                 }
               }),
           SizedBox(height: 20),
-          LineButton("로그인 페이지로 이동", "/login", funPageRoute: () async {
-            if (_formKey.currentState!.validate()) {}
-          }),
+          LineButton("로그인 페이지로 이동", Move.loginPage)
         ],
       ),
     );
@@ -148,20 +144,40 @@ class JoinPage extends ConsumerWidget {
     );
   }
 
-  Column _buildPasswordForm(pwValidate, _controllerInput) {
+  Column _buildPasswordForm(pwValidate, _controllerInput1, _controllerInput2) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         //텍스트 필드 난무
-        CustomPasswordForm(
+        Text(
           "비밀번호",
-          "비밀번호를 입력해주세요",
-          funValidator: validatePassword(),
-          controllerInput: _controllerInput,
+          style: textTheme(color: kchacholGreyColor(), weight: FontWeight.w700).bodyText1,
+        ),
+        SizedBox(height: 2),
+        TextFormField(
+          controller: _controllerInput1,
+          validator: pwValidate,
+          decoration: InputDecoration(
+              hintText: "비밀번호를 입력해 주세요",
+              contentPadding: const EdgeInsets.fromLTRB(10, 14, double.minPositive, 14),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: kmidGreyColor(), width: 1.0),
+              ),
+              hintStyle: textTheme(color: kmidGreyColor(), weight: FontWeight.bold).headline2),
+          obscureText: true,
         ),
         SizedBox(height: 6),
         TextFormField(
-          controller: _controllerInput,
-          validator: pwValidate,
+          controller: _controllerInput2,
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "비밀번호를 재 입력해 주세요";
+            } else if (_controllerInput1 == _controllerInput2) {
+              return "두 비밀번호가 일치하지 않습니다";
+            }
+            return null;
+          },
           decoration: InputDecoration(
             hintText: "비밀번호를 입력해주세요",
             contentPadding: const EdgeInsets.fromLTRB(10, 14, double.minPositive, 14),

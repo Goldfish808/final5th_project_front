@@ -6,6 +6,7 @@ import 'package:riverpod_firestore_steam1/view/pages/main/login/components/custo
 import 'package:riverpod_firestore_steam1/view/pages/main/login/components/custom_password_form.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/login/components/line_button.dart';
 
+import '../../../../core/util/constant/move.dart';
 import '../components/default_button.dart';
 
 class LoginPage extends StatelessWidget {
@@ -68,7 +69,7 @@ class LoginPage extends StatelessWidget {
         ),
         SizedBox(height: 40),
         DefaultButton(
-            routes: "/home",
+            routes: Move.homePage,
             btnText: "로그인",
             funPageRoute: () async {
               if (_formkey.currentState!.validate()) {}
@@ -76,7 +77,7 @@ class LoginPage extends StatelessWidget {
         SizedBox(height: 14),
         LineButton(
           "회원가입",
-          "/join",
+          Move.joinPage,
           funPageRoute: () async {
             if (_formkey.currentState!.validate()) {}
           },

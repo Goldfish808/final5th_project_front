@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:riverpod_firestore_steam1/core/util/constant/move.dart';
 import 'package:riverpod_firestore_steam1/firebase_options.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/notice_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/login/join_page.dart';
@@ -39,16 +40,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: theme(),
         initialRoute: Routers.loginForm,
-        routes: {
-          //"/stack_test": (context) => StackTestPage(),
-          "/login": (context) => LoginPage(),
-          "/join": (context) => JoinPage(),
-          "/findPassword": (context) => FindPasswordPage(),
-          "/home": (context) => MainPage(),
-          "/mypage": (context) => MyPageMainPage(),
-          "/notice": (context) => NoticePage(),
-          "/write_form": (context) => WriteSchedule(context: context),
-        },
+        routes: getRouters(),
         title: "TODOFRIENDS",
       ),
     );
