@@ -3,8 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 
 class CustomPasswordForm extends StatelessWidget {
-  const CustomPasswordForm(this.text, this.hintText, {Key? key}) : super(key: key);
+  const CustomPasswordForm(this.text, this.hintText, {required this.funValidator, Key? key}) : super(key: key);
   final String text;
+  final funValidator;
   final String hintText;
 
   @override
@@ -18,6 +19,7 @@ class CustomPasswordForm extends StatelessWidget {
         ),
         SizedBox(height: 2),
         TextFormField(
+          validator: funValidator,
           decoration: InputDecoration(
               hintText: "${hintText}",
               contentPadding: const EdgeInsets.fromLTRB(10, 14, double.minPositive, 14),

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 
 class LineButton extends StatelessWidget {
-  const LineButton(this.btnText, this.routes, {Key? key}) : super(key: key);
+  const LineButton(this.btnText, this.routes, {this.funPageRoute, Key? key}) : super(key: key);
   final String btnText;
   final String routes;
+  final funPageRoute;
 
   @override
   Widget build(BuildContext context) {

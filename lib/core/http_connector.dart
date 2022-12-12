@@ -4,7 +4,7 @@ import 'package:logger/logger.dart';
 import '../models/user_session.dart';
 
 class HttpConnector {
-  final host = "http://localhost:5000";
+  final host = "http://172.22.64.1:8080";
   final headers = {"Content-Type": "application/json; charset=utf-8"};
 
   static final HttpConnector _instance = HttpConnector._single();
@@ -16,10 +16,7 @@ class HttpConnector {
 
   // 최초 자동 로그인시에 세션이 없기 때문에 jwtToken을 storage에서 가져와서 세션 초기화함.
   Future<Response> getInitSession(String path, String? jwtToken) async {
-    Map<String, String> requestHeader = {
-      ...headers,
-      "Authorization": jwtToken!
-    };
+    Map<String, String> requestHeader = {...headers, "Authorization": jwtToken!};
     Uri uri = Uri.parse("${host}${path}");
     Response response = await Client().get(uri, headers: requestHeader);
     return response;
@@ -43,16 +40,14 @@ class HttpConnector {
   Future<Response> put(String path, String body) async {
     Map<String, String> requestHeader = UserSession.getJwtTokenHeader(headers);
     Uri uri = Uri.parse("${host}${path}");
-    Response response =
-        await Client().put(uri, body: body, headers: requestHeader);
+    Response response = await Client().put(uri, body: body, headers: requestHeader);
     return response;
   }
 
   Future<Response> post(String path, String body) async {
     Map<String, String> requestHeader = UserSession.getJwtTokenHeader(headers);
     Uri uri = Uri.parse("${host}${path}");
-    Response response =
-        await Client().post(uri, body: body, headers: requestHeader);
+    Response response = await Client().post(uri, body: body, headers: requestHeader);
     return response;
   }
 }
