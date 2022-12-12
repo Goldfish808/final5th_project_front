@@ -55,7 +55,7 @@ class JoinPage extends ConsumerWidget {
           SizedBox(height: 24),
           CustomForm(
             "닉네임",
-            "로그인 시 사용할 아이디",
+            "닉네임을 입력해주세요",
             funValidator: validateNickname(),
             controllerInput: _nickname,
           ),
@@ -68,7 +68,7 @@ class JoinPage extends ConsumerWidget {
                 if (_formKey.currentState!.validate()) {
                   // 추가
                   uContrl.join(
-                    username: _nickname.text.trim(),
+                    username: _email.text.trim(),
                     password: _password1.text.trim(),
                     email: _email.text.trim(),
                   );
@@ -148,7 +148,6 @@ class JoinPage extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        //텍스트 필드 난무
         Text(
           "비밀번호",
           style: textTheme(color: kchacholGreyColor(), weight: FontWeight.w700).bodyText1,
