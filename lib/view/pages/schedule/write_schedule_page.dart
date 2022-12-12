@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/components/line_app_bar.dart';
 import '../../../core/theme.dart';
 import '../../../models/test/todo.dart';
 import '../../../models/test/users.dart';
@@ -25,7 +27,10 @@ class _WriteScheduleState extends State<WriteSchedule> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildSearchAppBar(context),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(55),
+        child: LineAppBar("일정 작성", null),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -185,10 +190,13 @@ class _WriteScheduleState extends State<WriteSchedule> {
       maxLines: null, //이걸 NULL 로 해주고
       maxLength: 100,
       decoration: const InputDecoration(
-          hintText: "할 일 작성",
-          focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xff9999A3))),
-          enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xff9999A3))),
-          focusColor: Color(0xff9999A3)),
+        hintText: "제목",
+        hintStyle: TextStyle(fontWeight: FontWeight.bold, color: Color(0xff9999A3)),
+        focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xff9999A3))),
+        enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xff9999A3))),
+        focusColor: Color(0xff9999A3),
+        contentPadding: EdgeInsets.only(left: 8),
+      ),
       onSubmitted: _handleSubmitted,
     );
   }
@@ -213,7 +221,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
         padding: const EdgeInsets.only(top: 14),
         child: AppBar(
           leading: IconButton(
-            icon: Image.asset("assets/icon_arrow_back.png", width: 10),
+            icon: SvgPicture.asset("assets/icon_arrow_back.svg", width: 10),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -221,7 +229,9 @@ class _WriteScheduleState extends State<WriteSchedule> {
           ),
           title: Container(
             height: 40,
-            width: 100,
+            //width: 100,
+            margin: EdgeInsets.zero,
+            padding: EdgeInsets.zero,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
