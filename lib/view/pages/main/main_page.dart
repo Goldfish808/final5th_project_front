@@ -71,27 +71,32 @@ class _MainPageState extends State<MainPage> {
         items: [
           BottomNavigationBarItem(
             icon: SvgPicture.asset("assets/icon_bottom_home.svg", width: 20),
-            activeIcon: SvgPicture.asset("assets/icon_bottom_home_on.svg", width: 20),
+            activeIcon:
+                SvgPicture.asset("assets/icon_bottom_home_on.svg", width: 20),
             label: "홈",
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset("assets/icon_bottom_chat.svg", width: 20),
-            activeIcon: SvgPicture.asset("assets/icon_bottom_chat_on.svg", width: 20),
+            activeIcon:
+                SvgPicture.asset("assets/icon_bottom_chat_on.svg", width: 20),
             label: "채팅",
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset("assets/icon_bottom_plus.svg", width: 22),
-            activeIcon: SvgPicture.asset("assets/icon_bottom_plus_on.svg", width: 22),
+            activeIcon:
+                SvgPicture.asset("assets/icon_bottom_plus_on.svg", width: 22),
             label: "글쓰기",
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset("assets/icon_bottom_search.svg", width: 20),
-            activeIcon: SvgPicture.asset("assets/icon_bottom_search_on.svg", width: 20),
+            activeIcon:
+                SvgPicture.asset("assets/icon_bottom_search_on.svg", width: 20),
             label: "검색",
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset("assets/icon_bottom_my.svg", width: 20),
-            activeIcon: SvgPicture.asset("assets/icon_bottom_my_on.svg", width: 20),
+            activeIcon:
+                SvgPicture.asset("assets/icon_bottom_my_on.svg", width: 20),
             label: "MY",
           ),
         ],
@@ -106,10 +111,12 @@ class _MainPageState extends State<MainPage> {
       builder: (context) {
         return SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
             //위 패딩은 모달창의 터치 가능한 영역 내부 패딩
             decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(30), topRight: Radius.circular(30)),
               color: Colors.white,
             ),
             child: Container(
@@ -139,7 +146,7 @@ class _MainPageState extends State<MainPage> {
 
   Widget _buildMinToDoWrite() {
     return Container(
-      height: MediaQuery.of(context).size.height / 4.0,
+      height: MediaQuery.of(context).size.height / 3.8,
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 14),
       child: Column(
         children: [
@@ -151,7 +158,8 @@ class _MainPageState extends State<MainPage> {
                   padding: EdgeInsets.only(right: 8),
                   child: ConstrainedBox(
                     //입력 만큼 height 늘어나려면 얘로 감싸고 1
-                    constraints: const BoxConstraints(maxHeight: 300), //얘를 주면 됨 2
+                    constraints:
+                        const BoxConstraints(maxHeight: 300), //얘를 주면 됨 2
                     child: TextField(
                       controller: _textController,
                       style: textTheme().headline3,
@@ -159,9 +167,14 @@ class _MainPageState extends State<MainPage> {
                       maxLength: 50,
                       decoration: const InputDecoration(
                           hintText: "할 일 작성",
-                          hintStyle: TextStyle(color: Color(0xff9999A3), fontSize: 16, fontWeight: FontWeight.w600),
-                          focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xff9999A3))),
-                          enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xff9999A3))),
+                          hintStyle: TextStyle(
+                              color: Color(0xff9999A3),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xff9999A3))),
+                          enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xff9999A3))),
                           focusColor: Color(0xff9999A3)),
                       onSubmitted: _handleSubmitted,
                     ),
