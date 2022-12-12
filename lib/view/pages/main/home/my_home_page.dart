@@ -38,30 +38,36 @@ class _MyHomePageState extends State<MyHomePage> {
         Expanded(
           child: CustomScrollView(
             slivers: <Widget>[
-              const SliverAppBar(
-                automaticallyImplyLeading: false,
-                backgroundColor: Colors.white,
-                pinned: true,
-                expandedHeight: 424.0,
-                flexibleSpace: FlexibleSpaceBar(
-                  background: HomePageTop(),
-                ),
-              ),
-              SliverFixedExtentList(
-                itemExtent: 84.0,
-                delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                  return Container(
-                    padding: EdgeInsets.only(top: 16),
-                    //alignment: Alignment.center,
-                    child: _ToDoList(index),
-                  );
-                }, childCount: globalToDoItems.length),
-              ),
+              _buildHomeTop(),
+              _buildToDoLists(),
             ],
           ),
         ),
       ],
+    );
+  }
+
+  SliverFixedExtentList _buildToDoLists() {
+    return SliverFixedExtentList(
+      itemExtent: 58.0,
+      delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+        return Container(
+          alignment: Alignment.center,
+          child: _ToDoList(index),
+        );
+      }, childCount: globalToDoItems.length),
+    );
+  }
+
+  SliverAppBar _buildHomeTop() {
+    return const SliverAppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: Colors.white,
+      pinned: true,
+      expandedHeight: 450.0,
+      flexibleSpace: FlexibleSpaceBar(
+        background: HomePageTop(),
+      ),
     );
   }
 
@@ -85,16 +91,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           Navigator.of(context).pop();
                         },
                         padding: EdgeInsets.zero,
-                        icon: SvgPicture.asset("assets/icon_close.svg",
-                            width: 12, height: 12),
+                        icon: SvgPicture.asset("assets/icon_close.svg", width: 12, height: 12),
                       ),
                     ),
                   ),
                   Text(
                     "설정",
-                    style: textTheme(
-                            color: kPrimaryColor(), weight: FontWeight.bold)
-                        .headline2,
+                    style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold).headline2,
                   )
                 ],
               )),
@@ -123,15 +126,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  ListTile _buildMenuList(
-      {required String text, Color? fontColor, FontWeight? fontWeight}) {
+  ListTile _buildMenuList({required String text, Color? fontColor, FontWeight? fontWeight}) {
     return ListTile(
       contentPadding: EdgeInsets.symmetric(horizontal: 20),
-      title: Text(text,
-          style: textTheme(color: fontColor, weight: fontWeight).headline3),
-      trailing: text != "로그아웃"
-          ? SvgPicture.asset("assets/icon_arrow_next.svg", width: 8)
-          : null,
+      title: Text(text, style: textTheme(color: fontColor, weight: fontWeight).headline3),
+      trailing: text != "로그아웃" ? SvgPicture.asset("assets/icon_arrow_next.svg", width: 8) : null,
       onTap: () {
         text == "비밀번호 변경"
             ? Navigator.push(
@@ -145,30 +144,30 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _ToDoList(int index) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Slidable(
-        key: Key(globalToDoItems[index].content),
-        endActionPane: ActionPane(
-          extentRatio: 0.25,
-          motion: const ScrollMotion(),
-          dismissible: DismissiblePane(onDismissed: () {
-            setState(() {
-              globalToDoItems.remove(globalToDoItems[index]);
-            });
-          }),
-          children: [
-            SlidableAction(
-              onPressed: (context) {
-                setState(() {
-                  printSome(context, index);
-                });
-              },
-              foregroundColor: primary,
-              icon: CupertinoIcons.trash,
-            ),
-          ],
-        ),
+    return Slidable(
+      key: Key(globalToDoItems[index].content),
+      endActionPane: ActionPane(
+        extentRatio: 0.25,
+        motion: const ScrollMotion(),
+        // dismissible: DismissiblePane(onDismissed: () {
+        //   setState(() {
+        //     globalToDoItems.remove(globalToDoItems[index]);
+        //   });
+        // }),
+        children: [
+          SlidableAction(
+            onPressed: (context) {
+              setState(() {
+                _removeToDoItem(context, index);
+              });
+            },
+            foregroundColor: primary,
+            icon: CupertinoIcons.trash,
+          ),
+        ],
+      ),
+      child: Container(
+        padding: EdgeInsets.only(left: 20, right: 20, bottom: 4),
         child: Row(
           children: [
             Expanded(
@@ -208,11 +207,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Text(
                         globalToDoItems[index].content,
                         style: globalToDoItems[index].done == true
-                            ? TextStyle(
-                                decoration: TextDecoration.lineThrough,
-                                fontSize: 16,
-                                height: 1.2,
-                                color: kchacholGreyColor())
+                            ? TextStyle(decoration: TextDecoration.lineThrough, fontSize: 16, height: 1.2, color: kchacholGreyColor())
                             : textTheme().headline3,
                       ),
                     ],
@@ -227,7 +222,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-void printSome(BuildContext context, int index) {
+void _removeToDoItem(BuildContext context, int index) {
   print("클릭됨");
   globalToDoItems.remove(globalToDoItems[index]);
 }

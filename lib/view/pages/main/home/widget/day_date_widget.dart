@@ -20,11 +20,8 @@ class _DayDateState extends State<DayDate> {
         height: 74,
         decoration: BoxDecoration(
           color: klightGreyColor(),
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10),
-              bottomLeft: Radius.circular(10),
-              bottomRight: Radius.zero,
-              topRight: Radius.zero),
+          borderRadius:
+              BorderRadius.only(topLeft: Radius.circular(10), bottomLeft: Radius.circular(10), bottomRight: Radius.zero, topRight: Radius.zero),
         ),
         padding: const EdgeInsets.all(6),
         child: Container(
@@ -32,6 +29,7 @@ class _DayDateState extends State<DayDate> {
           //margin: const EdgeInsets.symmetric(vertical: 20.0),
           //height: 54.0,
           child: ListView.builder(
+            physics: BouncingScrollPhysics(),
             itemCount: dayDateLentgh,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) => _buildDayItem(index),
@@ -46,9 +44,7 @@ class _DayDateState extends State<DayDate> {
       padding: EdgeInsets.only(right: 10),
       child: GestureDetector(
         onTap: () {},
-        child: index != 1
-            ? _buildDay(index, Color(0xffFFFFFF), null)
-            : _buildDay(index, primary, Colors.white),
+        child: index != 1 ? _buildDay(index, Color(0xffFFFFFF), null) : _buildDay(index, primary, Colors.white),
       ),
     );
   }
@@ -62,12 +58,9 @@ class _DayDateState extends State<DayDate> {
         children: [
           Padding(
             padding: EdgeInsets.only(bottom: 8),
-            child: Text(ToDoList[index].day,
-                style: textTheme(color: textColor).bodyText1),
+            child: Text(ToDoList[index].day, style: textTheme(color: textColor).bodyText1),
           ),
-          Text("$index",
-              style: textTheme(color: textColor, weight: FontWeight.bold)
-                  .bodyText1),
+          Text("$index", style: textTheme(color: textColor, weight: FontWeight.bold).bodyText1),
         ],
       ),
       decoration: BoxDecoration(

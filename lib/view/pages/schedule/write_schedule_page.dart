@@ -7,7 +7,7 @@ import '../../../core/theme.dart';
 import '../../../models/test/todo.dart';
 import '../../../models/test/users.dart';
 import '../main/components/address_component_test.dart';
-import 'components/calendar_date_picker_test.dart';
+import 'components/calendar_date_picker.dart';
 
 class WriteSchedule extends StatefulWidget {
   WriteSchedule({Key? key, required this.context}) : super(key: key);
@@ -36,65 +36,63 @@ class _WriteScheduleState extends State<WriteSchedule> {
             DateAndDayPickerInRow(),
             _buildLocationSearch(context),
             //AddressComponentTest(),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    border: Border(
-                        bottom:
-                            BorderSide(color: kchacholGreyColor(), width: 1))),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    const Icon(Icons.event_repeat_outlined,
-                        color: Color(0xff9999A3)),
-                    SizedBox(width: 14),
-                    Container(
-                      width: MediaQuery.of(context).size.width - 80,
-                      //반응형을 위한 가로 폭
-                      height: 55,
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            child: Text(
-                              "반복 ( 구현 하나도 안됐지롱 ) ",
-                              style: textTheme(color: kchacholGreyColor())
-                                  .headline3,
-                            ),
-                          ),
-                          Container(
-                              width: 88,
-                              height: 27,
-                              alignment: Alignment.center,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  _handleSubmitted(_textController.text);
-                                  Navigator.pop(context);
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  primary: kGreyColor(),
-                                  padding: EdgeInsets.symmetric(horizontal: 11),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(6)),
-                                  ),
-                                  elevation: 0.0,
-                                ),
-                                child: Text(
-                                  "주소 검색",
-                                  style: textTheme().headline2,
-                                ),
-                              )),
-                        ],
-                      ),
+            _buildRepeatSetting(context)
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildRepeatSetting(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(border: Border(bottom: BorderSide(color: kchacholGreyColor(), width: 1))),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            const Icon(Icons.event_repeat_outlined, color: Color(0xff9999A3)),
+            SizedBox(width: 14),
+            Container(
+              width: MediaQuery.of(context).size.width - 80,
+              //반응형을 위한 가로 폭
+              height: 55,
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    child: Text(
+                      "반복 ( 구현 하나도 안됐지롱 ) ",
+                      style: textTheme(color: kchacholGreyColor()).headline3,
                     ),
-                  ],
-                ),
+                  ),
+                  Container(
+                      width: 88,
+                      height: 27,
+                      alignment: Alignment.center,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          _handleSubmitted(_textController.text);
+                          Navigator.pop(context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: kGreyColor(),
+                          padding: EdgeInsets.symmetric(horizontal: 11),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                          ),
+                          elevation: 0.0,
+                        ),
+                        child: Text(
+                          "주소 검색",
+                          style: textTheme().headline2,
+                        ),
+                      )),
+                ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -106,9 +104,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
       padding: const EdgeInsets.only(bottom: 12),
       child: Container(
         width: double.infinity,
-        decoration: BoxDecoration(
-            border: Border(
-                bottom: BorderSide(color: kchacholGreyColor(), width: 1))),
+        decoration: BoxDecoration(border: Border(bottom: BorderSide(color: kchacholGreyColor(), width: 1))),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -132,11 +128,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
                         width: 220,
                         child: TextField(
                           decoration: InputDecoration(
-                              hintText: "장소",
-                              border: InputBorder.none,
-                              isDense: false,
-                              hintStyle: textTheme(color: kchacholGreyColor())
-                                  .headline3),
+                              hintText: "장소", border: InputBorder.none, isDense: false, hintStyle: textTheme(color: kchacholGreyColor()).headline3),
                           readOnly: true,
                           controller: _AddressController,
                           style: textTheme(color: primary).headline3,
@@ -194,10 +186,8 @@ class _WriteScheduleState extends State<WriteSchedule> {
       maxLength: 100,
       decoration: const InputDecoration(
           hintText: "할 일 작성",
-          focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: Color(0xff9999A3))),
-          enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: Color(0xff9999A3))),
+          focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xff9999A3))),
+          enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xff9999A3))),
           focusColor: Color(0xff9999A3)),
       onSubmitted: _handleSubmitted,
     );
@@ -235,9 +225,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("스케줄 작성",
-                    style: textTheme(color: Colors.black).headline1,
-                    textAlign: TextAlign.center),
+                Text("스케줄 작성", style: textTheme(color: Colors.black).headline1, textAlign: TextAlign.center),
               ],
             ),
           ),

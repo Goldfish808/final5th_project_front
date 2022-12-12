@@ -54,11 +54,13 @@ class _CalendarV2State extends State<CalendarV2> {
         daysOfWeekStyle: DaysOfWeekStyle(
           weekdayStyle: GoogleFonts.notoSans(
             fontSize: 16,
+            height: 0,
             fontWeight: FontWeight.bold,
             color: kPrimaryColor(),
           ),
           weekendStyle: GoogleFonts.notoSans(
             fontSize: 16,
+            height: 0,
             fontWeight: FontWeight.bold,
             color: Color(0xffF36B7F),
           ),
@@ -71,12 +73,12 @@ class _CalendarV2State extends State<CalendarV2> {
         calendarStyle: CalendarStyle(
           isTodayHighlighted: true,
           todayTextStyle: GoogleFonts.notoSans(
-            color: kPrimaryColor(),
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 14,
           ),
           todayDecoration: BoxDecoration(
-            color: kmidGreyColor(),
+            color: kchacholGreyColor(),
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(8),
           ),
@@ -104,16 +106,16 @@ class _CalendarV2State extends State<CalendarV2> {
           markersAutoAligned: true,
           markerSize: 4,
           markerMargin: EdgeInsets.only(left: 2, right: 2, top: 8),
-          markersMaxCount: 3,
+          markersMaxCount: 0,
           markersOffset: PositionedOffset(),
           markersAlignment: Alignment.bottomCenter,
-          markerDecoration: _buildMarker(eventList[0]),
+          //markerDecoration: _buildMarker(eventList[index]),
           outsideTextStyle: GoogleFonts.notoSans(
             fontSize: 14,
             fontWeight: FontWeight.bold,
             color: kmidGreyColor(),
           ),
-          cellMargin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          cellMargin: EdgeInsets.symmetric(vertical: 9, horizontal: 10),
           cellAlignment: Alignment.center,
         ),
         calendarFormat: _calendarFormat,

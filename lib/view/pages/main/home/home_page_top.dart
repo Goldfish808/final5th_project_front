@@ -4,6 +4,8 @@ import 'package:riverpod_firestore_steam1/view/pages/main/home/widget/day_date_w
 import 'package:riverpod_firestore_steam1/view/pages/main/home/widget/day_schedule_widget.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/widget/inkwell_icon_button_widget.dart';
 
+import '../../../../models/test/event.dart';
+
 class HomePageTop extends StatelessWidget {
   const HomePageTop({Key? key}) : super(key: key);
 
@@ -15,12 +17,41 @@ class HomePageTop extends StatelessWidget {
         SizedBox(height: 18),
         DayDate(),
         SizedBox(height: 16),
-        DaySchedule(),
+        SingleChildScrollView(
+          child: Row(
+            children: [
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: 200,
+                child: ListView.separated(
+                  padding: EdgeInsets.only(left: 20),
+                  physics: BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: eventList.length,
+                  separatorBuilder: (context, index) {
+                    return SizedBox(width: 10);
+                  },
+                  itemBuilder: (context, index) {
+                    List.generate(
+                      eventList.length,
+                      (index) => DaySchedule(
+                        event: eventList[index],
+                      ),
+                    );
+                    return DaySchedule(
+                      event: eventList[index],
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
         Container(
-          padding: EdgeInsets.only(top: 40, left: 20),
+          padding: EdgeInsets.only(top: 40, left: 20, bottom: 16),
           alignment: Alignment.centerLeft,
-          child: Text("오늘 할 일",
-              style: textTheme(weight: FontWeight.bold).headline1),
+          child: Text("오늘 할 일", style: textTheme(weight: FontWeight.bold).headline1),
         ),
       ],
     );
@@ -47,8 +78,7 @@ class HomePageTop extends StatelessWidget {
         onTap: () {
           print("클릭 됨 11월 버튼");
         },
-        child:
-            Text("11월", style: textTheme(weight: FontWeight.bold).headline1));
+        child: Text("11월", style: textTheme(weight: FontWeight.bold).headline1));
   }
 }
 
