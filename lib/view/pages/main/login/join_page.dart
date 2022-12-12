@@ -84,12 +84,12 @@ class JoinPage extends StatelessWidget {
                 child: TextFormField(
                   controller: _controllerInput,
                   validator: emailValidate,
-                  decoration: new InputDecoration(
+                  decoration: InputDecoration(
                     hintText: "이메일을 입력해주세요",
                     contentPadding: EdgeInsets.only(top: 12, bottom: 12, left: 10),
                     isDense: true,
-                    border: new OutlineInputBorder(
-                      borderSide: new BorderSide(
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
                         color: Color(0xffe2e2e2),
                       ),
                       borderRadius: BorderRadius.circular(10),
