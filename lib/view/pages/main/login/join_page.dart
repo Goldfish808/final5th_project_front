@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:riverpod_firestore_steam1/contoller/user_controller.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/core/util/validator_util.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/login/components/custom_elevated_button.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/login/components/custom_form.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/login/components/custom_password_form.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/login/components/line_button.dart';
 
 import '../components/line_app_bar.dart';
+import 'components/custom_text_form.dart';
 
-class JoinPage extends StatelessWidget {
+class JoinPage extends ConsumerWidget {
   JoinPage({Key? key}) : super(key: key);
   //컴포넌트화에 조금더 심혈을 기울어야 했음 완전 뒤죽박죽
   final pwVali = validatePassword();
@@ -23,7 +27,8 @@ class JoinPage extends StatelessWidget {
   final _nickname = TextEditingController(); // 추가
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext contextm, WidgetRef _ref) {
+    final uContrl = _ref.read(userController);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(55),
@@ -31,34 +36,51 @@ class JoinPage extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20),
-        child: Form(
-          key: _formKey,
-          child: ListView(
-            children: [
-              SizedBox(height: 30),
-              _buildEmailForm(
-                emailVali,
-                _email,
-              ),
-              SizedBox(height: 24),
-              CustomForm(
-                "닉네임",
-                "닉네임을 입력해주세요",
-                funValidator: validateNickname(),
-                controllerInput: _nickname,
-              ),
-              SizedBox(height: 18),
-              _buildPasswordForm(
-                pwVali,
-                _password,
-              ),
-              SizedBox(height: 40),
-              LineButton("회원가입", "/login", funPageRoute: () async {
-                if (_formKey.currentState!.validate()) {}
-              }),
-            ],
+        child: _buildJoinForm(uContrl),
+      ),
+    );
+  }
+
+  Form _buildJoinForm(UserController uContrl) {
+    return Form(
+      key: _formKey,
+      child: ListView(
+        children: [
+          SizedBox(height: 30),
+          _buildEmailForm(
+            emailVali,
+            _email,
           ),
-        ),
+          SizedBox(height: 24),
+          CustomForm(
+            "닉네임",
+            "닉네임을 입력해주세요",
+            funValidator: validateNickname(),
+            controllerInput: _nickname,
+          ),
+          SizedBox(height: 18),
+          _buildPasswordForm(
+            pwVali,
+            _password,
+          ),
+          SizedBox(height: 40),
+          CustomElevatedButton(
+              text: "회원가입 완료",
+              funPageRoute: () {
+                if (_formKey.currentState!.validate()) {
+                  // 추가
+                  uContrl.join(
+                    username: _username.text.trim(),
+                    password: _password.text.trim(),
+                    email: _email.text.trim(),
+                  );
+                }
+              }),
+          SizedBox(height: 20),
+          LineButton("로그인 페이지로 이동", "/login", funPageRoute: () async {
+            if (_formKey.currentState!.validate()) {}
+          }),
+        ],
       ),
     );
   }

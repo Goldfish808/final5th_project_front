@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../../../../../core/theme.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final String hint;
@@ -22,20 +25,18 @@ class CustomTextFormField extends StatelessWidget {
         validator: funValidator,
         obscureText: hint == "Password" ? true : false,
         decoration: InputDecoration(
-          hintText: "Enter $hint",
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-        ),
+            hintText: "${hint}",
+            contentPadding: EdgeInsets.only(top: 12, bottom: 12, left: 10),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(
+                color: Color.fromRGBO(233, 233, 233, 100),
+              ),
+            ),
+            hintStyle: GoogleFonts.notoSans(
+              color: Color(0xffe2e2e2),
+              textStyle: textTheme().headline2,
+            )),
       ),
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/theme.dart';
+
 class CustomElevatedButton extends StatelessWidget {
   final String text;
 
@@ -10,14 +12,15 @@ class CustomElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        minimumSize: Size(double.infinity, 50),
+      style: OutlinedButton.styleFrom(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(10),
         ),
+        minimumSize: Size(double.infinity, 50),
+        side: BorderSide(color: theme().primaryColor, width: 1),
       ),
       onPressed: funPageRoute,
-      child: Text("$text"),
+      child: Text("$text", style: textTheme(weight: FontWeight.w500).headline2),
     );
   }
 }
