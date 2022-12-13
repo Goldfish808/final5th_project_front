@@ -75,15 +75,14 @@ class _SubmitContainerState extends State<SubmitContainer> {
               ),
               child: ElevatedButton(
                 onPressed: () {
-                  _handleSubmitted(context);
+                  _handleSubmitted(_textController.text);
                 },
                 style: ElevatedButton.styleFrom(
                   elevation: 0.0,
                 ),
                 child: Text(
                   "전송",
-                  style: textTheme(color: Colors.white, weight: FontWeight.w600)
-                      .headline3,
+                  style: textTheme(color: Colors.white, weight: FontWeight.w600).headline3,
                 ),
               ),
             ),
@@ -98,9 +97,8 @@ class _SubmitContainerState extends State<SubmitContainer> {
     setState(() {
       cb.add(
         CommentBody(
-          text: text,
-          comments: Comments(
-              userImg: "assets/woman1.png", friendName: "", comment: ""),
+          //text: text,
+          comments: Comments(userImg: "assets/woman1.png", friendName: "이나윤", comment: ""),
         ),
       );
     });

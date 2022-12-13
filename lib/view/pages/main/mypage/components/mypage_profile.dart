@@ -89,19 +89,19 @@ class MypageProfile extends StatelessWidget {
                   Radius.circular(10),
                 ),
               ),
-              padding: EdgeInsets.symmetric(vertical: 14),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => MyPageFollowingPage()),
-                      );
-                    },
-                    child: Column(
+              padding: EdgeInsets.symmetric(vertical: 20),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyPageFollowingPage()),
+                  );
+                },
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
                       children: [
                         Text(
                           "팔로잉",
@@ -114,20 +114,12 @@ class MypageProfile extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
-                  Container(
-                    width: 2,
-                    height: 28,
-                    color: Color(0xffe9e9e9),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => MyPageFollowPage()),
-                      );
-                    },
-                    child: Column(
+                    Container(
+                      width: 2,
+                      height: 28,
+                      color: Color(0xffe9e9e9),
+                    ),
+                    Column(
                       children: [
                         Text(
                           "팔로워",
@@ -140,8 +132,8 @@ class MypageProfile extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

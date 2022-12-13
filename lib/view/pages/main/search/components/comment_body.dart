@@ -3,10 +3,10 @@ import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/models/test/comment.dart';
 
 class CommentBody extends StatelessWidget {
-  CommentBody({Key? key, required this.comments, required this.text}) : super(key: key);
+  CommentBody({Key? key, required this.comments}) : super(key: key);
   final Comments comments;
   final TextEditingController _textController = TextEditingController();
-  final String text;
+  //final String text;
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/models/test/follow.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/mypage/components/follow_box.dart';
@@ -43,8 +44,10 @@ class _MyPageFollowingPageState extends State<MyPageFollowingPage> with SingleTi
   Padding _buildSearchBox() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
-      child: TextFormField(
-          decoration: InputDecoration(
+      child: Stack(
+        children: [
+          TextFormField(
+            decoration: InputDecoration(
               filled: true,
               fillColor: klightGreyColor(),
               hintText: "닉네임을 검색하세요",
@@ -55,8 +58,19 @@ class _MyPageFollowingPageState extends State<MyPageFollowingPage> with SingleTi
               ),
               isDense: true,
               hintStyle: textTheme(color: kchacholGreyColor(), weight: FontWeight.bold).headline3,
-              suffixIcon: Image.asset("assets/magnifier_icon.png")),
-          keyboardType: TextInputType.text),
+            ),
+            keyboardType: TextInputType.text,
+          ),
+          Positioned(
+            right: 14,
+            top: 10,
+            child: SvgPicture.asset(
+              "assets/icon_glasses.svg",
+              width: 20,
+            ),
+          ),
+        ],
+      ),
     );
   }
 

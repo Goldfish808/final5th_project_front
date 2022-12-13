@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/mypage/mypage_main_page_v2.dart';
 import '../../../core/util/constant/move.dart';
 import '../../../models/test/todo.dart';
 import 'components/default_button.dart';
@@ -36,7 +37,7 @@ class _MainPageState extends State<MainPage> {
           ChatPage(),
           Center(child: Text("작성")),
           SearchPage(),
-          MyPageMainPage(),
+          MyPageMainPageV2(),
         ],
       ),
       bottomNavigationBar: _buildBottomNavigationBar(),

@@ -3,6 +3,7 @@ import 'package:riverpod_firestore_steam1/view/pages/main/chat/chat_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/chat/chat_room_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/friend_home_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/notice_page.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/mypage/mypage_main_page_v2.dart';
 
 import '../../../view/pages/main/login/find_password_page.dart';
 import '../../../view/pages/main/login/join_page.dart';
@@ -32,7 +33,7 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.homePage: (context) => MainPage(),
     Move.writePage: (context) => WriteSchedule(context: context),
     Move.findPassword: (context) => FindPasswordPage(),
-    Move.myPage: (context) => const MyPageMainPage(),
+    Move.myPage: (context) => const MyPageMainPageV2(),
     Move.friendPage: (context) => FriendHomePage(),
     Move.chatPage: (context) => ChatRoomPage(),
     Move.noticePage: (context) => NoticePage(),
