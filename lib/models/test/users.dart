@@ -4,11 +4,7 @@ class User {
   String profileImg;
   String sendDate;
 
-  User(
-      {required this.sender,
-      required this.message,
-      required this.profileImg,
-      required this.sendDate});
+  User({required this.sender, required this.message, required this.profileImg, required this.sendDate});
 }
 
 // 샘플 데이터

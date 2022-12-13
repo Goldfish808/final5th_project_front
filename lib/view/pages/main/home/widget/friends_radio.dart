@@ -47,7 +47,7 @@ class _FriendsRadioState extends State<FriendsRadio> {
         setState(() {
           _friends = value;
         });
-        Navigator.pushNamed(context, "/myPage");
+        Navigator.pushNamed(context, "/friendPage");
       },
       title: _buildRadioListTitle(userList[id].profileImg, userList[id].sender),
     );
