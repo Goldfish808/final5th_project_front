@@ -1,3 +1,4 @@
+
 import 'package:intl/intl.dart';
 
 class User {
@@ -102,6 +103,7 @@ class User {
         userImageUrl = json["userImageUrl"],
         userImageName = json["userImageName"],
         userImageType = json["userImageType"],
+
         userImageUuid = json["userImageUuid"],
         follow = Follow.fromJson(json["follow"]);
 }
