@@ -1,10 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/dto/response_dto.dart';
 import 'package:riverpod_firestore_steam1/dto/user/auth_req_dto.dart';
 import 'package:riverpod_firestore_steam1/models/session_user.dart';
 import 'package:riverpod_firestore_steam1/provider/auth_provider.dart';
 import 'package:riverpod_firestore_steam1/service/user_service.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/components/my_alert_dialog.dart';
 import '../core/util/constant/move.dart';
 
 /**
@@ -55,9 +58,12 @@ class UserController {
       Navigator.popAndPushNamed(mContext!, Move.loginPage);
       // 4. 응답된 데이터를 ViewModel에 반영해야 한다면 통신 성공시에 추가하기
     } else {
-      ScaffoldMessenger.of(mContext!).showSnackBar(
-        const SnackBar(content: Text("회원가입 실패")),
-      );
+      //젠장,, 아래의 cupertino다이얼로그는 안 뜸
+      //showCupertinoDialog(context: mContext!, builder: (context) => MyAlertDialog(msg: "tlqkf"));
+      showDialog(context: mContext!, builder: (context) => MyAlertDialog(msg: "tlqkf"));
+      // ScaffoldMessenger.of(mContext!).showSnackBar(
+      //   const SnackBar(content: Text("회원가입 실패")),
+      // );
     }
   }
 
