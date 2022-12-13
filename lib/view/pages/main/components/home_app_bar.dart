@@ -71,30 +71,22 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
                                 child: Container(
                                   width: double.infinity,
                                   child: SizedBox(
-                                    height:
-                                        MediaQuery.of(context).size.height / 2,
+                                    height: MediaQuery.of(context).size.height / 2,
                                     //어거지로 리스트뷰 높이 맞춤...
                                     child: ListView.builder(
                                       shrinkWrap: true,
                                       padding: EdgeInsets.zero,
                                       itemCount: userList.length,
-                                      itemBuilder: (context, index) =>
-                                          FriendsRadio(userList.length,
-                                              user: User(
-                                                sender: userList[index].sender,
-                                                message:
-                                                    userList[index].message,
-                                                profileImg:
-                                                    userList[index].profileImg,
-                                                sendDate:
-                                                    userList[index].sendDate,
-                                              )),
+                                      itemBuilder: (context, index) => FriendsRadio(
+                                        userList.length,
+                                        user: User(
+                                          sender: userList[index].sender,
+                                          message: userList[index].message,
+                                          profileImg: userList[index].profileImg,
+                                          sendDate: userList[index].sendDate,
+                                        ),
+                                      ),
                                     ),
-                                    // child: ListView(
-                                    //   children: [
-                                    //     FriendsRadio(index, user: user)
-                                    //   ],
-                                    // ),
                                   ),
                                 ),
                               )
@@ -151,8 +143,7 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 8, top: 4),
-                    child: SvgPicture.asset("assets/icon_arrow_bottom_w.svg",
-                        width: 14),
+                    child: SvgPicture.asset("assets/icon_arrow_bottom_w.svg", width: 14),
                   ),
                 ],
               )
@@ -177,8 +168,7 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
                 onTap: () {
                   Navigator.pushNamed(context, "/notice");
                 },
-                child: KStackIcon(
-                    iconData: CupertinoIcons.bell, notificationCount: '9'),
+                child: KStackIcon(iconData: CupertinoIcons.bell, notificationCount: '9'),
               ),
               SizedBox(width: 10),
               Builder(builder: (context) {
@@ -190,8 +180,7 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
                       Scaffold.of(context).openEndDrawer();
                     },
                     padding: EdgeInsets.zero,
-                    icon: SvgPicture.asset("assets/icon_setting_w2.svg",
-                        width: 20),
+                    icon: SvgPicture.asset("assets/icon_setting_w2.svg", width: 20),
                   ),
                 );
               }),
