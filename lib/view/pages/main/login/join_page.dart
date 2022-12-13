@@ -87,7 +87,8 @@ class JoinPage extends ConsumerWidget {
       children: [
         Text(
           "이메일",
-          style: textTheme(color: kchacholGreyColor(), weight: FontWeight.w700).bodyText1,
+          style: textTheme(color: kchacholGreyColor(), weight: FontWeight.w700)
+              .bodyText1,
         ),
         SizedBox(height: 2),
         Row(
@@ -104,7 +105,8 @@ class JoinPage extends ConsumerWidget {
                   validator: emailValidate,
                   decoration: InputDecoration(
                     hintText: "이메일을 입력해주세요",
-                    contentPadding: EdgeInsets.only(top: 12, bottom: 12, left: 10),
+                    contentPadding:
+                        EdgeInsets.only(top: 12, bottom: 12, left: 10),
                     isDense: true,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -112,7 +114,9 @@ class JoinPage extends ConsumerWidget {
                         color: kmidGreyColor(),
                       ),
                     ),
-                    hintStyle: textTheme(color: kmidGreyColor(), weight: FontWeight.bold).headline2,
+                    hintStyle: textTheme(
+                            color: kmidGreyColor(), weight: FontWeight.bold)
+                        .headline2,
                   ),
                 ),
               ),
@@ -186,7 +190,9 @@ class JoinPage extends ConsumerWidget {
                 color: kmidGreyColor(),
               ),
             ),
-            hintStyle: textTheme(color: kmidGreyColor(), weight: FontWeight.bold).headline2,
+            hintStyle:
+                textTheme(color: kmidGreyColor(), weight: FontWeight.bold)
+                    .headline2,
           ),
           obscureText: true,
         )

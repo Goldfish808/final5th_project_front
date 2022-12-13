@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/models/test/users.dart';
 
+
 enum Friends { name1, name2, name3, name4, name5, name6, name7 }
 
 class FriendsRadio extends StatefulWidget {
@@ -17,10 +18,12 @@ class _FriendsRadioState extends State<FriendsRadio> {
   Friends? _friends = Friends.name1;
   final List<User> userList = List.of(users);
 
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
+
         padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         //난중에 키보드 자판 생기면 해당 컬럼 짜그라치는 코드
         child: Column(
@@ -102,6 +105,7 @@ class _FriendsRadioState extends State<FriendsRadio> {
                         style: textTheme(
                           color: kPrimaryColor(),
                         ).headline3),
+
                   ],
                 ),
               ),
@@ -109,6 +113,7 @@ class _FriendsRadioState extends State<FriendsRadio> {
           ),
           //_buildFollowBtn("follow"),
         ],
+
       ),
     );
   }
