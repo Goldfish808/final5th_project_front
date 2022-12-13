@@ -33,16 +33,13 @@ class LoginPage extends ConsumerWidget {
       child: ListView(
         children: [
           SizedBox(height: 110),
-          Form(
-            key: _formkey,
-            child: Center(
-              child: Text(
-                "TODOFRIENDS",
-                style: GoogleFonts.notoSans(
-                  fontSize: 38,
-                  fontWeight: FontWeight.w900,
-                  color: theme().primaryColor,
-                ),
+          Center(
+            child: Text(
+              "TODOFRIENDS",
+              style: GoogleFonts.notoSans(
+                fontSize: 38,
+                fontWeight: FontWeight.w900,
+                color: theme().primaryColor,
               ),
             ),
           ),
@@ -53,47 +50,50 @@ class LoginPage extends ConsumerWidget {
   }
 
   Widget _joinForm(BuildContext context, UserController uC) {
-    return Column(
-      children: [
-        SizedBox(height: 70),
-        CustomForm(
-          "이메일",
-          "이메일을 입력해주세요",
-          funValidator: validateEmail(),
-          controllerInput: _email,
-        ),
-        SizedBox(height: 18),
-        CustomPasswordForm(
-          "비밀번호",
-          "비밀번호를 입력해주세요",
-          funValidator: validatePassword(),
-          controllerInput: _password,
-        ),
-        SizedBox(height: 40),
-        CustomElevatedButton(
-            text: "로그인",
-            funPageRoute: () async {
-              if (_formkey.currentState!.validate()) {
-                // 추가
-                uC.login(username: _email.text.trim(), password: _password.text.trim());
-              }
-            }),
-        SizedBox(height: 14),
-        LineButton("회원가입", Move.joinPage),
-        TextButton(
-          onPressed: () {
-            Navigator.pushNamed(context, Move.findPassword);
-          },
-          child: Text(
-            "비밀번호 찾기",
-            style: textTheme(color: kchacholGreyColor()).bodyText1,
-            textAlign: TextAlign.center,
+    return Form(
+      key: _formkey,
+      child: Column(
+        children: [
+          SizedBox(height: 70),
+          CustomForm(
+            "이메일",
+            "이메일을 입력해주세요",
+            funValidator: validateEmail(),
+            controllerInput: _email,
           ),
-          style: TextButton.styleFrom(
-            padding: EdgeInsets.zero,
+          SizedBox(height: 18),
+          CustomPasswordForm(
+            "비밀번호",
+            "비밀번호를 입력해주세요",
+            funValidator: validatePassword(),
+            controllerInput: _password,
           ),
-        ),
-      ],
+          SizedBox(height: 40),
+          CustomElevatedButton(
+              text: "로그인",
+              funPageRoute: () async {
+                if (_formkey.currentState!.validate()) {
+                  // 추가
+                  uC.login(username: _email.text.trim(), password: _password.text.trim());
+                }
+              }),
+          SizedBox(height: 14),
+          LineButton("회원가입", Move.joinPage),
+          TextButton(
+            onPressed: () {
+              Navigator.pushNamed(context, Move.findPassword);
+            },
+            child: Text(
+              "비밀번호 찾기",
+              style: textTheme(color: kchacholGreyColor()).bodyText1,
+              textAlign: TextAlign.center,
+            ),
+            style: TextButton.styleFrom(
+              padding: EdgeInsets.zero,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
