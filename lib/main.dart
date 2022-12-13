@@ -61,6 +61,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: theme(),
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       initialRoute: Move.loginPage,

@@ -126,7 +126,7 @@ class JoinPage extends ConsumerWidget {
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                       textStyle: TextStyle(color: Colors.white),
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 16, bottom: 17),
+                      padding: EdgeInsets.only(left: 20, right: 20, top: 14, bottom: 14),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
