@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:riverpod_firestore_steam1/firebase_options.dart';
+import 'package:riverpod_firestore_steam1/models/user_session.dart';
+import 'package:riverpod_firestore_steam1/service/local_service.dart';
 import 'core/routes.dart';
 import 'core/theme.dart';
 import 'core/util/constant/move.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await initializeDateFormatting();
+  await LocalService().fetchJwtToken();
+  // 자동 로그인시 필요
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
         navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
         theme: theme(),
-        initialRoute: Routers.loginForm,
+        initialRoute: UserSession.isLogin ? Move.homePage : Move.loginPage,
         routes: getRouters(),
         title: "TODOFRIENDS",
       ),
