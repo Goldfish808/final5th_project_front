@@ -1,10 +1,8 @@
 import 'package:http/http.dart';
 import 'package:logger/logger.dart';
 
-import '../models/user_session.dart';
-
 class HttpConnector {
-  final host = "http://192.168.0.132:8080";
+  final host = "http://192.168.96.1:8080";
   final headers = {"Content-Type": "application/json; charset=utf-8"};
 
   static final HttpConnector _instance = HttpConnector._single();

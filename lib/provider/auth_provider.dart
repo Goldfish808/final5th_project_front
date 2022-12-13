@@ -22,6 +22,7 @@ class AuthProvider extends StateNotifier<SessionUser> {
   AuthProvider(super.state, this._ref);
 
   Future<void> autoLogin() async {
+    Logger().d("나 있어ㅑ???");
     String? jwtToken = await secureStorage.read(key: "jwtToken");
     if (jwtToken != null) {
       Response response = await HttpConnector().get("/jwtToken", jwtToken: jwtToken);

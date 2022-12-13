@@ -10,6 +10,7 @@ import 'package:riverpod_firestore_steam1/view/pages/main/login/components/custo
 import 'package:riverpod_firestore_steam1/view/pages/main/login/components/line_button.dart';
 
 import '../../../../core/util/constant/move.dart';
+import '../../../../provider/auth_provider.dart';
 import '../components/default_button.dart';
 
 class LoginPage extends ConsumerWidget {
@@ -21,7 +22,8 @@ class LoginPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef _ref) {
-    final uContrl = _ref.read(userController);
+    _ref.read(authProvider.notifier).autoLogin();
+    UserController uContrl = _ref.read(userController);
     return Scaffold(
       body: _buildLoginPage(context, uContrl),
     );
