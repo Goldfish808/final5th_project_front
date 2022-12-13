@@ -75,24 +75,21 @@ class _WriteScheduleState extends State<WriteSchedule> {
       children: [
         category == "카테고리"
             ? Container(
-                padding:
-                    EdgeInsets.only(left: 12, right: 12, bottom: 6, top: 3),
+                padding: EdgeInsets.only(left: 12, right: 12, bottom: 6, top: 3),
                 decoration: BoxDecoration(
                   color: kchacholGreyColor(),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Row(
                   children: [
-                    Text(category,
-                        style: textTheme(color: Colors.white).bodyText1),
+                    Text(category, style: textTheme(color: Colors.white).bodyText1),
                     SizedBox(width: 4),
                     SvgPicture.asset("assets/icon_circle_plus2.svg", width: 10),
                   ],
                 ),
               )
             : Container(
-                padding:
-                    EdgeInsets.only(left: 12, right: 12, bottom: 6, top: 3),
+                padding: EdgeInsets.only(left: 12, right: 12, bottom: 6, top: 3),
                 decoration: category == "일반"
                     ? BoxDecoration(
                         color: primary,
@@ -107,8 +104,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
                             color: Color(0xffFFE681),
                             borderRadius: BorderRadius.circular(8),
                           ),
-                child: Text(category,
-                    style: textTheme(color: Colors.white).bodyText1),
+                child: Text(category, style: textTheme(color: Colors.white).bodyText1),
               ),
         SizedBox(width: 8),
       ],
@@ -123,9 +119,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
           Container(
             padding: EdgeInsets.only(left: 4),
             width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(color: klightGreyColor(), width: 1))),
+            decoration: BoxDecoration(border: Border(bottom: BorderSide(color: klightGreyColor(), width: 1))),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
@@ -155,10 +149,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
                                   hintText: "반복 안함",
                                   border: InputBorder.none,
                                   isDense: false,
-                                  hintStyle: textTheme(
-                                          color: kchacholGreyColor(),
-                                          weight: FontWeight.w600)
-                                      .headline3),
+                                  hintStyle: textTheme(color: kchacholGreyColor(), weight: FontWeight.w600).headline3),
                               readOnly: true,
                               controller: _AddressController,
                               style: textTheme(color: primary).headline3,
@@ -207,17 +198,14 @@ class _WriteScheduleState extends State<WriteSchedule> {
                     onPressed: () {},
                     child: Text(
                       text,
-                      style: textTheme(
-                              color: Colors.white, weight: FontWeight.w500)
-                          .bodyText1,
+                      style: textTheme(color: Colors.white, weight: FontWeight.w500).bodyText1,
                     ),
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                       elevation: 0.0,
-                      padding: EdgeInsets.only(
-                          left: 11, top: 3, right: 11, bottom: 2),
+                      padding: EdgeInsets.only(left: 11, top: 3, right: 11, bottom: 2),
                     ),
                   ),
                 )
@@ -229,18 +217,14 @@ class _WriteScheduleState extends State<WriteSchedule> {
                     onPressed: () {},
                     child: Text(
                       text,
-                      style: textTheme(
-                              color: kchacholGreyColor(),
-                              weight: FontWeight.w500)
-                          .bodyText1,
+                      style: textTheme(color: kchacholGreyColor(), weight: FontWeight.w500).bodyText1,
                     ),
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                       elevation: 0.0,
-                      padding: EdgeInsets.only(
-                          left: 11, top: 3, right: 11, bottom: 2),
+                      padding: EdgeInsets.only(left: 11, top: 3, right: 11, bottom: 2),
                       primary: klightGreyColor(),
                     ),
                   ),
@@ -255,9 +239,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
       padding: const EdgeInsets.only(bottom: 10),
       child: Container(
         width: double.infinity,
-        decoration: BoxDecoration(
-            border:
-                Border(bottom: BorderSide(color: klightGreyColor(), width: 1))),
+        decoration: BoxDecoration(border: Border(bottom: BorderSide(color: klightGreyColor(), width: 1))),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -288,10 +270,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
                               hintText: "장소",
                               border: InputBorder.none,
                               isDense: false,
-                              hintStyle: textTheme(
-                                      color: kchacholGreyColor(),
-                                      weight: FontWeight.w600)
-                                  .headline3),
+                              hintStyle: textTheme(color: kchacholGreyColor(), weight: FontWeight.w600).headline3),
                           readOnly: true,
                           controller: _AddressController,
                           style: textTheme(color: primary).headline3,
@@ -308,8 +287,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
                         },
                         style: ElevatedButton.styleFrom(
                           primary: kchacholGreyColor(),
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 11, vertical: 4),
+                          padding: EdgeInsets.symmetric(horizontal: 11, vertical: 4),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                           ),
@@ -351,12 +329,9 @@ class _WriteScheduleState extends State<WriteSchedule> {
       decoration: const InputDecoration(
         isDense: true,
         hintText: "제목",
-        hintStyle: TextStyle(
-            fontWeight: FontWeight.bold, color: Color(0xff9999A3), height: 2.8),
-        focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Color(0xff9999A3))),
-        enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Color(0xff9999A3))),
+        hintStyle: TextStyle(fontWeight: FontWeight.bold, color: Color(0xff9999A3), height: 2.8),
+        focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xff9999A3))),
+        enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xff9999A3))),
         focusColor: Color(0xff9999A3),
         contentPadding: EdgeInsets.only(left: 8),
       ),
@@ -398,9 +373,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("스케줄 작성",
-                    style: textTheme(color: Colors.black).headline1,
-                    textAlign: TextAlign.center),
+                Text("스케줄 작성", style: textTheme(color: Colors.black).headline1, textAlign: TextAlign.center),
               ],
             ),
           ),
@@ -421,7 +394,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
         child: Stack(
           children: [
             Positioned(
-              top: 14,
+              top: 8,
               left: 4,
               child: SvgPicture.asset("assets/icon_pen.svg", width: 11),
             ),
@@ -430,26 +403,26 @@ class _WriteScheduleState extends State<WriteSchedule> {
               style: textTheme(color: kchacholGreyColor()).headline2,
               maxLines: null, //이걸 NULL 로 해주고
               maxLength: 80,
+
               decoration: const InputDecoration(
-                isDense: true,
+                isDense: false,
                 hintText: "메모",
                 hintStyle: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xff9999A3),
-                    height: 3.2),
-                focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xffF2F2F2))),
-                enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xffF2F2F2))),
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xff9999A3),
+                  //height: 3.0,
+                ),
+                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xffF2F2F2))),
+                enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xffF2F2F2))),
                 focusColor: Color(0xff9999A3),
-                contentPadding: EdgeInsets.only(left: 34),
+                contentPadding: EdgeInsets.only(left: 34, bottom: 20),
               ),
               onSubmitted: _handleSubmitted,
             ),
             Positioned(
               right: 0,
-              child: SvgPicture.asset("assets/photo_plus_icon.svg", width: 27),
+              child: SvgPicture.asset("assets/photo_plus_icon.svg", width: 26),
             ),
           ],
         ),
@@ -462,9 +435,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
       padding: const EdgeInsets.only(bottom: 10),
       child: Container(
         width: double.infinity,
-        decoration: BoxDecoration(
-            border:
-                Border(bottom: BorderSide(color: klightGreyColor(), width: 1))),
+        decoration: BoxDecoration(border: Border(bottom: BorderSide(color: klightGreyColor(), width: 1))),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -492,10 +463,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
                               hintText: "초대",
                               border: InputBorder.none,
                               isDense: false,
-                              hintStyle: textTheme(
-                                      color: kchacholGreyColor(),
-                                      weight: FontWeight.w600)
-                                  .headline3),
+                              hintStyle: textTheme(color: kchacholGreyColor(), weight: FontWeight.w600).headline3),
                           readOnly: true,
                           //controller:,
                           style: textTheme(color: primary).headline3,
@@ -511,8 +479,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
                         },
                         style: ElevatedButton.styleFrom(
                           primary: kchacholGreyColor(),
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 11, vertical: 4),
+                          padding: EdgeInsets.symmetric(horizontal: 11, vertical: 4),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                           ),
