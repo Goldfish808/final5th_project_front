@@ -10,6 +10,7 @@ import 'package:riverpod_firestore_steam1/models/test/users.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/components/home_app_bar.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/home_page_top.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/update_password_page.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/model/main_page_view_model.dart';
 
 import '../../../../models/test/todo.dart';
 
@@ -29,8 +30,9 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final uContrl = ref.read(userController);
+    MainPageModel? userInfo = ref.watch(mainPageViewModel);
     return Scaffold(
-      appBar: HomeAppBar("홍길동", context: context),
+      appBar: HomeAppBar("${userInfo!.user.username}", context: context),
       body: _homeBody(),
       endDrawer: _drawer(context, uContrl),
       endDrawerEnableOpenDragGesture: false,

@@ -38,13 +38,13 @@ class UserController {
 
   UserController(this._ref);
 
-  Future<void> moveLoginPage() async {
-    Navigator.popAndPushNamed(mContext!, Move.loginPage);
-  }
+  // Future<void> moveLoginPage() async {
+  //   Navigator.popAndPushNamed(mContext!, Move.loginPage);
+  // }
 
-  Future<void> moveJoinPage() async {
-    Navigator.popAndPushNamed(mContext!, Move.joinPage);
-  }
+  // Future<void> moveJoinPage() async {
+  //   Navigator.popAndPushNamed(mContext!, Move.joinPage);
+  // }
 
   Future<void> join({required String username, required String password, required String email}) async {
     // 1. DTO 변환
@@ -81,9 +81,10 @@ class UserController {
       _ref.read(authProvider.notifier).authentication(sessionUser);
       Navigator.of(mContext!).pushNamedAndRemoveUntil(Move.homePage, (route) => false);
     } else {
-      ScaffoldMessenger.of(mContext!).showSnackBar(
-        const SnackBar(content: Text("로그인 실패")),
-      );
+      showDialog(context: mContext!, builder: (context) => MyAlertDialog(msg: "로그인 실패, 아이디 혹은 패스워드 확인해 주세요"));
+      // ScaffoldMessenger.of(mContext!).showSnackBar(
+      //   const SnackBar(content: Text("로그인 실패")),
+      // );
     }
   }
 

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart';
+import 'package:logger/logger.dart';
 import '../core/http_connector.dart';
 import '../core/util/response_util.dart';
 import '../dto/response_dto.dart';
@@ -33,14 +34,12 @@ class UserService {
     // 3. 토큰 받기
     String jwtToken = response.headers["authorization"].toString();
     await secureStorage.write(key: "jwtToken", value: jwtToken);
-
     // 4. ResponseDto 만들기
     ResponseDto responseDto = toResponseDto(response);
     if (responseDto.code == 1) {
       User user = User.fromJson(responseDto.data);
       responseDto.data = user;
     }
-
     return responseDto; // ResponseDto 응답
   }
 
