@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/chat/chat_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/chat/chat_room_page.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/friend_home_page.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/home/notice_page.dart';
 
 import '../../../view/pages/main/login/find_password_page.dart';
 import '../../../view/pages/main/login/join_page.dart';
@@ -20,6 +21,7 @@ class Move {
   static String myPage = "/myPage";
   static String writePage = "/write";
   static String chatPage = "/chat";
+  static String noticePage = "/notice";
 }
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -33,5 +35,6 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.myPage: (context) => const MyPageMainPage(),
     Move.friendPage: (context) => FriendHomePage(),
     Move.chatPage: (context) => ChatRoomPage(),
+    Move.noticePage: (context) => NoticePage(),
   };
 }
