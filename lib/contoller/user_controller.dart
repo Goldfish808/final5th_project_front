@@ -1,12 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:logger/logger.dart';
 import 'package:riverpod_firestore_steam1/dto/response_dto.dart';
 import 'package:riverpod_firestore_steam1/dto/user/auth_req_dto.dart';
-import 'package:riverpod_firestore_steam1/models/user_session.dart';
+import 'package:riverpod_firestore_steam1/models/session_user.dart';
+import 'package:riverpod_firestore_steam1/provider/auth_provider.dart';
 import 'package:riverpod_firestore_steam1/service/user_service.dart';
-
 import '../core/util/constant/move.dart';
 
 /**
@@ -54,7 +52,6 @@ class UserController {
 
     // 3. 비지니스 로직 처리
     if (responseDto.code == 1) {
-      Logger().d("나 됨?");
       Navigator.popAndPushNamed(mContext!, Move.loginPage);
       // 4. 응답된 데이터를 ViewModel에 반영해야 한다면 통신 성공시에 추가하기
     } else {
@@ -70,9 +67,13 @@ class UserController {
 
     // 2. 통신 요청
     ResponseDto responseDto = await userService.fetchLogin(loginReqDto);
+
     //3. 비지니스 로직 처리
     if (responseDto.code == 1) {
-      Navigator.of(navigatorKey.currentContext!).pushNamedAndRemoveUntil(Move.homePage, (route) => false);
+      String? jwtToken = await secureStorage.read(key: "jwtToken");
+      SessionUser sessionUser = SessionUser(responseDto.data, jwtToken, true);
+      _ref.read(authProvider.notifier).authentication(sessionUser);
+      Navigator.of(mContext!).pushNamedAndRemoveUntil(Move.homePage, (route) => false);
     } else {
       ScaffoldMessenger.of(mContext!).showSnackBar(
         const SnackBar(content: Text("로그인 실패")),
@@ -81,7 +82,7 @@ class UserController {
   }
 
   Future<void> logout() async {
-    await UserSession.removeAuthentication();
+    _ref.read(authProvider.notifier).inValidate();
     await Navigator.of(navigatorKey.currentContext!).pushNamedAndRemoveUntil(Move.loginPage, (route) => false);
   }
 
