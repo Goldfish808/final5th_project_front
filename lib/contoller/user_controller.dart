@@ -55,12 +55,15 @@ class UserController {
 
     // 3. 비지니스 로직 처리
     if (responseDto.code == 1) {
+      showDialog(
+          context: mContext!,
+          builder: (context) => MyAlertDialog(msg: "축하합니다 가입이 정상적으로 처리 되었습니다${responseDto.data.toString()}"));
       Navigator.popAndPushNamed(mContext!, Move.loginPage);
       // 4. 응답된 데이터를 ViewModel에 반영해야 한다면 통신 성공시에 추가하기
     } else {
       //젠장,, 아래의 cupertino다이얼로그는 안 뜸
       //showCupertinoDialog(context: mContext!, builder: (context) => MyAlertDialog(msg: "tlqkf"));
-      showDialog(context: mContext!, builder: (context) => MyAlertDialog(msg: "tlqkf"));
+      showDialog(context: mContext!, builder: (context) => MyAlertDialog(msg: "닉네임을 확인해 주세요"));
       // ScaffoldMessenger.of(mContext!).showSnackBar(
       //   const SnackBar(content: Text("회원가입 실패")),
       // );

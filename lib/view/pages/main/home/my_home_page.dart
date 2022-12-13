@@ -30,7 +30,9 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final uContrl = ref.read(userController);
+    //User 와 더불어서 만들어지는 데이터가 수시로 변하기 때문에
     MainPageModel? userInfo = ref.watch(mainPageViewModel);
+
     return Scaffold(
       appBar: HomeAppBar("${userInfo!.user.username}", context: context),
       body: _homeBody(),
@@ -77,19 +79,22 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
       expandedHeight: 440.0,
       flexibleSpace: FlexibleSpaceBar(
         expandedTitleScale: 1,
-        titlePadding: EdgeInsets.only(left: 20),
+        titlePadding: EdgeInsets.only(left: 0),
         title: Container(
           alignment: Alignment.centerLeft,
           width: double.infinity,
           height: 60,
           decoration: BoxDecoration(color: Colors.white),
-          child: Text(
-            "오늘 할 일",
-            textAlign: TextAlign.center,
-            style: GoogleFonts.notoSans(
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-              fontSize: 20,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text(
+              "오늘 할 일",
+              textAlign: TextAlign.center,
+              style: GoogleFonts.notoSans(
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontSize: 20,
+              ),
             ),
           ),
         ),

@@ -18,7 +18,7 @@ class MyAlertDialog extends StatelessWidget {
             style: textTheme().bodyText2,
           ),
           onPressed: () {
-            Navigator.popAndPushNamed(context, Move.joinPage);
+            Navigator.pop(context, Move.joinPage);
           },
         )
       ],
