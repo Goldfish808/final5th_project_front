@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
+import '../../../core/util/constant/move.dart';
 import '../../../models/test/todo.dart';
 import 'components/default_button.dart';
 import 'login/components/line_button.dart';
@@ -135,6 +136,14 @@ class _MainPageState extends State<MainPage> {
                   Text(" "),
                   Row(),
                   _buildMinToDoWrite(),
+                  SizedBox(
+                    width: 320,
+                    height: 40,
+                    child: LineButton("스케줄 만들기", Move.writePage),
+                  ),
+                  SizedBox(
+                    height: 25,
+                  )
                 ],
               ),
             ),

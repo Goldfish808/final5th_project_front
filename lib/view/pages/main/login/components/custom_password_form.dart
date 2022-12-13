@@ -21,6 +21,8 @@ class CustomPasswordForm extends StatelessWidget {
         ),
         SizedBox(height: 4),
         TextFormField(
+          controller: controllerInput,
+
           validator: funValidator,
           decoration: InputDecoration(
               hintText: "${hintText}",
