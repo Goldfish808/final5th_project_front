@@ -14,7 +14,7 @@ import '../components/default_button.dart';
 
 class LoginPage extends ConsumerWidget {
   final _formkey = GlobalKey<FormState>();
-  final _email = TextEditingController(); // 추가
+  final _username = TextEditingController(); // 추가
   final _password = TextEditingController(); // 추가
 
   LoginPage({Key? key}) : super(key: key);
@@ -58,8 +58,8 @@ class LoginPage extends ConsumerWidget {
           CustomForm(
             "이메일",
             "이메일을 입력해주세요",
-            funValidator: validateEmail(),
-            controllerInput: _email,
+            funValidator: validateUsername(),
+            controllerInput: _username,
           ),
           SizedBox(height: 18),
           CustomPasswordForm(
@@ -74,7 +74,7 @@ class LoginPage extends ConsumerWidget {
               funPageRoute: () async {
                 if (_formkey.currentState!.validate()) {
                   // 추가
-                  uC.login(username: _email.text.trim(), password: _password.text.trim());
+                  uC.login(username: _username.text.trim(), password: _password.text.trim());
                 }
               }),
           SizedBox(height: 14),

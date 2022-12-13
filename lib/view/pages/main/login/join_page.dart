@@ -68,7 +68,7 @@ class JoinPage extends ConsumerWidget {
                 if (_formKey.currentState!.validate()) {
                   // 추가
                   uContrl.join(
-                    username: _email.text.trim(),
+                    username: _nickname.text.trim(),
                     password: _password1.text.trim(),
                     email: _email.text.trim(),
                   );
