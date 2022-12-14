@@ -52,7 +52,6 @@ class UserService {
     Response response = await httpConnector.get("/s/api/user/$id/userrealname", jwtToken: jwtToken);
     ResponseDto responseDto = toResponseDto(response);
 
-    Logger().d("토큰응답 user_service");
     if (responseDto.httpStatus == "OK") {
       // 통신이 성공했을 때만 파싱을 해줘야 한다.
       responseDto.data = User.fromJson(responseDto.data);
