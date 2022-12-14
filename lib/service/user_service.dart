@@ -40,15 +40,15 @@ class UserService {
     ResponseDto responseDto = toResponseDto(response);
     Logger().d("로그인 하면 뜨는 값 토큰${responseDto.data}");
 
-    if (responseDto.httpStatus == "OK") {
+    if (responseDto.httpStatus == "CREATED") {
       User user = User.fromJson(responseDto.data);
       responseDto.data = user;
     }
     return responseDto; // ResponseDto 응답
   }
 
-  Future<ResponseDto> fetchUserInfo(Long id, String jwtToken) async {
-    Response response = await httpConnector.get("/user/$id", jwtToken: jwtToken);
+  Future<ResponseDto> fetchUserInfo(int id, String jwtToken) async {
+    Response response = await httpConnector.get("/s/api/user/$id/userrealname", jwtToken: jwtToken);
     ResponseDto responseDto = toResponseDto(response);
 
     Logger().d("토큰응답 user_service");

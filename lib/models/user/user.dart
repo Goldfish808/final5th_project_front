@@ -32,7 +32,7 @@ import 'dart:ffi';
 import 'package:intl/intl.dart';
 
 import 'follow.dart';
-
+/*
 class User {
   final Long userId;
   final String userName;
@@ -90,7 +90,7 @@ class User {
   User.fromJson(Map<String, dynamic> json)
       : userId = json["userId"],
         userName = json["userName"],
-        userPassword = json["userPpassword"],
+        userPassword = json["userPassword"],
         userRealname = json["userRealname"],
         userEmail = json["userEmail"],
         userPhonenumber = json["userPhonenumber"],
@@ -104,4 +104,16 @@ class User {
         userImageType = json["userImageType"],
         userImageUuid = json["userImageUuid"],
         follow = Follow.fromJson(json["follow"]);
+}*/
+
+class User {
+  final dynamic userId;
+  final String? userName;
+
+  User(this.userId, this.userName);
+
+  Map<String, dynamic> toJson() => {"userId": userId, "userRealname": userName};
+  User.fromJson(Map<String, dynamic> json)
+      : userId = json["userId"],
+        userName = json["userRealname"];
 }
