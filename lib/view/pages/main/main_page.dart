@@ -143,7 +143,9 @@ class _MainPageState extends State<MainPage> {
                             focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xff9999A3))),
                             enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xff9999A3))),
                             focusColor: Color(0xff9999A3)),
-                        onFieldSubmitted: (value) => _handleSubmitted, //얘는 값을 비워주기 위해서
+                        onEditingComplete: () {
+                          _handleSubmitted;
+                        }, //얘는 값을 비워주기 위해서
                       ),
                     ),
                   ),

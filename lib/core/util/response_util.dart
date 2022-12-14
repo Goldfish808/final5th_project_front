@@ -9,7 +9,6 @@ import '../../dto/response_dto.dart';
 //서버의 ResponseDto ==> 다트의 ResponseDto
 ResponseDto toResponseDto(Response response) {
   Map<String, dynamic> responseMap = jsonDecode(utf8.decode(response.bodyBytes)); // 문자열 -> Map
-  Logger().d("통신 되어서 온 코드가${responseMap}");
   ResponseDto responseDto = ResponseDto.fromJson(responseMap); // Map -> Dart Class
   return responseDto;
 }
