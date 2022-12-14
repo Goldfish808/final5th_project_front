@@ -49,6 +49,7 @@ class UserService {
   }
 
   Future<ResponseDto> fetchUserInfo(int id, String jwtToken) async {
+
     Response response = await httpConnector.get("/s/api/user/$id/userrealname", jwtToken: jwtToken);
     ResponseDto responseDto = toResponseDto(response);
 
