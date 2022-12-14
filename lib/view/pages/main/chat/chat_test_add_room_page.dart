@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class AddRoomListTest extends StatefulWidget {
   AddRoomListTest();
@@ -41,11 +42,11 @@ class _AddPostPageState extends State<AddRoomListTest> {
                 child: ElevatedButton(
                   child: Text('投稿'),
                   onPressed: () async {
-                    final date = DateTime.now().toLocal().toIso8601String();
+                    final date = DateTime.now();
 
                     await FirebaseFirestore.instance.collection('chat_room').doc(roomName).set({
                       'name': roomName,
-                      'createdAt': date,
+                      'createdAt': DateFormat("a K:m").format(date).replaceAll("AM", "오전").replaceAll("PM", "오후"),
                     });
                     Navigator.of(context).pop();
                   },

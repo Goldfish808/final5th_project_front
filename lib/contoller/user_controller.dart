@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/dto/response_dto.dart';
 import 'package:riverpod_firestore_steam1/dto/user/auth_req_dto.dart';
@@ -76,7 +77,7 @@ class UserController {
 
     // 2. 통신 요청
     ResponseDto responseDto = await userService.fetchLogin(loginReqDto);
-
+    Logger().d("로그인, 나 와?");
     //3. 비지니스 로직 처리
     if (responseDto.code == 1) {
       String? jwtToken = await secureStorage.read(key: "jwtToken");
