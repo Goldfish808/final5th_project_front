@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
-import 'package:riverpod_firestore_steam1/core/util/constant/move.dart';
 import 'package:riverpod_firestore_steam1/models/test/follow.dart';
 import 'package:riverpod_firestore_steam1/models/test/users.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/home/notice_page.dart';
@@ -12,10 +11,10 @@ import 'package:riverpod_firestore_steam1/view/pages/main/widgets/k_stack_icon.d
 
 import '../home/update_password_page.dart';
 
-class HomeAppBar extends AppBar implements PreferredSizeWidget {
+class HomeAppBarFriend extends AppBar implements PreferredSizeWidget {
   var index;
 
-  HomeAppBar(this.username, {super.key, required this.context});
+  HomeAppBarFriend(this.username, {super.key, required this.context});
   final BuildContext context;
 
   final String? username;
@@ -23,6 +22,10 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
 
   @override
   bool get automaticallyImplyLeading => false;
+
+  @override
+  // TODO: implement backgroundColor
+  Color? get backgroundColor => kchacholGreyColor();
 
   @override
   Widget? get title => Row(
@@ -73,7 +76,6 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
                                   width: double.infinity,
                                   child: SizedBox(
                                     height: MediaQuery.of(context).size.height / 2,
-
                                     //어거지로 리스트뷰 높이 맞춤...
                                     child: ListView.builder(
                                       shrinkWrap: true,
@@ -163,29 +165,13 @@ class HomeAppBar extends AppBar implements PreferredSizeWidget {
 
   @override
   List<Widget>? get actions => [
-        Container(
+        InkWell(
+          onTap: () {
+            Navigator.pushNamed(context, "/chat");
+          },
           child: Row(
             children: [
-              InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, Move.noticePage);
-                },
-                child: KStackIcon(iconData: CupertinoIcons.bell, notificationCount: '9'),
-              ),
-              SizedBox(width: 10),
-              Builder(builder: (context) {
-                return Container(
-                  width: 20,
-                  height: 20,
-                  child: IconButton(
-                    onPressed: () {
-                      Scaffold.of(context).openEndDrawer();
-                    },
-                    padding: EdgeInsets.zero,
-                    icon: SvgPicture.asset("assets/icon_setting_w2.svg", width: 20),
-                  ),
-                );
-              }),
+              SvgPicture.asset("assets/icon_send_w.svg", width: 19),
               SizedBox(width: 20),
             ],
           ),
