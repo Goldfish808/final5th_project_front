@@ -108,12 +108,10 @@ class _MainPageState extends State<MainPage> {
       builder: (context) {
         return SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom),
+            padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
             //위 패딩은 모달창의 터치 가능한 영역 내부 패딩
             decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+              borderRadius: const BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
               color: Colors.white,
             ),
             child: Container(
@@ -198,7 +196,7 @@ class _MainPageState extends State<MainPage> {
                   ))
             ],
           ),
-          SizedBox(height: 50),
+          SizedBox(height: 40),
           LineButton("일정 작성하러 가기", "/write"),
         ],
       ),
