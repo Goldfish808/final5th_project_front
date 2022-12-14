@@ -42,13 +42,13 @@ class UserService {
 
     if (responseDto.httpStatus == "CREATED") {
       User user = User.fromJson(responseDto.data);
+      print(user.userName);
       responseDto.data = user;
     }
     return responseDto; // ResponseDto 응답
   }
 
   Future<ResponseDto> fetchUserInfo(int id, String jwtToken) async {
-
     Response response = await httpConnector.get("/s/api/user/$id/userrealname", jwtToken: jwtToken);
     ResponseDto responseDto = toResponseDto(response);
 
