@@ -133,6 +133,7 @@ class _MainPageState extends State<MainPage> {
                         if (_formKey.currentState!.validate()) {
                           _handleSubmitted(_textController.text);
                           Navigator.pop(context);
+                          _textController.text = ""; // 얘로 폼필드 비워줘야함
                         }
                       },
                       style: ElevatedButton.styleFrom(
