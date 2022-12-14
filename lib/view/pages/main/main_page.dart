@@ -82,33 +82,7 @@ class _MainPageState extends State<MainPage> {
       context: context,
       builder: (context) {
         return SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-            //위 패딩은 모달창의 터치 가능한 영역 내부 패딩
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-              color: Colors.white,
-            ),
-            child: Container(
-              padding: EdgeInsets.only(top: 18),
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    width: 50,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: kmidGreyColor(),
-                    ),
-                    //margin: EdgeInsets.only(bottom: 20),
-                  ),
-                  Text(" "),
-                  Row(),
-                  _buildMinToDoWrite(validateContent()),
-                ],
-              ),
-            ),
-          ),
+          child: _buildShowModalBottomSheetTODO(context),
         );
       },
     );
@@ -143,9 +117,7 @@ class _MainPageState extends State<MainPage> {
                             focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xff9999A3))),
                             enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xff9999A3))),
                             focusColor: Color(0xff9999A3)),
-                        onEditingComplete: () {
-                          _handleSubmitted;
-                        }, //얘는 값을 비워주기 위해서
+                        onSaved: (value) {}, //얘는 값을 비워주기 위해서
                       ),
                     ),
                   ),
@@ -198,6 +170,36 @@ class _MainPageState extends State<MainPage> {
         done: false,
       ));
     });
+  }
+
+  Container _buildShowModalBottomSheetTODO(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      //위 패딩은 모달창의 터치 가능한 영역 내부 패딩
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+        color: Colors.white,
+      ),
+      child: Container(
+        padding: EdgeInsets.only(top: 18),
+        child: Column(
+          children: <Widget>[
+            Container(
+              width: 50,
+              height: 4,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                color: kmidGreyColor(),
+              ),
+              //margin: EdgeInsets.only(bottom: 20),
+            ),
+            Text(" "),
+            Row(),
+            _buildMinToDoWrite(validateContent()),
+          ],
+        ),
+      ),
+    );
   }
 
   List<BottomNavigationBarItem> _buildBottomNavigationBarItems() {
