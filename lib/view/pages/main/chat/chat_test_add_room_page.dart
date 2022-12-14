@@ -16,7 +16,7 @@ class _AddPostPageState extends State<AddRoomListTest> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ルーム作成'),
+        title: Text('채팅 방 만들기'), //ルーム作成
       ),
       body: Center(
         child: Container(
@@ -25,9 +25,10 @@ class _AddPostPageState extends State<AddRoomListTest> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               TextFormField(
-                decoration: InputDecoration(labelText: 'チャットルーム名'),
+                decoration: InputDecoration(labelText: '채팅방 이름을 작성해 주세요'), //チャットルーム名
                 keyboardType: TextInputType.multiline,
-                maxLines: 3,
+                maxLength: 30,
+                maxLines: 1,
                 onChanged: (String value) {
                   setState(() {
                     roomName = value;
@@ -40,7 +41,7 @@ class _AddPostPageState extends State<AddRoomListTest> {
               Container(
                 width: double.infinity,
                 child: ElevatedButton(
-                  child: Text('投稿'),
+                  child: Text('작성'),
                   onPressed: () async {
                     final date = DateTime.now();
 

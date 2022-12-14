@@ -4,7 +4,7 @@ import 'package:riverpod_firestore_steam1/view/pages/main/chat/chat_test_add_roo
 
 class RoomListPageTest extends StatelessWidget {
   // 引数からユーザー情報を受け取れるようにする
-  // 사용자의 정보를 받아 온다
+  // 사용자의 정보를 받아 온다ㅁ내ㅑ
   RoomListPageTest();
 
   @override
