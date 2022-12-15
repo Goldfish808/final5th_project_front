@@ -30,7 +30,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
   Widget build(BuildContext context) {
     final loginUser = ref.read(mainPageViewModel);
     String? username = loginUser.user.userName;
-    const user = types.User(id: '2', firstName: username);
+    const user = types.User(id: '2', firstName: '성운');
     return Scaffold(
       appBar: AppBar(
         title: Text('${widget.name}'),
