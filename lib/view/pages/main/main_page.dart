@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:logger/logger.dart';
 import 'package:riverpod_firestore_steam1/contoller/write_controller.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/core/util/validator_util.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/model/main_page_view_model.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/model/write_view_model.dart';
 import '../../../core/util/constant/move.dart';
 import '../../../models/schedule/todo.dart';
@@ -36,6 +38,7 @@ class MainPageState extends ConsumerState<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    ref.read(writeController);
     return Scaffold(
       body: IndexedStack(
         index: _selectedIndex,
@@ -95,6 +98,8 @@ class MainPageState extends ConsumerState<MainPage> {
   }
 
   Widget _buildMinToDoWrite(List<Todo> tm, WriteController tc) {
+    final wC = ref.read(writeController);
+    final uI = ref.read(mainPageViewModel);
     return Form(
       key: _formKey,
       child: Container(
@@ -137,10 +142,9 @@ class MainPageState extends ConsumerState<MainPage> {
                     child: ElevatedButton(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          _handleSubmitted(_textController.text);
+                          _handleSubmitted(_textController.text, wC, uI);
                           Navigator.pop(context);
                           _textController.text = ""; // 얘로 폼필드 비워줘야함
-
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -166,7 +170,9 @@ class MainPageState extends ConsumerState<MainPage> {
     );
   }
 
-  void _handleSubmitted(text) {
+  void _handleSubmitted(text, WriteController wC, MainPageModel uI) {
+    wC.insert(todoTitle: text, isFinished: false, userId: uI.user.userId);
+
     print(text);
     setState(() {
       //ToDO 리스트에 주입하는 코드 서비스 로직ㄴㄷ

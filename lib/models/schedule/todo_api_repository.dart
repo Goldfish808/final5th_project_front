@@ -14,13 +14,18 @@ final todoApiRepository = Provider<TodoApiRepository>((ref) {
 class TodoApiRepository {
   Ref _ref;
   TodoApiRepository(this._ref);
+  List<Todo> list = [];
 
-  Future<Todo> insert(TodoReqDto todoReqDto) async {
-    // http 통신 코드 (product 전송)
-    // body
-    String body = jsonEncode(todoReqDto.toJson());
-    Response response = await _ref.read(httpConnector).post("/api/product", body);
-    Todo todo = Todo.fromJson(jsonDecode(response.body)["data"]);
+  Todo findById(int id) {
+    // http 통신코드 필요 - API문서 참조 // 통신은 메모리가 함
+    Todo todoReqDto = list.singleWhere((todo) => todo.userId == id);
+    return todoReqDto; //통신없이 데이터 바인딩 중
+  }
+
+  Todo insert(Todo todo) {
+    // http 통신코드 필요 (product 전송)
+    todo.userId = todo.todoId;
+    list = [...list, todo];
     return todo;
   }
 }

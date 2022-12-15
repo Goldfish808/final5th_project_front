@@ -1,4 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http/http.dart';
+import 'package:riverpod_firestore_steam1/dto/response_dto.dart';
+import 'package:riverpod_firestore_steam1/dto/write/todo_req_dto.dart';
 import 'package:riverpod_firestore_steam1/models/schedule/todo.dart';
 import 'package:riverpod_firestore_steam1/models/schedule/todo_api_repository.dart';
 
@@ -15,11 +18,11 @@ class TodoListViewModel extends StateNotifier<List<Todo>> {
     print("실행됨");
   }
 
-  void refresh(List<Todo> productsDto) {
-    state = productsDto;
-  }
+  // void refresh(List<Todo> todoReqDto) {
+  //   state = todoReqDto;
+  // }
 
-  void addTodo(Todo TodoReqDto) {
-    state = [...state, TodoReqDto];
+  void addTodo(Todo responseDto) {
+    state = [...state, responseDto];
   }
 }
