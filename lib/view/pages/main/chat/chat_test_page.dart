@@ -30,15 +30,12 @@ class _ChatPageState extends State<ChatPage> {
       ),
       body: Chat(
         theme: const DefaultChatTheme(
-          // メッセージ入力欄の色
-          inputBackgroundColor: Colors.blue,
-          // 送信ボタン
+          inputBackgroundColor: primary,
           sendButtonIcon: Icon(Icons.send),
           sendingIcon: Icon(Icons.update_outlined),
         ),
-        // ユーザーの名前を表示するかどうか
         showUserNames: true,
-        // メッセージの配列
+        // メッセージの配列 / 메세지 배열
         messages: _messages,
         onPreviewDataFetched: _handlePreviewDataFetched,
         onSendPressed: _handleSendPressed,
@@ -53,13 +50,17 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   // firestoreからメッセージの内容をとってきて_messageにセット
+  // 파이어 스토어에 담겨져 있는 메세지를 가져옴, User uid 로 가져오는 듯함
   void _getMessages() async {
     final getData =
         await FirebaseFirestore.instance.collection('chat_room').doc(widget.name).collection('contents').get();
 
     final message = getData.docs
         .map((d) => types.TextMessage(
-            author: types.User(id: d.data()['uid'], firstName: d.data()['name']),
+            author: types.User(
+              id: d.data()['uid'],
+              firstName: d.data()['name'],
+            ),
             createdAt: d.data()['createdAt'],
             id: d.data()['id'],
             text: d.data()['text']))
@@ -71,6 +72,7 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   // メッセージ内容をfirestoreにセット
+  // 파이어 베이스로 메시지 내용을 보냄
   void _addMessage(types.TextMessage message) async {
     setState(() {
       _messages.insert(0, message);
@@ -85,6 +87,7 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   // リンク添付時にリンクプレビューを表示する
+  // 링크 첨부시 미리보기 생성
   void _handlePreviewDataFetched(
     types.TextMessage message,
     types.PreviewData previewData,
@@ -99,7 +102,7 @@ class _ChatPageState extends State<ChatPage> {
     });
   }
 
-  // メッセージ送信時の処理
+  // メッセージ送信時の処理 / 메세지 전송함
   void _handleSendPressed(types.PartialText message) {
     final textMessage = types.TextMessage(
       author: _user,
