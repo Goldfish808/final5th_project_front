@@ -5,29 +5,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
+import 'package:riverpod_firestore_steam1/core/util/response_util.dart';
+import 'package:riverpod_firestore_steam1/dto/response_dto.dart';
+import 'package:riverpod_firestore_steam1/models/session_user.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/model/main_page_view_model.dart';
 
 //import 'package:provider/provider.dart';
 // ランダムなIDを採番してくれるパッケージ
 import 'package:uuid/uuid.dart';
 
-class ChatPage extends ConsumerStatefulWidget {
-  const ChatPage(this.name, {Key? key}) : super(key: key);
+import '../../../../models/user/user.dart';
+
+class ChatPage extends StatefulWidget {
+  const ChatPage(this.name, {required this.sessionUser, Key? key}) : super(key: key);
   final String name;
+  final SessionUser sessionUser;
   @override
-  ConsumerState createState() => _ChatPageState();
+  _ChatPageState createState() => _ChatPageState();
 }
 
-class _ChatPageState extends ConsumerState<ChatPage> {
+class _ChatPageState extends State<ChatPage> {
   List<types.Message> _messages = [];
   String randomId = Uuid().v4();
+  //User userInfo = User.fromJson(widget.sessionUser.user);
   final _user = const types.User(id: '2', firstName: '성운');
 
   @override
   Widget build(BuildContext context) {
-    final loginUser = ref.read(mainPageViewModel);
-    String? username = loginUser.user.userName;
-    //const user = types.User(id: '2', firstName: '성운');
+    Logger().d("출력 되는 것을 보자${widget.sessionUser.user.userName}");
+
+    //const user = types.User(id: '2', firstName: 'username');
     return Scaffold(
       appBar: AppBar(
         title: Text('${widget.name}'),
@@ -43,7 +51,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
         messages: _messages,
         onPreviewDataFetched: _handlePreviewDataFetched,
         onSendPressed: (value) {
-          _handleSendPressed(value, username!);
+          _handleSendPressed(value);
         },
         user: _user,
       ),
@@ -111,7 +119,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
   }
 
   // メッセージ送信時の処理 / 메세지 전송함
-  void _handleSendPressed(types.PartialText message, String value) {
+  void _handleSendPressed(types.PartialText message) {
     final textMessage = types.TextMessage(
       author: _user,
       createdAt: DateTime.now().millisecondsSinceEpoch,

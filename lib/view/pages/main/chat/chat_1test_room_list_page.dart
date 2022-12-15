@@ -35,7 +35,7 @@ class RoomListPageTest1 extends StatelessWidget {
                             await Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return ChatPage(document['name']); //ChatPage(document['name']);
+                                  return Text("ee"); //ChatPage(document['name']); //ChatPage(document['name']);
                                 },
                               ),
                             );

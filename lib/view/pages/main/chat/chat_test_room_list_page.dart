@@ -1,15 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_firestore_steam1/models/session_user.dart';
+import 'package:riverpod_firestore_steam1/provider/auth_provider.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/chat/chat_test_add_room_page.dart';
 
 import 'chat_test_page.dart';
 
-class RoomListPageTest extends StatelessWidget {
+class RoomListPageTest extends ConsumerWidget {
   // 引数からユーザー情報を受け取れるようにする
   // 사용자의 정보를 받아 온다
   RoomListPageTest();
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    SessionUser _sessionUser = ref.read(authProvider);
+    //ResponseDto responseDto = toResponseDto(_sessionUser.user.);
     return Scaffold(
       body: Column(
         children: [
@@ -35,7 +40,8 @@ class RoomListPageTest extends StatelessWidget {
                             await Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return ChatPage(document['name']); //ChatPage(document['name']);
+                                  return ChatPage(document['name'],
+                                      sessionUser: _sessionUser); //ChatPage(document['name']);
                                 },
                               ),
                             );
