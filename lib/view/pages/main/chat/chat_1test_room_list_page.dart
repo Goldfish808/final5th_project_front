@@ -4,10 +4,10 @@ import 'package:riverpod_firestore_steam1/view/pages/main/chat/chat_test_add_roo
 
 import 'chat_test_page.dart';
 
-class RoomListPageTest extends StatelessWidget {
+class RoomListPageTest1 extends StatelessWidget {
   // 引数からユーザー情報を受け取れるようにする
-  // 사용자의 정보를 받아 온다
-  RoomListPageTest();
+  // 사용자의 정보를 받아 온다ㅁ내ㅑ
+  RoomListPageTest1();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

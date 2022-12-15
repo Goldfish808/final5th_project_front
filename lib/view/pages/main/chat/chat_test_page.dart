@@ -4,26 +4,33 @@ import 'package:flutter/material.dart';
 // flutter_chat_uiを使うためのパッケージをインポート
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
+import 'package:riverpod_firestore_steam1/contoller/user_controller.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/model/main_page_view_model.dart';
 
 //import 'package:provider/provider.dart';
 // ランダムなIDを採番してくれるパッケージ
 import 'package:uuid/uuid.dart';
 
-class ChatPage extends StatefulWidget {
+class ChatPage extends ConsumerStatefulWidget {
   const ChatPage(this.name, {Key? key}) : super(key: key);
 
   final String name;
   @override
-  _ChatPageState createState() => _ChatPageState();
+  ConsumerState createState() => _ChatPageState();
 }
 
-class _ChatPageState extends State<ChatPage> {
+class _ChatPageState extends ConsumerState<ChatPage> {
   List<types.Message> _messages = [];
   String randomId = Uuid().v4();
-  final _user = const types.User(id: '06c33e8b-e835-4736-80f4-63f44b66666c', firstName: '성운');
+  //final _user = const types.User(id: '2', firstName: '성운');
 
   @override
   Widget build(BuildContext context) {
+    final loginUser = ref.read(mainPageViewModel);
+    String? username = loginUser.user.userName;
+    const user = types.User(id: '2', firstName: username);
     return Scaffold(
       appBar: AppBar(
         title: Text('${widget.name}'),
@@ -39,7 +46,7 @@ class _ChatPageState extends State<ChatPage> {
         messages: _messages,
         onPreviewDataFetched: _handlePreviewDataFetched,
         onSendPressed: _handleSendPressed,
-        user: _user,
+        user: user,
       ),
     );
   }

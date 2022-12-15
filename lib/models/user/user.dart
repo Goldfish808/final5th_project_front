@@ -27,8 +27,6 @@ import 'package:intl/intl.dart';
 //         updated = DateFormat("yyyy-mm-dd").parse(json["updated"]);
 // }
 
-import 'dart:ffi';
-
 import 'package:intl/intl.dart';
 
 import 'follow.dart';

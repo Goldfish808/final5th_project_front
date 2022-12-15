@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'package:http/http.dart';
 import 'package:logger/logger.dart';
 import '../core/http_connector.dart';
