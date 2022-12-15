@@ -15,7 +15,6 @@ import 'package:uuid/uuid.dart';
 
 class ChatPage extends ConsumerStatefulWidget {
   const ChatPage(this.name, {Key? key}) : super(key: key);
-
   final String name;
   @override
   ConsumerState createState() => _ChatPageState();
@@ -24,13 +23,13 @@ class ChatPage extends ConsumerStatefulWidget {
 class _ChatPageState extends ConsumerState<ChatPage> {
   List<types.Message> _messages = [];
   String randomId = Uuid().v4();
-  //final _user = const types.User(id: '2', firstName: '성운');
+  final _user = const types.User(id: '2', firstName: '성운');
 
   @override
   Widget build(BuildContext context) {
     final loginUser = ref.read(mainPageViewModel);
     String? username = loginUser.user.userName;
-    const user = types.User(id: '2', firstName: '성운');
+    //const user = types.User(id: '2', firstName: '성운');
     return Scaffold(
       appBar: AppBar(
         title: Text('${widget.name}'),
@@ -45,8 +44,10 @@ class _ChatPageState extends ConsumerState<ChatPage> {
         // メッセージの配列 / 메세지 배열
         messages: _messages,
         onPreviewDataFetched: _handlePreviewDataFetched,
-        onSendPressed: _handleSendPressed,
-        user: user,
+        onSendPressed: (value) {
+          _handleSendPressed(value, username!);
+        },
+        user: _user,
       ),
     );
   }
@@ -112,7 +113,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
   }
 
   // メッセージ送信時の処理 / 메세지 전송함
-  void _handleSendPressed(types.PartialText message) {
+  void _handleSendPressed(types.PartialText message, String value) {
     final textMessage = types.TextMessage(
       author: _user,
       createdAt: DateTime.now().millisecondsSinceEpoch,
