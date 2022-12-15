@@ -10,11 +10,10 @@ import 'chat_test_page.dart';
 class RoomListPageTest extends ConsumerWidget {
   // 引数からユーザー情報を受け取れるようにする
   // 사용자의 정보를 받아 온다
-  RoomListPageTest();
+  //RoomListPageTest();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     SessionUser _sessionUser = ref.read(authProvider);
-    //ResponseDto responseDto = toResponseDto(_sessionUser.user.);
     return Scaffold(
       body: Column(
         children: [
@@ -33,20 +32,6 @@ class RoomListPageTest extends ConsumerWidget {
                     return Card(
                       child: ListTile(
                         title: Text(document['name']),
-                        trailing: IconButton(
-                          icon: Icon(Icons.input),
-                          onPressed: () async {
-                            // チャットページへ画面遷移 /채팅 페이지로 이동
-                            await Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return ChatPage(document['name'],
-                                      sessionUser: _sessionUser); //ChatPage(document['name']);
-                                },
-                              ),
-                            );
-                          },
-                        ),
                       ),
                     );
                   }).toList(),

@@ -34,7 +34,8 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     Logger().d("출력 되는 것을 보자${widget.sessionUser.user.userName}");
-
+    // String a = "abgd";
+    //final username = const types.User(id: '2', firstName: '${a}');
     //const user = types.User(id: '2', firstName: 'username');
     return Scaffold(
       appBar: AppBar(
@@ -51,7 +52,7 @@ class _ChatPageState extends State<ChatPage> {
         messages: _messages,
         onPreviewDataFetched: _handlePreviewDataFetched,
         onSendPressed: (value) {
-          _handleSendPressed(value);
+          _handleSendPressed(value, widget.sessionUser.user.userName);
         },
         user: _user,
       ),
@@ -119,9 +120,9 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   // メッセージ送信時の処理 / 메세지 전송함
-  void _handleSendPressed(types.PartialText message) {
+  void _handleSendPressed(types.PartialText message, name) {
     final textMessage = types.TextMessage(
-      author: _user,
+      author: name,
       createdAt: DateTime.now().millisecondsSinceEpoch,
       id: randomId,
       text: message.text,
