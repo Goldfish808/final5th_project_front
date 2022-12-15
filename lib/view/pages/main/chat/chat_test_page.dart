@@ -77,13 +77,15 @@ class _ChatPageState extends State<ChatPage> {
     setState(() {
       _messages.insert(0, message);
     });
-    await FirebaseFirestore.instance.collection('chat_room').doc(widget.name).collection('contents').add({
-      'uid': message.author.id,
-      'name': message.author.firstName,
-      'createdAt': message.createdAt,
-      'id': message.id,
-      'text': message.text,
-    });
+    await FirebaseFirestore.instance.collection('chat_room').doc(widget.name).collection('contents').add(
+      {
+        'uid': message.author.id,
+        'name': message.author.firstName,
+        'createdAt': message.createdAt,
+        'id': message.id,
+        'text': message.text,
+      },
+    );
   }
 
   // リンク添付時にリンクプレビューを表示する
