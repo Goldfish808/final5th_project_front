@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:riverpod_firestore_steam1/contoller/write_controller.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/core/util/validator_util.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/model/write_view_model.dart';
 import '../../../core/util/constant/move.dart';
+import '../../../models/schedule/todo.dart';
 import '../../../models/test/todo.dart';
 import 'components/default_button.dart';
 import 'login/components/line_button.dart';
@@ -16,17 +20,19 @@ import 'chat/chat_page.dart';
 import 'home/my_home_page.dart';
 import 'mypage/mypage_main_page.dart';
 
-class MainPage extends StatefulWidget {
+class MainPage extends ConsumerStatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  MainPageState createState() => MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class MainPageState extends ConsumerState<MainPage> {
   int _selectedIndex = 0;
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _textController = TextEditingController();
+  final _todoTitle = TextEditingController(); // 추가
+  //final _isFinished = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -82,13 +88,13 @@ class _MainPageState extends State<MainPage> {
       context: context,
       builder: (context) {
         return SingleChildScrollView(
-          child: _buildShowModalBottomSheetTODO(context),
+          child: _buildShowModalBottomSheetTODO(context, ref),
         );
       },
     );
   }
 
-  Widget _buildMinToDoWrite(vali) {
+  Widget _buildMinToDoWrite(List<Todo> tm, WriteController tc) {
     return Form(
       key: _formKey,
       child: Container(
@@ -106,7 +112,7 @@ class _MainPageState extends State<MainPage> {
                       //입력 만큼 height 늘어나려면 얘로 감싸고 1
                       constraints: const BoxConstraints(maxHeight: 350), //얘를 주면 됨 2
                       child: TextFormField(
-                        validator: vali,
+                        //validator: vali,
                         controller: _textController,
                         style: textTheme().headline3,
                         maxLines: null, //이걸 NULL 로 해주고 3
@@ -134,6 +140,7 @@ class _MainPageState extends State<MainPage> {
                           _handleSubmitted(_textController.text);
                           Navigator.pop(context);
                           _textController.text = ""; // 얘로 폼필드 비워줘야함
+
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -173,7 +180,9 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
-  Container _buildShowModalBottomSheetTODO(BuildContext context) {
+  Container _buildShowModalBottomSheetTODO(BuildContext context, WidgetRef _ref) {
+    final tm = _ref.watch(todoListViewModel);
+    final tc = _ref.read(writeController);
     return Container(
       padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       //위 패딩은 모달창의 터치 가능한 영역 내부 패딩
@@ -196,7 +205,7 @@ class _MainPageState extends State<MainPage> {
             ),
             Text(" "),
             Row(),
-            _buildMinToDoWrite(validateContent()),
+            _buildMinToDoWrite(tm, tc),
           ],
         ),
       ),
