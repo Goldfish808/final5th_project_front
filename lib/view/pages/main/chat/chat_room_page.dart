@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:logger/logger.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/chat/components/my_chat.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/chat/components/other_chat.dart';
@@ -73,13 +74,30 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         final List<DocumentSnapshot> documents = snapshot.data!.docs;
+
                         return ListView(
                           //padding: EdgeInsets.only(top: 12, left: 20, right: 20),
                           children: List.generate(documents.length, (index) {
+                            // int ts = 1638592424384;
+                            // DateTime tsdate = DateTime.fromMillisecondsSinceEpoch(timestamp);
+                            // String fdatetime = DateFormat('dd-MMM-yyy').format(tsdate); //DateFormat() is from intl package
+                            // print(fdatetime); //output: 04-Dec-2021
+                            Timestamp time = documents[index]['chatCreatedAt'];
+                            DateTime parsedTimeDate = time.toDate();
+                            Logger().d(parsedTimeDate);
                             return documents[index]['chatUserId'] == 1
-                                ? MyChat(text: documents[index]['chatMessageContent'], time: "f")
+                                ? MyChat(
+                                    text: documents[index]['chatMessageContent'],
+                                    time: DateFormat("a hh:mm")
+                                        .format(parsedTimeDate)
+                                        .replaceAll("AM", "오전")
+                                        .replaceAll("PM", "오후"),
+                                  )
                                 : OtherChat(
-                                    time: documents[index]['chatUserId'].toString(),
+                                    time: DateFormat("a hh:mm")
+                                        .format(parsedTimeDate)
+                                        .replaceAll("AM", "오전")
+                                        .replaceAll("PM", "오후"),
                                     name: documents[index]['chatUserName'],
                                     text: documents[index]['chatMessageContent'],
                                   );
