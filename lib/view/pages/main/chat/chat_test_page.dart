@@ -33,10 +33,6 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
-    Logger().d("출력 되는 것을 보자${widget.sessionUser.user.userName}");
-    // String a = "abgd";
-    //final username = const types.User(id: '2', firstName: '${a}');
-    //const user = types.User(id: '2', firstName: 'username');
     return Scaffold(
       appBar: AppBar(
         title: Text('${widget.name}'),
@@ -71,14 +67,17 @@ class _ChatPageState extends State<ChatPage> {
         await FirebaseFirestore.instance.collection('chat_room').doc(widget.name).collection('contents').get();
 
     final message = getData.docs
-        .map((d) => types.TextMessage(
+        .map(
+          (d) => types.TextMessage(
             author: types.User(
               id: d.data()['uid'],
               firstName: d.data()['name'],
             ),
             createdAt: d.data()['createdAt'],
             id: d.data()['id'],
-            text: d.data()['text']))
+            text: d.data()['text'],
+          ),
+        )
         .toList();
 
     setState(() {
