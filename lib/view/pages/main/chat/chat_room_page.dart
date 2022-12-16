@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/chat/components/my_chat.dart';
+import 'package:riverpod_firestore_steam1/view/pages/main/chat/components/other_chat.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/components/line_app_bar.dart';
 import 'package:uuid/uuid.dart';
 
@@ -66,7 +67,24 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                     itemCount: _messageList.length,
                     itemBuilder: (context, index) => Column(
                       children: [
-                        _messageList.isEmpty ? Text("메세지가 없음") : MyChat(text: "안녕", time: "시간"),
+                        _messageList.isEmpty
+                            ? Text("메세지가 없음")
+                            : _messageList[index].chatUserId == 1
+                                ? MyChat(
+                                    text: _messageList[index].chatMessageContent,
+                                    time: DateFormat("a hh:mm")
+                                        .format(_messageList[index].chatCreatedAt)
+                                        .replaceAll("AM", "오전")
+                                        .replaceAll("PM", "오후"),
+                                  )
+                                : OtherChat(
+                                    time: DateFormat("a hh:mm")
+                                        .format(_messageList[index].chatCreatedAt)
+                                        .replaceAll("AM", "오전")
+                                        .replaceAll("PM", "오후"),
+                                    name: _messageList[index].chatUserName,
+                                    text: _messageList[index].chatMessageContent,
+                                  ),
                       ],
                     ),
                   ),
@@ -199,7 +217,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
     final textMessage = TextMessage(
       chatUserId: 1, //로그인 한 유저의 아이디( 이것은 프로바이더 RiverPod 숙지하면 사용할 수 있음 )
       chatMessageId: randomId,
-      chatUserName: "메세지 작성자 이름",
+      chatUserName: "다른사람이다ㅁ",
       chatMessageContent: _editingMessage.text, //"작성된 메세지",
       chatCreatedAt: DateTime.now(),
     );
