@@ -40,8 +40,9 @@ class TextMessage {
 }
 
 class ChatRoomPage extends StatefulWidget {
-  const ChatRoomPage({Key? key}) : super(key: key);
-
+  const ChatRoomPage({Key? key, this.user, this.chatroom}) : super(key: key);
+  final chatroom;
+  final user;
   @override
   State<ChatRoomPage> createState() => _ChatRoomPageState();
 }
@@ -49,7 +50,6 @@ class ChatRoomPage extends StatefulWidget {
 class _ChatRoomPageState extends State<ChatRoomPage> {
   List<dynamic> _messageList = []; //다양한 타입으로 들어오고 보낼 수 있어서 dynamic
   String randomId = Uuid().v4(); //MessageId 를 랜덤하게 사용할거임 ( FireStore 특성 )
-
   final List<MyChat> chats = [];
   final TextEditingController _editingMessage = TextEditingController();
   @override
@@ -63,31 +63,57 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
             body: Column(
               children: [
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: _messageList.length,
-                    itemBuilder: (context, index) => Column(
-                      children: [
-                        _messageList.isEmpty
-                            ? Text("메세지가 없음")
-                            : _messageList[index].chatUserId == 1
-                                ? MyChat(
-                                    text: _messageList[index].chatMessageContent,
-                                    time: DateFormat("a hh:mm")
-                                        .format(_messageList[index].chatCreatedAt)
-                                        .replaceAll("AM", "오전")
-                                        .replaceAll("PM", "오후"),
-                                  )
+                  child: StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection('chat_room')
+                        .doc(widget.chatroom['name'])
+                        .collection('contents')
+                        .orderBy('chatCreatedAt', descending: false)
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        final List<DocumentSnapshot> documents = snapshot.data!.docs;
+                        return ListView(
+                          //padding: EdgeInsets.only(top: 12, left: 20, right: 20),
+                          children: List.generate(documents.length, (index) {
+                            return documents[index]['chatUserId'] == 1
+                                ? MyChat(text: documents[index]['chatMessageContent'], time: "f")
                                 : OtherChat(
-                                    time: DateFormat("a hh:mm")
-                                        .format(_messageList[index].chatCreatedAt)
-                                        .replaceAll("AM", "오전")
-                                        .replaceAll("PM", "오후"),
-                                    name: _messageList[index].chatUserName,
-                                    text: _messageList[index].chatMessageContent,
-                                  ),
-                      ],
-                    ),
+                                    time: documents[index]['chatUserId'].toString(),
+                                    name: documents[index]['chatUserName'],
+                                    text: documents[index]['chatMessageContent'],
+                                  );
+                          }),
+                        );
+                      }
+                      return Center(child: Text('로드 중……'));
+                    },
                   ),
+                  // child: ListView.builder(
+                  //   itemCount: _messageList.length,
+                  //   itemBuilder: (context, index) => Column(
+                  //     children: [
+                  //       _messageList.isEmpty
+                  //           ? Text("메세지가 없음")
+                  //           : _messageList[index].chatUserId == 1
+                  //               ? MyChat(
+                  //                   text: _messageList[index].chatMessageContent,
+                  //                   time: DateFormat("a hh:mm")
+                  //                       .format(_messageList[index].chatCreatedAt)
+                  //                       .replaceAll("AM", "오전")
+                  //                       .replaceAll("PM", "오후"),
+                  //                 )
+                  //               : OtherChat(
+                  //                   time: DateFormat("a hh:mm")
+                  //                       .format(_messageList[index].chatCreatedAt)
+                  //                       .replaceAll("AM", "오전")
+                  //                       .replaceAll("PM", "오후"),
+                  //                   name: _messageList[index].chatUserName,
+                  //                   text: _messageList[index].chatMessageContent,
+                  //                 ),
+                  //     ],
+                  //   ),
+                  // ),
                 ),
                 _buildSubmitContainer(),
               ],
@@ -98,6 +124,17 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
     );
   }
 
+/*  void _handlePreviewDataFetched(message, previewData) {
+    final index = _messageList.indexWhere((element) => element.id == message.id);
+    final updatedMessage = _messageList[index].copyWith();
+
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      setState(() {
+        _messageList[index] = updatedMessage;
+      });
+    });
+  }*/
+
   void iniState() {
     _getMessage();
     super.initState();
@@ -107,7 +144,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
     setState(() {
       _messageList.insert(0, message);
     });
-    await FirebaseFirestore.instance.collection('chat_room').doc('korea good').collection('contents').add(
+    await FirebaseFirestore.instance.collection('chat_room').doc(widget.chatroom['name']).collection('contents').add(
       {
         'chatUserId': message.chatUserId,
         'chatUserName': message.chatUserName,
@@ -120,8 +157,12 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
   }
 
   void _getMessage() async {
-    final getData =
-        await FirebaseFirestore.instance.collection('chat_room').doc("korea good").collection('message').get();
+    final getData = await FirebaseFirestore.instance
+        .collection('chat_room')
+        .doc("korea good")
+        .collection('message')
+        .orderBy('chatCreatedAt')
+        .get();
     final messages = getData.docs
         .map(
           (e) => TextMessage(

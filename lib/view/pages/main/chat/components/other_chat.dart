@@ -10,7 +10,7 @@ class OtherChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
       child: Row(
         children: [
           ClipRRect(
