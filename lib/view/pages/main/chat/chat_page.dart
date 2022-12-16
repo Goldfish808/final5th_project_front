@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_firestore_steam1/models/test/users.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/chat/components/chat_list.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/components/chat_app_bar.dart';
+
+import 'chat_add_room_page.dart';
 
 class ChatPage extends StatelessWidget {
   const ChatPage({Key? key}) : super(key: key);
@@ -22,6 +25,14 @@ class ChatPage extends StatelessWidget {
             );
           }
           return Center(child: Text('로드 중……'));
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(CupertinoIcons.add),
+        onPressed: () async {
+          await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            return ChatAddRoomPage();
+          }));
         },
       ),
 

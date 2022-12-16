@@ -7,7 +7,7 @@ final httpConnector = Provider<HttpConnector>((ref) {
 });
 
 class HttpConnector {
-  final host = "http://172.20.32.1:8080";
+  final host = "http://172.30.128.1:8080";
   //final headers = {"Content-Type": "application/json; charset=utf-8"};
   late Map<String, String> headers = {"Content-Type": "application/json; charset=utf-8"};
 
