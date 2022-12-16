@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:riverpod_firestore_steam1/core/util/validator_util.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/components/chat_app_bar.dart';
 
 class ChatAddRoomPage extends StatefulWidget {
@@ -12,7 +11,7 @@ class ChatAddRoomPage extends StatefulWidget {
 }
 
 class _ChatAddRoomPageState extends State<ChatAddRoomPage> {
-  String? roomName;
+  String roomName = "";
 
   @override
   Widget build(BuildContext context) {
