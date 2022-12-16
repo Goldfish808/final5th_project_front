@@ -34,6 +34,10 @@
 //                       child: Column(
 //                         children: [
 //                           Text("채팅 메세지"),
+// OtherChat(time: "오전 10:25", name: "홍길동", text: "야ㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑ이것봐바!"),
+// SizedBox(height: 6),
+// MyChat(text: "오 나 필요한건데 ㄳㄳ", time: "오후 17:38"),
+// ...List.generate(chats.length, (index) => chats[index]),
 //                         ],
 //                       ),
 //                     ),

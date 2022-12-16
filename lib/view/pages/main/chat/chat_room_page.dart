@@ -29,6 +29,13 @@ class TextMessage {
       "chatCreatedAt": chatCreatedAt
     };
   }
+
+  TextMessage.fromJson(Map<String, dynamic> json)
+      : chatUserId = json["chatUserId"],
+        chatMessageId = json["chatMessageId"],
+        chatUserName = json["chatUserName"],
+        chatMessageContent = json["chatMessageContent"],
+        chatCreatedAt = json["chatCreatedAt"];
 }
 
 class ChatRoomPage extends StatefulWidget {
@@ -55,11 +62,13 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
             body: Column(
               children: [
                 Expanded(
-                  child: Column(
-                    children: [
-                      Text("채팅 메세지"),
-                      MyChat(text: "안녕", time: "시간"),
-                    ],
+                  child: ListView.builder(
+                    itemCount: _messageList.length,
+                    itemBuilder: (context, index) => Column(
+                      children: [
+                        _messageList.isEmpty ? Text("메세지가 없음") : MyChat(text: "안녕", time: "시간"),
+                      ],
+                    ),
                   ),
                 ),
                 _buildSubmitContainer(),
@@ -69,6 +78,11 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
         ),
       ),
     );
+  }
+
+  void iniState() {
+    _getMessage();
+    super.initState();
   }
 
   void _addMessage(TextMessage message) async {
@@ -87,12 +101,24 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
     );
   }
 
-  /* void _getMessage() async {
-    final getData = await FirebaseFirestore.instance.collection('chat_room').doc("이름").collection('message').get();
-    final messages = getData.docs.map(
-      (e) => TextMessage(),
-    );
-  }*/
+  void _getMessage() async {
+    final getData =
+        await FirebaseFirestore.instance.collection('chat_room').doc("korea good").collection('message').get();
+    final messages = getData.docs
+        .map(
+          (e) => TextMessage(
+            chatUserId: e.data()['chatUserId'], //FireStore 의 필드명
+            chatMessageId: e.data()['chatMessageId'],
+            chatUserName: e.data()['chatUserName'],
+            chatCreatedAt: e.data()['chatCreatedAt'],
+            chatMessageContent: e.data()['chatMessageContent'],
+          ),
+        )
+        .toList(); //korea good 에 있는 메세지를 모두 들고올거기 때문에
+    setState(() {
+      _messageList = [...messages];
+    });
+  }
 
   Container _buildSubmitContainer() {
     return Container(
