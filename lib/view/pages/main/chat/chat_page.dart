@@ -29,6 +29,7 @@ class _ChatPageState extends State<ChatPage> {
               padding: EdgeInsets.only(top: 12, left: 20, right: 20),
               children:
                   List.generate(documents.length, (index) => ChatList(user: users[index], chatroom: documents[index])),
+
             );
           }
           return Center(child: Text('로드 중……'));

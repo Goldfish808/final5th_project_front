@@ -33,6 +33,10 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
+    Logger().d("출력 되는 것을 보자${widget.sessionUser.user.userName}");
+    // String a = "abgd";
+    //final username = const types.User(id: '2', firstName: '${a}');
+    //const user = types.User(id: '2', firstName: 'username');
     return Scaffold(
       appBar: AppBar(
         title: Text('${widget.name}'),
