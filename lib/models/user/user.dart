@@ -27,8 +27,6 @@ import 'package:intl/intl.dart';
 //         updated = DateFormat("yyyy-mm-dd").parse(json["updated"]);
 // }
 
-import 'dart:ffi';
-
 import 'package:intl/intl.dart';
 
 import 'follow.dart';
@@ -107,12 +105,12 @@ class User {
 }*/
 
 class User {
-  final dynamic? userId;
+  final int? userId;
   final String? userName;
   final String? userPassword;
   final String? userEmail;
-  final DateTime? userCreatedAt;
-  final DateTime? userUpdatedAt;
+  final String? userCreatedAt;
+  final String? userUpdatedAt;
 
   User({this.userId, this.userName, this.userPassword, this.userEmail, this.userCreatedAt, this.userUpdatedAt});
   //Map<String, dynamic> toJson() => {"id": userId, "userRealname": userName};

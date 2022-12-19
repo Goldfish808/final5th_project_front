@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
+import 'package:riverpod_firestore_steam1/models/session_user.dart';
 import 'package:riverpod_firestore_steam1/models/test/users.dart';
+import 'package:riverpod_firestore_steam1/provider/auth_provider.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/chat/chat_room_page.dart';
 
-class ChatList extends StatelessWidget {
-  const ChatList({Key? key, required this.user}) : super(key: key);
-  final User user;
+class ChatList extends ConsumerWidget {
+  const ChatList({Key? key, required this.user, required this.chatroom}) : super(key: key);
+  final dynamic user;
+  final dynamic chatroom;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    SessionUser userInfo = ref.watch(authProvider);
     return InkWell(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ChatRoomPage(),
+            builder: (context) => ChatRoomPage(user: user, chatroom: chatroom, userInfo: userInfo),
           ),
         );
       },
@@ -42,10 +47,8 @@ class ChatList extends StatelessWidget {
                 title: Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Text(
-                    user.sender,
-                    style: textTheme(
-                            color: kPrimaryColor(), weight: FontWeight.bold)
-                        .headline3,
+                    chatroom['name'], //user.sender,
+                    style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold).headline3,
                   ),
                 ),
                 subtitle: Padding(
@@ -65,10 +68,8 @@ class ChatList extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 14),
                   child: Text(
-                    user.sendDate,
-                    style: textTheme(
-                            color: kchacholGreyColor(), weight: FontWeight.w600)
-                        .bodyText2,
+                    chatroom['createdAt'], //user.sendDate,
+                    style: textTheme(color: kchacholGreyColor(), weight: FontWeight.w600).bodyText2,
                   ),
                 )
               ],

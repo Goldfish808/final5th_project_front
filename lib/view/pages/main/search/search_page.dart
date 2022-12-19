@@ -1,78 +1,68 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
-import 'package:riverpod_firestore_steam1/view/pages/main/components/line_app_bar.dart';
 import 'package:riverpod_firestore_steam1/view/pages/main/search/board_list_page.dart';
 
 class SearchPage extends StatelessWidget {
   SearchPage({Key? key}) : super(key: key);
 
-  final myImages = [
-    "assets/man1.png",
-    "assets/man2.png",
-    "assets/woman1.png",
-    "assets/pig.png",
-    "assets/dog.png",
-    "assets/aliens.png",
-    "assets/man1.png",
-    "assets/man2.png",
-    "assets/woman1.png",
-    "assets/pig.png",
-    "assets/dog.png",
-    "assets/aliens.png",
-    "assets/man1.png",
-    "assets/man2.png",
-    "assets/woman1.png",
-    "assets/pig.png",
-    "assets/dog.png",
-    "assets/aliens.png",
-    "assets/man1.png",
-    "assets/man2.png",
-    "assets/woman1.png",
-    "assets/pig.png",
-    "assets/dog.png",
-    "assets/aliens.png",
-  ];
+  // final myImages = [
+  //   NetworkImage("https://source.unsplash.com/random"),
+  // ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _buildSearchAppBar(context),
-      body: Padding(
-        padding: const EdgeInsets.only(
-          left: 20,
-          right: 20,
-          top: 20,
-        ),
-        child: GridView.builder(
-          physics: BouncingScrollPhysics(),
-          scrollDirection: Axis.vertical,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            crossAxisSpacing: 4,
-            mainAxisSpacing: 4,
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        appBar: _buildSearchAppBar(context),
+        body: Padding(
+          padding: const EdgeInsets.only(
+            left: 20,
+            right: 20,
+            top: 20,
           ),
-          itemCount: myImages.length,
-          itemBuilder: (BuildContext context, int index) {
-            return IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BoardListPage()),
-                );
-              },
-              icon: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-                child: Image.asset(
-                  "${myImages[index]}",
-                  width: double.infinity,
-                  height: double.infinity,
-                  fit: BoxFit.cover,
+          child: GridView.builder(
+            physics: BouncingScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              crossAxisSpacing: 4,
+              mainAxisSpacing: 4,
+            ),
+            itemCount: 48,
+            itemBuilder: (BuildContext context, int index) {
+              return IconButton(
+                padding: EdgeInsets.zero,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => BoardListPage()),
+                  );
+                },
+                icon: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  child: Image(
+                    image: NetworkImage(
+                        "https://source.unsplash.com/random?sig=$index/200x200"),
+                    fit: BoxFit.cover,
+                    width: 200,
+                    height: 200,
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      color: kchacholGreyColor(),
+                      child: const Icon(
+                        Icons.error_outline_rounded,
+                        color: primary,
+                        size: 40,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              padding: EdgeInsets.zero,
-            );
-          },
+                //padding: EdgeInsets.zero,
+              );
+            },
+          ),
         ),
       ),
     );

@@ -20,7 +20,11 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
+<<<<<<< HEAD
   sdk: '>=2.18.5 <3.0.0'
+=======
+  sdk: '>=2.18.4 <3.0.0'
+>>>>>>> 54225a27204c49097935c99d152c9cd8097e8b14
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -75,6 +79,9 @@ dependencies:
   mime: ^1.0.2
   open_filex: ^4.2.2
   uuid: ^3.0.7
+  #flutter_calendar_carousel: ^2.4.1
+  cached_network_image: ^3.2.3
+  flutter_screenutil: ^5.6.0
 
 
 
