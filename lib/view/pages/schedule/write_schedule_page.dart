@@ -181,10 +181,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
                       _buildRepeatButton(1, "매일"),
                       _buildRepeatButton(2, "매주"),
                       _buildRepeatButton(3, "매월"),
-<<<<<<< HEAD
                       //_buildRepeatButton(4, "매년"),
-=======
->>>>>>> 6e65c6ae24697be93983c36a5b2830e86858535f
                     ],
                   ),
                 ),

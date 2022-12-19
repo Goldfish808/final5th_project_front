@@ -69,11 +69,7 @@ class BoardListBox extends StatelessWidget {
         SizedBox(width: 10),
         Text(
           board.name,
-<<<<<<< HEAD
           style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold).bodyText1,
-=======
-          style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold).headline3,
->>>>>>> 6e65c6ae24697be93983c36a5b2830e86858535f
         ),
       ],
     );
@@ -85,20 +81,12 @@ class BoardListBox extends StatelessWidget {
       children: [
         Text(
           board.title,
-<<<<<<< HEAD
           style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold).bodyText1,
-=======
-          style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold).headline3,
->>>>>>> 6e65c6ae24697be93983c36a5b2830e86858535f
         ),
         SizedBox(height: 2),
         Text(
           board.content,
-<<<<<<< HEAD
           style: textTheme(color: kchacholGreyColor(), weight: FontWeight.w200).bodyText2,
-=======
-          style: textTheme(color: kchacholGreyColor(), weight: FontWeight.w200).bodyText1,
->>>>>>> 6e65c6ae24697be93983c36a5b2830e86858535f
         )
       ],
     );
