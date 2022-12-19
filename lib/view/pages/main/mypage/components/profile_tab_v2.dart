@@ -16,8 +16,7 @@ class ProfileTabV2 extends StatefulWidget {
   State<ProfileTabV2> createState() => _ProfileTabState();
 }
 
-class _ProfileTabState extends State<ProfileTabV2>
-    with SingleTickerProviderStateMixin {
+class _ProfileTabState extends State<ProfileTabV2> with SingleTickerProviderStateMixin {
   TabController? _tabController;
   DateTime date = DateTime(2022, 12);
 
@@ -54,10 +53,7 @@ class _ProfileTabState extends State<ProfileTabV2>
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(
-              child: Text("${date.year}년 ${date.month}월",
-                  style:
-                      textTheme(color: kPrimaryColor(), weight: FontWeight.bold)
-                          .headline2),
+              child: Text("${date.year}년 ${date.month}월", style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold).headline3),
             ),
             Container(
               width: 30,
@@ -81,8 +77,7 @@ class _ProfileTabState extends State<ProfileTabV2>
                     date = newDate;
                   });
                 },
-                child:
-                    SvgPicture.asset("assets/icon_arrow_bottom.svg", width: 16),
+                child: SvgPicture.asset("assets/icon_arrow_bottom.svg", width: 16),
               ),
             ),
           ],
@@ -135,8 +130,7 @@ class _ProfileTabState extends State<ProfileTabV2>
               return ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image(
-                  image: NetworkImage(
-                      "https://source.unsplash.com/random?sig=$index/200x200"),
+                  image: NetworkImage("https://source.unsplash.com/random?sig=$index/200x200"),
                   fit: BoxFit.cover,
                   width: 200,
                   height: 200,
@@ -186,9 +180,7 @@ class _ProfileTabState extends State<ProfileTabV2>
               children: [
                 Text(
                   date,
-                  style:
-                      textTheme(color: kPrimaryColor(), weight: FontWeight.bold)
-                          .headline2,
+                  style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold).headline2,
                 ),
                 Text(
                   day,
@@ -217,9 +209,7 @@ class _ProfileTabState extends State<ProfileTabV2>
                   SizedBox(width: 10),
                   Text(
                     content,
-                    style: textTheme(
-                            color: kPrimaryColor(), weight: FontWeight.w500)
-                        .bodyText1,
+                    style: textTheme(color: kPrimaryColor(), weight: FontWeight.w500).bodyText1,
                   ),
                 ],
               ),

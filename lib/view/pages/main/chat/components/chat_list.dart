@@ -52,7 +52,7 @@ class ChatList extends ConsumerWidget {
                   ),
                 ),
                 subtitle: Padding(
-                  padding: const EdgeInsets.only(top: 2),
+                  padding: const EdgeInsets.only(top: 0),
                   child: Text(
                     user.message,
                     style: textTheme(color: kchacholGreyColor()).bodyText1,

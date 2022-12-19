@@ -19,8 +19,7 @@ class UserLength {
 }
 
 class CalendarListBox extends StatelessWidget {
-  CalendarListBox({Key? key, required this.event, required this.eventIndex})
-      : super(key: key);
+  CalendarListBox({Key? key, required this.event, required this.eventIndex}) : super(key: key);
   final Event event;
   final int eventIndex;
   final List<Event> fuckList = eventList;
@@ -37,15 +36,13 @@ class CalendarListBox extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(event.startTime,
-            style: textTheme(color: kPrimaryColor()).headline3),
+        Text(event.startTime, style: textTheme(color: kPrimaryColor()).headline3),
         SizedBox(width: 10),
         Expanded(
           child: Stack(
             children: [
               Container(
-                padding:
-                    EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 2),
+                padding: EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 2),
                 decoration: event.category == "일반"
                     ? BoxDecoration(
                         color: Color.fromRGBO(110, 52, 218, 0.1),
@@ -85,10 +82,7 @@ class CalendarListBox extends StatelessWidget {
                           Expanded(
                             child: ClipRRect(
                               child: Stack(
-                                children: List.generate(
-                                    UserLength().index(),
-                                    (index) => _buildStackProfileImage(
-                                        index, users.length)),
+                                children: List.generate(UserLength().index(), (index) => _buildStackProfileImage(index, users.length)),
                               ),
                             ),
                           ),
@@ -125,8 +119,7 @@ class CalendarListBox extends StatelessWidget {
               alignment: Alignment.center,
               width: 26,
               height: 26,
-              child: Text("+$num",
-                  style: textTheme(weight: FontWeight.bold).bodyText2),
+              child: Text("+$num", style: textTheme(weight: FontWeight.bold).bodyText2),
             ),
             padding: EdgeInsets.symmetric(horizontal: _margin),
           );
@@ -148,7 +141,7 @@ class CalendarListBox extends StatelessWidget {
         for (var memoIndex in test)
           Text(
             memoIndex.toString(),
-            style: textTheme().headline3,
+            style: textTheme().bodyText1,
           ),
       ],
     );
@@ -163,8 +156,7 @@ class CalendarListBox extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(FontAwesomeIcons.locationDot,
-              size: 10, color: kchacholGreyColor()),
+          Icon(FontAwesomeIcons.locationDot, size: 10, color: kchacholGreyColor()),
           SizedBox(width: 4),
           Text(
             event.location,
@@ -211,7 +203,7 @@ class CalendarListBox extends StatelessWidget {
   Text _buildTitleText() {
     return Text(
       event.content,
-      style: textTheme(weight: FontWeight.bold).headline2,
+      style: textTheme(weight: FontWeight.bold).headline3,
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
       textAlign: TextAlign.left,
@@ -235,8 +227,7 @@ class CalendarListBox extends StatelessWidget {
                   color: Color(0xffFFE681),
                   borderRadius: BorderRadius.circular(8),
                 ),
-      child:
-          Text(event.category, style: textTheme(color: Colors.white).bodyText1),
+      child: Text(event.category, style: textTheme(color: Colors.white).bodyText2),
     );
   }
 }
