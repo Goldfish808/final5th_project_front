@@ -20,7 +20,7 @@ class CustomElevatedButton extends StatelessWidget {
         side: BorderSide(color: theme().primaryColor, width: 1),
       ),
       onPressed: funPageRoute,
-      child: Text("$text", style: textTheme(weight: FontWeight.w500).headline2),
+      child: Text("$text", style: textTheme(weight: FontWeight.w500).headline3),
     );
   }
 }

@@ -27,10 +27,10 @@ class CustomTextFormField extends StatelessWidget {
         decoration: InputDecoration(
             hintText: "${hint}",
             contentPadding: EdgeInsets.only(top: 12, bottom: 12, left: 10),
-            border: OutlineInputBorder(
+            enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide(
-                color: Color.fromRGBO(233, 233, 233, 100),
+                color: klightGreyColor(),
               ),
             ),
             hintStyle: GoogleFonts.notoSans(

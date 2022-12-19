@@ -3,8 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:riverpod_firestore_steam1/core/theme.dart';
 
 class CustomForm extends StatelessWidget {
-  const CustomForm(this.text, this.hintText, {required this.controllerInput, required this.funValidator, Key? key})
-      : super(key: key);
+  const CustomForm(this.text, this.hintText, {required this.controllerInput, required this.funValidator, Key? key}) : super(key: key);
   final String text;
   final funValidator;
   final String hintText;
@@ -28,13 +27,13 @@ class CustomForm extends StatelessWidget {
               hintText: "${hintText}",
               contentPadding: EdgeInsets.only(top: 12, bottom: 12, left: 10),
               isDense: true,
-              border: OutlineInputBorder(
+              enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(
-                  color: kmidGreyColor(),
+                  color: klightGreyColor(),
                 ),
               ),
-              hintStyle: textTheme(color: kmidGreyColor(), weight: FontWeight.bold).headline2,
+              hintStyle: textTheme(color: kmidGreyColor(), weight: FontWeight.bold).headline3,
             )),
       ],
     );

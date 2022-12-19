@@ -449,7 +449,7 @@ packages:
       name: image_picker_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.5+3"
+    version: "0.8.5+4"
   image_picker_for_web:
     dependency: transitive
     description:
@@ -463,7 +463,7 @@ packages:
       name: image_picker_ios
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.6+1"
+    version: "0.8.6+2"
   image_picker_platform_interface:
     dependency: transitive
     description:
@@ -847,8 +847,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "20.3.61"
-<<<<<<< HEAD
-=======
   synchronized:
     dependency: transitive
     description:
@@ -856,7 +854,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.0+3"
->>>>>>> 54225a27204c49097935c99d152c9cd8097e8b14
   table_calendar:
     dependency: "direct main"
     description:
@@ -1003,7 +1000,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.2"
+    version: "3.1.3"
   xdg_directories:
     dependency: transitive
     description:
@@ -1019,10 +1016,5 @@ packages:
     source: hosted
     version: "5.4.1"
 sdks:
-<<<<<<< HEAD
   dart: ">=2.18.5 <3.0.0"
-  flutter: ">=3.0.0"
-=======
-  dart: ">=2.18.4 <3.0.0"
   flutter: ">=3.3.0"
->>>>>>> 54225a27204c49097935c99d152c9cd8097e8b14

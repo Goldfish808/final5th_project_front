@@ -58,7 +58,7 @@ class MypageProfile extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => MyPageProfilePage()),
                   );
                 },
-                child: Text("프로필 수정", style: textTheme(color: kchacholGreyColor(), weight: FontWeight.w600).bodyText1),
+                child: Text("프로필 수정", style: textTheme(color: kchacholGreyColor(), weight: FontWeight.w600).bodyText2),
                 style: OutlinedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 5, horizontal: 16),
                   shape: RoundedRectangleBorder(
@@ -105,12 +105,12 @@ class MypageProfile extends StatelessWidget {
                       children: [
                         Text(
                           "팔로잉",
-                          style: textTheme(color: kPrimaryColor()).bodyText1,
+                          style: textTheme(color: kPrimaryColor()).bodyText2,
                         ),
                         SizedBox(height: 2),
                         Text(
                           "$count",
-                          style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold).headline3,
+                          style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold).bodyText1,
                         ),
                       ],
                     ),
@@ -131,12 +131,12 @@ class MypageProfile extends StatelessWidget {
                       children: [
                         Text(
                           "팔로워",
-                          style: textTheme(color: kPrimaryColor()).bodyText1,
+                          style: textTheme(color: kPrimaryColor()).bodyText2,
                         ),
                         SizedBox(height: 2),
                         Text(
                           "$count2",
-                          style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold).headline3,
+                          style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold).bodyText1,
                         ),
                       ],
                     ),

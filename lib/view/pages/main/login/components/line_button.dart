@@ -24,7 +24,7 @@ class LineButton extends StatelessWidget {
           minimumSize: Size(double.infinity, 50),
           side: BorderSide(color: theme().primaryColor, width: 1),
         ),
-        child: Text("${btnText}", style: textTheme(weight: FontWeight.w500).headline2),
+        child: Text("${btnText}", style: textTheme(weight: FontWeight.w500).headline3),
       ),
     );
   }

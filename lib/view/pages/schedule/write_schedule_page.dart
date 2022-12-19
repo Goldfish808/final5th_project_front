@@ -28,7 +28,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
   final List<Event> fuckList = eventList;
 
   int selectedId = 0;
-  List<String> hintText = ["반복 안함", "매일", "매주", "매월", "매년"];
+  List<String> hintText = ["반복 안함", "매일", "매주", "매월"];
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
                       _buildCategory("친구"),
                     ],
                   ),
-                  SizedBox(height: 14),
+                  SizedBox(height: 10),
                   DateAndDayPickerInRow(),
                   _buildLocationSearch(context),
                   //AddressComponentTest(),
@@ -83,7 +83,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
       children: [
         category == "카테고리"
             ? Container(
-                padding: EdgeInsets.only(left: 12, right: 12, bottom: 6, top: 3),
+                padding: EdgeInsets.only(left: 12, right: 12, bottom: 6, top: 4),
                 decoration: BoxDecoration(
                   color: kchacholGreyColor(),
                   borderRadius: BorderRadius.circular(8),
@@ -100,7 +100,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
                 ),
               )
             : Container(
-                padding: EdgeInsets.only(left: 12, right: 12, bottom: 6, top: 3),
+                padding: EdgeInsets.only(left: 12, right: 12, bottom: 6, top: 4),
                 decoration: category == "일반"
                     ? BoxDecoration(
                         color: primary,
@@ -181,7 +181,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
                       _buildRepeatButton(1, "매일"),
                       _buildRepeatButton(2, "매주"),
                       _buildRepeatButton(3, "매월"),
-                      _buildRepeatButton(4, "매년"),
+                      //_buildRepeatButton(4, "매년"),
                     ],
                   ),
                 ),
@@ -339,7 +339,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
   TextField _buildScheduleTitle(text) {
     return TextField(
       controller: _scheduleController,
-      style: textTheme(color: kchacholGreyColor()).headline2,
+      style: textTheme(color: kchacholGreyColor()).headline3,
       maxLines: null, //이걸 NULL 로 해주고
       maxLength: 100,
       decoration: const InputDecoration(
@@ -525,7 +525,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
 
   Widget _buildInsertButton() {
     return Container(
-      height: MediaQuery.of(context).size.height / 6,
+      height: MediaQuery.of(context).size.height / 6.5,
       child: Center(
         child: ElevatedButton(
           onPressed: () {
@@ -542,7 +542,7 @@ class _WriteScheduleState extends State<WriteSchedule> {
           ),
           child: Text(
             "등록하기",
-            style: textTheme(color: Colors.white, weight: FontWeight.bold).headline2,
+            style: textTheme(color: Colors.white, weight: FontWeight.bold).headline3,
           ),
         ),
       ),

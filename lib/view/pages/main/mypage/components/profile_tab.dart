@@ -13,8 +13,7 @@ class ProfileTab extends StatefulWidget {
   State<ProfileTab> createState() => _ProfileTabState();
 }
 
-class _ProfileTabState extends State<ProfileTab>
-    with SingleTickerProviderStateMixin {
+class _ProfileTabState extends State<ProfileTab> with SingleTickerProviderStateMixin {
   TabController? _tabController;
   TextEditingController _DataTimeEditingController = TextEditingController();
   TextEditingController _EstimatedEditingController = TextEditingController();
@@ -50,15 +49,16 @@ class _ProfileTabState extends State<ProfileTab>
           //width: MediaQuery.of(context).size.width,
           width: 200,
           child: TextFormField(
-            style: textTheme(color: kPrimaryColor(), weight: FontWeight.bold)
-                .headline2,
+            style: textTheme(
+              color: kPrimaryColor(),
+              weight: FontWeight.bold,
+            ).headline3,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.zero,
               isDense: true,
               hintText: "날짜 선택",
               enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
-              suffixIcon: Image.asset("assets/arrow_bottom_black.png",
-                  width: 6, height: 10),
+              suffixIcon: Image.asset("assets/arrow_bottom_black.png", width: 6, height: 10),
             ),
             controller: _DataTimeEditingController,
           ),
@@ -108,8 +108,7 @@ class _ProfileTabState extends State<ProfileTab>
                     _EstimatedEditingController.clear();
                     //tempPickedDate = args as DateTime?;
                     _DataTimeEditingController.text = args.toString();
-                    convertDateTimeDisplay(
-                        _DataTimeEditingController.text, '방문');
+                    convertDateTimeDisplay(_DataTimeEditingController.text, '방문');
                     Navigator.of(context).pop();
                   }),
                 },
@@ -127,11 +126,9 @@ class _ProfileTabState extends State<ProfileTab>
     final DateTime displayDate = displayFormater.parse(date);
     if (text == '방문') {
       _EstimatedEditingController.clear();
-      return _DataTimeEditingController.text =
-          serverFormater.format(displayDate);
+      return _DataTimeEditingController.text = serverFormater.format(displayDate);
     } else
-      return _EstimatedEditingController.text =
-          serverFormater.format(displayDate);
+      return _EstimatedEditingController.text = serverFormater.format(displayDate);
   }
 
   Widget _buildTabBar() {

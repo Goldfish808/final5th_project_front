@@ -22,7 +22,7 @@ class DefaultButton extends StatelessWidget {
           minimumSize: Size(double.infinity, 52),
           elevation: 0.0,
         ),
-        child: Text("${btnText}", style: textTheme(color: fontColor == null ? Colors.white : fontColor, weight: FontWeight.w500).headline2),
+        child: Text("${btnText}", style: textTheme(color: fontColor == null ? Colors.white : fontColor, weight: FontWeight.w500).headline3),
       ),
     );
   }
